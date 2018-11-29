@@ -11,14 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181128184104) do
+ActiveRecord::Schema.define(version: 20181129024315) do
 
   create_table "users", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
-    t.string "cell"
-    t.string "ccid"
-    t.string "discount"
+    t.string "First_Name"
+    t.string "Last_Name"
+    t.string "Email_Address"
+    t.string "Student_ID"
+    t.string "phone"
   end
 
 end
