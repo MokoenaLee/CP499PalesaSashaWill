@@ -11,7 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181129024315) do
+ActiveRecord::Schema.define(version: 20181129045859) do
+
+  create_table "generalinventories", force: :cascade do |t|
+    t.string "type"
+    t.string "staff"
+    t.string "upstairs"
+    t.string "trip_room"
+    t.string "nso_room"
+    t.string "rented"
+    t.string "in_pair"
+    t.string "total"
+    t.string "track_easy"
+    t.string "comparison"
+    t.string "notes"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "First_Name"

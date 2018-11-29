@@ -1,0 +1,12 @@
+type,staff,date,upstairs,trip_room,nso_room,rented,in_repair,total,track_easy,comparison,notes
+BACKPACK,HOANG,2/28/18,42,0,0,2,0,44,46,LESS,
+DAY PACK,HOANG,2/28/18,10,0,0,0,0,10,13,LESS,4 more green/blue packs added to fleet in Block 6 (updated in TrackEasy?)
+FIRST AID KIT ,lucy,28-Feb,4,6,0,2,2,14,64,LESS,# of filled--> 26 not filled found in trip room
+STUFF SACK,lucy,2/28/18,26,0,34,0,0,60,64,LESS,
+ROPE,lucy,2/28/18,28,1,2,0,0,31,26,EXCESS,
+TROWEL,lucy,2/28/18,10,5,0,0,0,15,24,LESS,"curious why number is much smaller, found none in NSO room"
+MISC. MAPS,Emma,2/28/18,Basecamp: 94,0,0,0,0,94,500,LESS,
+TRAIL MAP,Emma,2/28/18,Basecamp: 120,0,0,0,0,120,500,LESS,
+ATLAS,Emma,2/28/18,Basecamp: 20,0,0,0,0,20,500,LESS,
+QUADRANGLE MAP,Emma,2/28/18,Basecamp: 530,0,0,0,0,529,500,EXCESS,
+CRASH PAD,lucy,2/28/18,2,0,0,0,0,2,2,EQUAL,
