@@ -1,0 +1,17 @@
+%h1 All Users
+%table#users
+   %thead.fixed
+      %tr
+         %th First Name
+         %th Last Name
+         %th Email Address
+         %th Student ID
+         %th phone
+        
+   %tbody
+      - @users.each do |user|
+            %td= user.First_Name
+            %td= user.Last_Name
+            %td= user.Email_Address
+            %td= user.Student_ID
+            %td= user.phone
