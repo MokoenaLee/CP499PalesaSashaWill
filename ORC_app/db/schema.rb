@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181129194515) do
+ActiveRecord::Schema.define(version: 20181129221928) do
 
   create_table "generals", force: :cascade do |t|
     t.string "type_name"
@@ -26,6 +26,26 @@ ActiveRecord::Schema.define(version: 20181129194515) do
     t.string "track_easy"
     t.string "comparison"
     t.string "notes"
+  end
+
+  create_table "inventories", force: :cascade do |t|
+    t.string   "gear_type"
+    t.string   "brand"
+    t.string   "model"
+    t.string   "color"
+    t.string   "size"
+    t.string   "serial_number"
+    t.string   "retail"
+    t.string   "purchase_price"
+    t.string   "total_spent"
+    t.string   "date_purchaseed"
+    t.string   "purchase_method"
+    t.text     "reason"
+    t.string   "gear_category"
+    t.boolean  "available"
+    t.boolean  "bulk"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "sleepings", force: :cascade do |t|

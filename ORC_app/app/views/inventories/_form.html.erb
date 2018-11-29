@@ -1,0 +1,77 @@
+<%= form_for(@inventory) do |f| %>
+  <% if @inventory.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@inventory.errors.count, "error") %> prohibited this inventory from being saved:</h2>
+
+      <ul>
+      <% @inventory.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div class="field">
+    <%= f.label :bulk %><br>
+    <%= f.check_box :bulk %>
+  </div>
+  <div class="field">
+    <%= f.label :gear_type %><br>
+    <%= f.text_field :gear_type %>
+  </div>
+  <div class="field">
+    <%= f.label :brand %><br>
+    <%= f.text_field :brand %>
+  </div>
+  <div class="field">
+    <%= f.label :model %><br>
+    <%= f.text_field :model %>
+  </div>
+  <div class="field">
+    <%= f.label :color %><br>
+    <%= f.text_field :color %>
+  </div>
+  <div class="field">
+    <%= f.label :size %><br>
+    <%= f.text_field :size %>
+  </div>
+  <div class="field">
+    <%= f.label :serial_number %><br>
+    <%= f.text_field :serial_number %>
+  </div>
+  <div class="field">
+    <%= f.label :retail %><br>
+    <%= f.text_field :retail %>
+  </div>
+  <div class="field">
+    <%= f.label :purchase_price %><br>
+    <%= f.text_field :purchase_price %>
+  </div>
+  <div class="field">
+    <%= f.label :total_spent %><br>
+    <%= f.text_field :total_spent %>
+  </div>
+  <div class="field">
+    <%= f.label :date_purchaseed %><br>
+    <%= f.text_field :date_purchaseed %>
+  </div>
+  <div class="field">
+    <%= f.label :purchase_method %><br>
+    <%= f.text_field :purchase_method %>
+  </div>
+  <div class="field">
+    <%= f.label :reason %><br>
+    <%= f.text_area :reason %>
+  </div>
+  <div class="field">
+    <%= f.label :gear_category %><br>
+    <%= f.text_field :gear_category %>
+  </div>
+  <div class="field">
+    <%= f.label :available %><br>
+    <%= f.check_box :available %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

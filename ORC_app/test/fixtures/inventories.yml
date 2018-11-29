@@ -1,0 +1,35 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  gear_type: MyString
+  brand: MyString
+  model: MyString
+  color: MyString
+  size: MyString
+  serial_number: MyString
+  retail: MyString
+  purchase_price: MyString
+  total_spent: MyString
+  date_purchaseed: MyString
+  purchase_method: MyString
+  reason: MyText
+  gear_category: MyString
+  available: false
+  bulk: false
+
+two:
+  gear_type: MyString
+  brand: MyString
+  model: MyString
+  color: MyString
+  size: MyString
+  serial_number: MyString
+  retail: MyString
+  purchase_price: MyString
+  total_spent: MyString
+  date_purchaseed: MyString
+  purchase_method: MyString
+  reason: MyText
+  gear_category: MyString
+  available: false
+  bulk: false
