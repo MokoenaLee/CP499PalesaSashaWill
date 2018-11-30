@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181129221928) do
+ActiveRecord::Schema.define(version: 20181130004644) do
 
   create_table "generals", force: :cascade do |t|
     t.string "type_name"
@@ -29,23 +29,22 @@ ActiveRecord::Schema.define(version: 20181129221928) do
   end
 
   create_table "inventories", force: :cascade do |t|
-    t.string   "gear_type"
-    t.string   "brand"
-    t.string   "model"
-    t.string   "color"
-    t.string   "size"
-    t.string   "serial_number"
-    t.string   "retail"
-    t.string   "purchase_price"
-    t.string   "total_spent"
-    t.string   "date_purchaseed"
-    t.string   "purchase_method"
-    t.text     "reason"
-    t.string   "gear_category"
-    t.boolean  "available"
-    t.boolean  "bulk"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.boolean "Bulk"
+    t.string  "Gear_Type"
+    t.string  "Brand"
+    t.string  "Model"
+    t.string  "Color"
+    t.string  "Size"
+    t.string  "Quantity"
+    t.string  "Serial_Number"
+    t.string  "Retail"
+    t.string  "Purchase_Price"
+    t.string  "Total_Spent"
+    t.string  "Date_Purchased"
+    t.string  "Purchase_Method"
+    t.string  "Reason"
+    t.string  "Gear_Category"
+    t.string  "Available"
   end
 
   create_table "sleepings", force: :cascade do |t|
@@ -64,10 +63,10 @@ ActiveRecord::Schema.define(version: 20181129221928) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "First_Name"
-    t.string "Last_Name"
-    t.string "Email_Address"
-    t.string "Student_ID"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "email_address"
+    t.string "student_ID"
     t.string "phone"
   end
 
