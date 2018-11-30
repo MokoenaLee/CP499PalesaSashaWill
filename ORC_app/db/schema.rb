@@ -11,7 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181130005726) do
+
+ActiveRecord::Schema.define(version: 20181130161141) do
+
+  create_table "bulks", force: :cascade do |t|
+  end
+>>>>>>> 2ba17dfcb2266a2374c3d49d683cbf5104a503fa
 
   create_table "generals", force: :cascade do |t|
     t.string "type_name"
