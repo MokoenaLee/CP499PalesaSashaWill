@@ -11,9 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 20181130004644) do
-
+ActiveRecord::Schema.define(version: 20181130005726) do
 
   create_table "generals", force: :cascade do |t|
     t.string "type_name"
