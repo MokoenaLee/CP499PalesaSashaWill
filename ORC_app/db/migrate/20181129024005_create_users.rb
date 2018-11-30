@@ -2,7 +2,7 @@ class CreateUser < ActiveRecord::Migration
   def change
     create_table :users do |t|
      t.string 'first_name'
-     t.string 'nast_name'
+     t.string 'last_name'
      t.string 'email_address'
      t.string 'student_ID'
      t.string 'phone'
