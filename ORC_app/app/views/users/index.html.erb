@@ -24,10 +24,10 @@
   <tbody>
     <% @users.each do |user| %>
       <tr>
-        <td><%= user.First_Name %></td>
-        <td><%= user.Last_Name %></td>
-        <td><%= user.Email_Address %></td>
-        <td><%= user.Student_ID %></td>
+        <td><%= user.first_name %></td>
+        <td><%= user.last_name %></td>
+        <td><%= user.email_address %></td>
+        <td><%= user.student_ID %></td>
         <td><%= user.phone %></td>
         <td><%= link_to 'Show', user %></td>
         <td><%= link_to 'Edit', edit_user_path(user) %></td>

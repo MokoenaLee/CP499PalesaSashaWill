@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181129221928) do
+ActiveRecord::Schema.define(version: 20181130005726) do
 
   create_table "generals", force: :cascade do |t|
     t.string "type_name"
@@ -64,10 +64,10 @@ ActiveRecord::Schema.define(version: 20181129221928) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "First_Name"
-    t.string "Last_Name"
-    t.string "Email_Address"
-    t.string "Student_ID"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "email_address"
+    t.string "student_ID"
     t.string "phone"
   end
 
