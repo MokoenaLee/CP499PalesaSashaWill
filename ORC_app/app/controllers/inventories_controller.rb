@@ -4,6 +4,7 @@ class InventoriesController < ApplicationController
   # GET /inventories
   # GET /inventories.json
   def index
+    # @inventories = Inventory.all + Bulk.all
     @inventories = Inventory.all
   end
 
@@ -58,6 +59,14 @@ class InventoriesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to inventories_url, notice: 'Inventory was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def searchAllInventories
+    @inventory.searchAllInventories
+    respond_to do |format|
+      fullInventory = Inventory.find_by_sql[SELECT id FROM Inventory UNION SELECT id FROM Bulk]
+      puts fullInventory
     end
   end
 
