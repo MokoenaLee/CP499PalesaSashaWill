@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181129221928) do
+ActiveRecord::Schema.define(version: 20181203202725) do
 
   create_table "generals", force: :cascade do |t|
     t.string "type_name"
@@ -46,6 +46,17 @@ ActiveRecord::Schema.define(version: 20181129221928) do
     t.boolean  "bulk"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+  end
+
+  create_table "rentals", force: :cascade do |t|
+    t.integer  "user_ID"
+    t.string   "item_ID"
+    t.string   "rental_date"
+    t.string   "return_date"
+    t.integer  "days_used"
+    t.string   "on_time_price"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "sleepings", force: :cascade do |t|
