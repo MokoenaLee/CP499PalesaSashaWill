@@ -51,15 +51,17 @@ ActiveRecord::Schema.define(version: 20181203021749) do
   end
 
   create_table "rentals", force: :cascade do |t|
-    t.string "Renter_Fname"
-    t.string "Renter_Lname"
-    t.string "Gear_type"
-    t.string "Brand"
-    t.string "Model"
-    t.string "Color"
-    t.string "Size"
-    t.string "Quantity"
-    t.date   "Date"
+    t.integer "User id"
+    t.integer "Inventory id"
+    t.string  "Renter_Fname"
+    t.string  "Renter_Lname"
+    t.string  "Gear_type"
+    t.string  "Brand"
+    t.string  "Model"
+    t.string  "Color"
+    t.string  "Size"
+    t.string  "Quantity"
+    t.date    "Date"
   end
 
   create_table "sleepings", force: :cascade do |t|
