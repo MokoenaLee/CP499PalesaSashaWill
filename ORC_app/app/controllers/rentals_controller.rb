@@ -1,6 +1,5 @@
 class RentalsController < ApplicationController
   before_action :set_rental, only: [:show, :edit, :update, :destroy]
-
   # GET /rentals
   # GET /rentals.json
   def index
@@ -17,6 +16,7 @@ class RentalsController < ApplicationController
     @user_options = User.all.map{ |u| [ u.last_name, u.student_ID ] }
     # @user_options.order(:last_name, :asc)
     @rental = Rental.new
+
   end
 
   # GET /rentals/1/edit
