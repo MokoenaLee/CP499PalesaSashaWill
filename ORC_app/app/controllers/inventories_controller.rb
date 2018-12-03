@@ -4,7 +4,9 @@ class InventoriesController < ApplicationController
   # GET /inventories
   # GET /inventories.json
   def index
+    # @inventories = Inventory.all + Bulk.all
     @inventories = Inventory.all
+    @bulks = Bulk.all
   end
 
   # GET /inventories/1
@@ -61,6 +63,14 @@ class InventoriesController < ApplicationController
     end
   end
 
+  def searchAllInventories
+    @inventory.searchAllInventories
+    respond_to do |format|
+      fullInventory = Inventory.find_by_sql[SELECT id FROM Inventory UNION SELECT id FROM Bulk]
+      puts fullInventory
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_inventory
@@ -69,6 +79,6 @@ class InventoriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def inventory_params
-      params.require(:inventory).permit(:bulk, :gear_type, :brand, :model, :color, :size, :serial_number, :retail, :purchase_price, :total_spent, :date_purchaseed, :purchase_method, :reason, :gear_category, :available)
+      params.require(:inventory).permit(:Bulk, :Gear_Type, :Brand, :Model, :Color, :Size, :Serial_Number, :Retail, :Purchase_Price, :Total_Spent, :Date_Purchased, :Purchase_Method, :Reason, :Gear_Category, :Available)
     end
 end

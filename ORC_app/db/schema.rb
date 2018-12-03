@@ -11,9 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181203021749) do
+ActiveRecord::Schema.define(version: 20181203202725) do
 
   create_table "bulks", force: :cascade do |t|
+    t.string  "gear_type"
+    t.string  "gear_category"
+    t.string  "quantity"
+    t.string  "notes"
+    t.boolean "bulk"
   end
 
   create_table "generals", force: :cascade do |t|
@@ -51,32 +56,14 @@ ActiveRecord::Schema.define(version: 20181203021749) do
   end
 
   create_table "rentals", force: :cascade do |t|
-    t.integer "User id"
-    t.integer "Inventory id"
-    t.string  "Renter_Fname"
-    t.string  "Renter_Lname"
-    t.string  "Gear_type"
-    t.string  "Brand"
-    t.string  "Model"
-    t.string  "Color"
-    t.string  "Size"
-    t.string  "Quantity"
-    t.date    "Date"
-  end
-
-  create_table "sleepings", force: :cascade do |t|
-    t.string "type_name"
-    t.string "staff"
-    t.string "date"
-    t.string "upstairs"
-    t.string "trip_room"
-    t.string "nso_room"
-    t.string "rented"
-    t.string "in_repair"
-    t.string "total"
-    t.string "track_easy"
-    t.string "comparison"
-    t.string "notes"
+    t.integer  "user_ID"
+    t.string   "item_ID"
+    t.string   "rental_date"
+    t.string   "return_date"
+    t.integer  "days_used"
+    t.string   "on_time_price"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "users", force: :cascade do |t|
