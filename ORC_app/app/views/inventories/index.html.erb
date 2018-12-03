@@ -8,6 +8,11 @@
   <a href="http://localhost:3000/rentals">View Rentals</a>
   <a href="http://localhost:3000/users">View Users</a>
 </p>
+
+<p>
+<%= link_to 'New Inventory', new_inventory_path %>
+</p>
+
 <table>
   <thead>
     <tr>
@@ -21,7 +26,7 @@
       <th>Retail</th>
       <th>Purchase price</th>
       <th>Total spent</th>
-      <th>Date purchaseed</th>
+      <th>Date purchased</th>
       <th>Purchase method</th>
       <th>Reason</th>
       <th>Gear category</th>
@@ -49,9 +54,7 @@
         <td><%= inventory.Gear_Category %></td>
         <td><%= inventory.Available %></td>
         <td><%= link_to 'Show', inventory %></td>
-        <td><%= link_to 'Edit', edit_inventory_path(inventory) %></td>
-        <td><%= link_to 'Destroy', inventory, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td><%= link_to 'ShowALLINV', inventory %></td>
+
       </tr>
     <% end %>
   </tbody>

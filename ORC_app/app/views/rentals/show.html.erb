@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User id:</strong>
+  <%= @rental.user_ID %>
+</p>
+
+<p>
+  <strong>Item id:</strong>
+  <%= @rental.item_ID %>
+</p>
+
+<p>
+  <strong>Rental date:</strong>
+  <%= @rental.rental_date %>
+</p>
+
+<p>
+  <strong>Return date:</strong>
+  <%= @rental.return_date %>
+</p>
+
+<p>
+  <strong>Days used:</strong>
+  <%= @rental.days_used %>
+</p>
+
+<p>
+  <strong>On time price:</strong>
+  <%= @rental.on_time_price %>
+</p>
+
+<%= link_to 'Edit', edit_rental_path(@rental) %> |
+<%= link_to 'Back', rentals_path %>
