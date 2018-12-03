@@ -11,12 +11,13 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :user_ID %><br>
-
+  <div class="select">
+    <%= f.label :user_ID %>
     <%= f.select(:user_ID, @user_options) %>
-
+    <p>
+    </p>
   </div>
+
   <div class="field">
     <%= f.label :item_ID %><br>
     <%= f.text_field :item_ID %>

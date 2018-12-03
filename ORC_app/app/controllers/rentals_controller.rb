@@ -14,8 +14,8 @@ class RentalsController < ApplicationController
 
   # GET /rentals/new
   def new
-    @user_options = User.all.map{ |u| [ u.student_ID, u.student_ID ] }
-    @users = User.all
+    @user_options = User.all.map{ |u| [ u.last_name, u.student_ID ] }
+    # @user_options.order(:last_name, :asc)
     @rental = Rental.new
   end
 
