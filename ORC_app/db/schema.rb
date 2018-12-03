@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181130161141) do
+ActiveRecord::Schema.define(version: 20181203021749) do
 
   create_table "bulks", force: :cascade do |t|
   end
@@ -48,6 +48,20 @@ ActiveRecord::Schema.define(version: 20181130161141) do
     t.string  "Reason"
     t.string  "Gear_Category"
     t.string  "Available"
+  end
+
+  create_table "rentals", force: :cascade do |t|
+    t.integer "User id"
+    t.integer "Inventory id"
+    t.string  "Renter_Fname"
+    t.string  "Renter_Lname"
+    t.string  "Gear_type"
+    t.string  "Brand"
+    t.string  "Model"
+    t.string  "Color"
+    t.string  "Size"
+    t.string  "Quantity"
+    t.date    "Date"
   end
 
   create_table "sleepings", force: :cascade do |t|
