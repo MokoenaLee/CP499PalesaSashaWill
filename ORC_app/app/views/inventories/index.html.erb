@@ -38,21 +38,21 @@
   <tbody>
     <% @inventories.each do |inventory| %>
       <tr>
-        <td><%= inventory.bulk %></td>
-        <td><%= inventory.gear_type %></td>
-        <td><%= inventory.brand %></td>
-        <td><%= inventory.model %></td>
-        <td><%= inventory.color %></td>
-        <td><%= inventory.size %></td>
-        <td><%= inventory.serial_number %></td>
-        <td><%= inventory.retail %></td>
-        <td><%= inventory.purchase_price %></td>
-        <td><%= inventory.total_spent %></td>
-        <td><%= inventory.date_purchaseed %></td>
-        <td><%= inventory.purchase_method %></td>
-        <td><%= inventory.reason %></td>
-        <td><%= inventory.gear_category %></td>
-        <td><%= inventory.available %></td>
+        <td><%= inventory.Bulk %></td>
+        <td><%= inventory.Gear_Type %></td>
+        <td><%= inventory.Brand %></td>
+        <td><%= inventory.Model %></td>
+        <td><%= inventory.Color %></td>
+        <td><%= inventory.Size %></td>
+        <td><%= inventory.Serial_Number %></td>
+        <td><%= inventory.Retail %></td>
+        <td><%= inventory.Purchase_Price %></td>
+        <td><%= inventory.Total_Spent %></td>
+        <td><%= inventory.Date_Purchased %></td>
+        <td><%= inventory.Purchase_Method %></td>
+        <td><%= inventory.Reason %></td>
+        <td><%= inventory.Gear_Category %></td>
+        <td><%= inventory.Available %></td>
         <td><%= link_to 'Show', inventory %></td>
         <td><%= link_to 'Edit', edit_inventory_path(inventory) %></td>
         <td><%= link_to 'Destroy', inventory, method: :delete, data: { confirm: 'Are you sure?' } %></td>
