@@ -13,7 +13,9 @@
 
   <div class="field">
     <%= f.label :user_ID %><br>
-    <%= f.number_field :user_ID %>
+
+    <%= f.select(:user_ID, @user_options) %>
+
   </div>
   <div class="field">
     <%= f.label :item_ID %><br>
