@@ -9,6 +9,9 @@
   <a href="http://localhost:3000/users">View Users</a>
 </p>
 
+<h2>Itemized Inventory</h2>
+
+
 <p>
 <%= link_to 'New Inventory', new_inventory_path %>
 </p>
@@ -16,43 +19,27 @@
 <table>
   <thead>
     <tr>
-      <th>Bulk</th>
       <th>Gear type</th>
       <th>Brand</th>
       <th>Model</th>
       <th>Color</th>
       <th>Size</th>
       <th>Serial number</th>
-      <th>Retail</th>
-      <th>Purchase price</th>
-      <th>Total spent</th>
-      <th>Date purchased</th>
-      <th>Purchase method</th>
-      <th>Reason</th>
       <th>Gear category</th>
-      <th>Available</th>
-      <!-- <th colspan="3"></th> -->
+      <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @inventories.each do |inventory| %>
       <tr>
-        <td><%= inventory.Bulk %></td>
         <td><%= inventory.Gear_Type %></td>
         <td><%= inventory.Brand %></td>
         <td><%= inventory.Model %></td>
         <td><%= inventory.Color %></td>
         <td><%= inventory.Size %></td>
         <td><%= inventory.Serial_Number %></td>
-        <td><%= inventory.Retail %></td>
-        <td><%= inventory.Purchase_Price %></td>
-        <td><%= inventory.Total_Spent %></td>
-        <td><%= inventory.Date_Purchased %></td>
-        <td><%= inventory.Purchase_Method %></td>
-        <td><%= inventory.Reason %></td>
         <td><%= inventory.Gear_Category %></td>
-        <td><%= inventory.Available %></td>
         <td><%= link_to 'Show', inventory %></td>
 
       </tr>
@@ -80,5 +67,37 @@
 
 
 <br>
+
+
+<h2>Bulk Inventory</h2>
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Gear Type</th>
+      <th>Gear Category</th>
+      <th>Quantity</th>
+      <th>Notes</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @bulks.each do |bulk| %>
+      <tr>
+        <td><%= bulk.Gear_Type %></td>
+        <td><%= bulk.Gear_Category %></td>
+        <td><%= bulk.quantity %></td>
+        <td><%= bulk.notes %></td>
+        <td><%= link_to 'Show', inventory %></td>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
 
 <%= link_to 'New Inventory', new_inventory_path %>

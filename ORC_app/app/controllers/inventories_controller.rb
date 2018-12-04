@@ -6,6 +6,7 @@ class InventoriesController < ApplicationController
   def index
     # @inventories = Inventory.all + Bulk.all
     @inventories = Inventory.all
+    @bulks = Bulk.all
   end
 
   # GET /inventories/1
