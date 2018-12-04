@@ -12,15 +12,23 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :user_ID %>
-    <%= f.select(:user_ID, @user_options)%>
+    <%= f.label :first_name %>
+    <%= f.collection_select(:user_ID, User.all,:first_name,:last_name,{:prompt => "Select Renter's First Name"})%>
     <p>
     </p>
   </div>
 
+<div class="field">
+    <%= f.label :last_name %>
+    <%= f.collection_select(:user_ID, User.all,:first_name,:last_name,{:prompt => "Select Renter's Last Name"})%>
+    <p>
+    </p>
+  </div>
+
+
   <div class="field">
     <%= f.label :Gear_Type %><br>
-    <%= f.collection_select(:Gear_Type, Inventory.all,:Brand,:Model, {:prompt => "Select Options"})%>
+    <%= f.collection_select(:Gear_Type, Inventory.all,:Brand,:Model, {:prompt => "Rental Item Options"})%>
   </div>
   <div class="field">
     <%= f.label :rental_date %><br>
