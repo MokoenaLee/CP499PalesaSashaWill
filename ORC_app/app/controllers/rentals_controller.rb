@@ -13,7 +13,13 @@ class RentalsController < ApplicationController
 
   # GET /rentals/new
   def new
-    @user_options = User.all.map{ |u| [ u.last_name, u.student_ID ] }
+    @user_fname = User.all.map{|u| u.first_name}
+    @user_lname = User.all.map{|x| x.last_name}
+    @inventory_gear = Inventory.all.map{|t| t.Gear_Type}
+    @inventory_model = Inventory.all.map{|t| t.Model}
+    @inventory_brand = Inventory.all.map{|t| t.Brand}
+    
+    
     # @user_options.order(:last_name, :asc)
     @rental = Rental.new
 
@@ -71,6 +77,6 @@ class RentalsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def rental_params
-      params.require(:rental).permit(:user_ID,:first_name,:last_name,:Gear_Type,:Brand,:Model,:rental_date, :return_date,:days_used, :on_time_price)
+      params.require(:rental).permit(:user_ID,:first_name,:last_name,:Gear_Type,:Model,:Brand,:rental_date, :return_date,:days_used, :on_time_price)
     end
 end

@@ -5,8 +5,8 @@ class CreateRentals < ActiveRecord::Migration
       t.string :first_name
       t.string :last_name
       t.string :Gear_Type
-      t.string :Brand
       t.string :Model
+      t.string :Brand
       t.string :rental_date
       t.string :return_date
       t.integer :days_used

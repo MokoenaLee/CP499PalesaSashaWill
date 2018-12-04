@@ -12,8 +12,11 @@
 <table>
   <thead>
     <tr>
-      <th>Student ID |</th>
-      <th>Rental Item |</th>
+      <th>Renter First Name|</th>
+      <th>Renter Last Name|</th>
+      <th>Gear Type|</th>
+      <th>Brand|</th>
+      <th>Model|</th>
       <th>Rental date |</th>
       <th>Return date |</th>
       <th>Days used |</th>
@@ -25,8 +28,9 @@
   <tbody>
     <% @rentals.each do |rental| %>
       <tr>
-        <td><%= rental.user_ID %></td>
-        <td><%= rental.gear_type %></td>
+        <td><%= rental.first_name%></td>
+        <td><%= rental.last_name%></td>
+        <td><%= rental.Gear_Type %></td>
         <td><%= rental.rental_date %></td>
         <td><%= rental.return_date %></td>
         <td><%= rental.days_used %></td>
