@@ -11,9 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181130161141) do
+ActiveRecord::Schema.define(version: 20181203202725) do
+>>>>>>> 1a2f5e3b04ba0667edc5ad5c969916d5d4e227ac
 
   create_table "bulks", force: :cascade do |t|
+    t.string  "Gear_Type"
+    t.string  "Gear_Category"
+    t.integer "Quantity"
+    t.string  "location"
+    t.string  "Notes"
+    t.boolean "Bulk"
   end
 
   create_table "generals", force: :cascade do |t|
@@ -51,7 +58,18 @@ ActiveRecord::Schema.define(version: 20181130161141) do
     t.string  "Available"
   end
 
-  add_index "inventories", ["user_id"], name: "index_inventories_on_user_id"
+
+  create_table "rentals", force: :cascade do |t|
+    t.integer  "user_ID"
+    t.string   "item_ID"
+    t.string   "rental_date"
+    t.string   "return_date"
+    t.integer  "days_used"
+    t.string   "on_time_price"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
 
   create_table "sleepings", force: :cascade do |t|
     t.string "type_name"
