@@ -25,11 +25,22 @@
     </p>
   </div>
 
-
   <div class="field">
     <%= f.label :Gear_Type %><br>
-    <%= f.collection_select(:Gear_Type, Inventory.all,:Brand,:Model, {:prompt => "Rental Item Options"})%>
+    <%= f.collection_select(:Bulk,Inventory.all,:Brand,:Model,:Gear_Type,{:prompt => "Rental Item Options"})%>
   </div>
+
+
+ <div class="field">
+    <%= f.label :Brand %><br>
+    <%= f.collection_select(:Bulk,Inventory.all,:Model,:Gear_Type,:Brand,{:prompt => "Rental Item Options"})%>
+  </div>
+
+ <div class="field">
+    <%= f.label :Model %><br>
+    <%= f.collection_select(:Bulk,Inventory.all,:Gear_Type,:Brand,:Model,{:prompt => "Rental Item Options"})%>
+  </div>
+
   <div class="field">
     <%= f.label :rental_date %><br>
     <%= f.text_field :rental_date %>
