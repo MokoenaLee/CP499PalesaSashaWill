@@ -14,11 +14,12 @@
 ActiveRecord::Schema.define(version: 20181203021749) do
 
   create_table "bulks", force: :cascade do |t|
-    t.string  "gear_type"
-    t.string  "gear_category"
-    t.string  "quantity"
-    t.string  "notes"
-    t.boolean "bulk"
+    t.string  "Gear_Type"
+    t.string  "Gear_Category"
+    t.integer "Quantity"
+    t.string  "location"
+    t.string  "Notes"
+    t.boolean "Bulk"
   end
 
   create_table "generals", force: :cascade do |t|
