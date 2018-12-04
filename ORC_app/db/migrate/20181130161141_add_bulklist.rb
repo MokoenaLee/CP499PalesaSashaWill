@@ -4,11 +4,12 @@ class AddBulklist < ActiveRecord::Migration
     bulks = CSV.read(Dir.pwd + "/db/bulk_inventory.csv", :headers => true)
     bulks.each do |row|
       Bulk.create({
-       :gear_type => row[0],
-       :gear_category => row[1],
-       :quantity => row[2],
-       :notes => row[3],
-       :bulk => row[4]})
+       :Gear_Type => row[0],
+       :Gear_Category => row[1],
+       :Quantity => row[2],
+       :location => row[3],
+       :Notes => row[4],
+       :Bulk => row[5]})
     end
   end
 end
