@@ -1,4 +1,5 @@
 class Inventory < ActiveRecord::Base
-    has_many :rentals
-    has_many :users, :through => :rentals
+  scope :all_it, -> {Inventory.all}
+  has_many :rentals
+  has_many :users, :through => :rentals
 end

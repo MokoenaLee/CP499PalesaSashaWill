@@ -10,7 +10,7 @@ one:
   retail: MyString
   purchase_price: MyString
   total_spent: MyString
-  date_purchaseed: MyString
+  date_purchased: MyString
   purchase_method: MyString
   reason: MyText
   gear_category: MyString
@@ -27,7 +27,7 @@ two:
   retail: MyString
   purchase_price: MyString
   total_spent: MyString
-  date_purchaseed: MyString
+  date_purchased: MyString
   purchase_method: MyString
   reason: MyText
   gear_category: MyString
