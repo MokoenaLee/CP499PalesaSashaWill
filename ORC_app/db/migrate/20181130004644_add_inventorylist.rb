@@ -1,9 +1,12 @@
 require 'csv'
 class AddInventorylist < ActiveRecord::Migration
+  IID
   def change
     inventories = CSV.read(Dir.pwd + "/db/itemized_inventory.csv", :headers => true)
     inventories.each do |row|
+
      Inventory.create({
+      :IID => row[0],
       :Bulk => row[0],
       :Gear_Type => row[1],
       :Brand => row[2],
@@ -22,5 +25,9 @@ class AddInventorylist < ActiveRecord::Migration
       :Available => row[15]
       })
     end
+  end
+
+  def createIID
+  
   end
 end
