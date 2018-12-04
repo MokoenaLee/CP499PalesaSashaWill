@@ -78,6 +78,25 @@
   </tbody>
 </table>
 
+<<table>
+  <<thead>
+    <<tr>
+      <<th>id</th>
+      <<th>gear_type</th>
+    </tr>
+  </thead>
+  <<tbody>
+    <% @blahs = Bulk.all_bulk + Inventory.all_it%>
+    <% @blahs.each do |blah| %>
+    <<tr>
+      <<td><%= blah.id %></td>
+      <<td><%= blah.Gear_Type %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
 <br>
 
 

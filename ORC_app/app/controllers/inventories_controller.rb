@@ -1,5 +1,5 @@
 class InventoriesController < ApplicationController
-  before_action :set_inventory, only: [:show, :edit, :update, :destroy]
+  before_action :set_inventory, :searchAllInventories, only: [:show, :edit, :update, :destroy]
 
   # GET /inventories
   # GET /inventories.json
@@ -65,10 +65,9 @@ class InventoriesController < ApplicationController
 
   def searchAllInventories
     @inventory.searchAllInventories
-    respond_to do |format|
-      fullInventory = Inventory.find_by_sql[SELECT id FROM Inventory UNION SELECT id FROM Bulk]
-      puts fullInventory
-    end
+    fullInventory = Bulk.all_bulk + Itemized.all_it
+    puts "BLAH"
+    puts fullInventory
   end
 
   private
