@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(version: 20181203202725) do
 
   create_table "rentals", force: :cascade do |t|
     t.integer  "user_ID"
-    t.string   "item_ID"
+    t.string   "Gear_Type"
     t.string   "rental_date"
     t.string   "return_date"
     t.integer  "days_used"

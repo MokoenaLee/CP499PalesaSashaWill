@@ -13,14 +13,14 @@
 
   <div class="field">
     <%= f.label :user_ID %>
-    <%= f.select(:user_ID, @user_options) %>
+    <%= f.select(:user_ID, @user_options)%>
     <p>
     </p>
   </div>
 
   <div class="field">
-    <%= f.label :item_ID %><br>
-    <%= f.text_field :item_ID %>
+    <%= f.label :Gear_Type %><br>
+    <%= f.collection_select(:Gear_Type, Inventory.all,:Brand,:Model, {:prompt => "Select Options"})%>
   </div>
   <div class="field">
     <%= f.label :rental_date %><br>

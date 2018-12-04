@@ -2,7 +2,7 @@ class CreateRentals < ActiveRecord::Migration
   def change
     create_table :rentals do |t|
       t.integer :user_ID
-      t.string :item_ID
+      t.string :Gear_Type
       t.string :rental_date
       t.string :return_date
       t.integer :days_used

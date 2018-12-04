@@ -44,7 +44,7 @@ class RentalsController < ApplicationController
   def update
     respond_to do |format|
       if @rental.update(rental_params)
-        format.html { redirect_to @rental, notice: 'Rental was successfully updated.' }
+        format.html { redirect_to @rental, notice: 'Rental was successfully created.' }
         format.json { render :show, status: :ok, location: @rental }
       else
         format.html { render :edit }
@@ -71,6 +71,6 @@ class RentalsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def rental_params
-      params.require(:rental).permit(:user_ID, :item_ID, :rental_date, :return_date, :days_used, :on_time_price)
+      params.require(:rental).permit(:user_ID, :Gear_Type, :rental_date, :return_date, :days_used, :on_time_price)
     end
 end
