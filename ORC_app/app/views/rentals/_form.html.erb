@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= f.label :first_name %>
-    <%= f.collection_select(:user_ID, User.all,:first_name,:last_name,{:prompt => "Select Renter's First Name"})%>
+    <%= f.collection_select(:user_ID, User.all,:last_name,:first_name,{:prompt => "Select Renter's First Name"})%>
     <p>
     </p>
   </div>
