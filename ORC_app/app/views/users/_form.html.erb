@@ -11,27 +11,31 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :first_name %><br>
-    <%= f.text_field :first_name %>
+    <%= f.text_field :first_name, class: "form-control" %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :last_name %><br>
-    <%= f.text_field :last_name %>
+    <%= f.text_field :last_name, class: "form-control" %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :email_address %><br>
-    <%= f.text_field :email_address %>
+    <%= f.text_field :email_address, class: "form-control" %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :student_ID %><br>
-    <%= f.number_field :student_ID %>
+    <%= f.number_field :student_ID, class: "form-control" %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :phone %><br>
-    <%= f.number_field :phone %>
+    <%= f.number_field :phone, class: "form-control" %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Update", class: "btn btn-primary"%>
   </div>
+  <p>
+  </p>
+  <%= link_to 'Show', @user, class: "btn btn-outline-secondary" %>
+  <%= link_to 'Back', users_path, class: "btn btn-outline-secondary" %>
 <% end %>
