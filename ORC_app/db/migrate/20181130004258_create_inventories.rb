@@ -1,8 +1,9 @@
+require 'date'
 class CreateInventories < ActiveRecord::Migration
   def change
-    create_table :inventories do |t|
-       t.belongs_to :user,index: true
-       self.primary_key = IID
+    create_table :inventories, index: true  do |t|
+       t.belongs_to :user
+       t.string 'blahID', :null => FALSE
        t.boolean 'Bulk'
        t.string 'Gear_Type'
        t.string 'Brand'
