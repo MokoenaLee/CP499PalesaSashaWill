@@ -28,9 +28,55 @@ class RentalsController < ApplicationController
   # GET /rentals/1/edit
   def edit
   end
+ 
+  def index
+   results = nil
+   
+   case params[:commit]
+   when 'Clear'
+    clear_sessions_of_filters
+    redirect_to rentals_path
+   when 'Search'
+    results = filter_rentals
+    store_filter_in_session
+    if results.nil? || results.empty?
+     flash[:warning] = "no courses found"
+    end
+   end
+   @rentals = results.nil? || Rental.all : results
+  end
 
-  # POST /rentals
-  # POST /rentals.json
+  private 
+  def filter_rentals
+    filter = {}
+    Rental.all_filters do |filt|
+     if !(params[filt].nil? || params[filt].empty?)
+       filter[filt_as_col filt] = params[filt]
+     end
+   puts filter
+   end
+    return Rental.find_where filter
+  end
+
+
+  def clear_sessions_of_filters
+   Rental.all_filters do |filt|
+    session.delete filt
+   end
+  end
+
+
+
+  def store_filter_in_session
+   Rental.all_filters do |filt|
+    if !params[filt].nil?
+      session[filt] = params[filt]
+    end
+   end
+   
+  end
+
+
   def create
     @rental = Rental.new(rental_params)
 
@@ -59,8 +105,7 @@ class RentalsController < ApplicationController
     end
   end
 
-  # DELETE /rentals/1
-  # DELETE /rentals/1.json
+
   def destroy
     @rental.destroy
     respond_to do |format|

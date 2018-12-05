@@ -9,6 +9,19 @@
   <a href="http://localhost:3000/inventories">View Inventory</a>
 </p>
 
+
+%div.search
+   %h1.search Search
+   =form_tag rentals_path, :method => :get, :id => 'filter_form' do
+         - Rental.all_filters.each do |filt|
+            %div{:class=>"#{filt}_label"}
+               = filt
+            %div{:class=>"#{filt}_select"}
+               = select_tag filt, options_for_select(Rental.unique_options(filt), :selected => params[filt]), :include_blank => true
+
+      = submit_tag 'Search'
+      = submit_tag 'Clear'
+
 <table>
   <thead>
     <tr>
