@@ -2,8 +2,8 @@ Rails.application.routes.draw do
   resources :rentals
   resources :inventories
   resources :users
-  get '/search', :controller => :search, :to => 'search#index'
-  get '/search/find', :controller => :search, :to => 'search#search'
+  get '/search', :controller => :search, :to => 'searches#index'
+  get '/search/find', :controller => :search, :to => 'searches#search'
   root :to => redirect('/users')
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

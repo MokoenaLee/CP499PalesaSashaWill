@@ -1,8 +1,10 @@
-class SearchController < ApplicationController
+class SearchesController < ApplicationController
 
   def index
-  end
 
+  end
+  
+ 
   def search 
     rentals = []
     if params[:search_filters] = "first_name"

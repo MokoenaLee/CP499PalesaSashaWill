@@ -10,18 +10,6 @@
 </p>
 
 
-%div.search
-   %h1.search Search
-   =form_tag rentals_path, :method => :get, :id => 'filter_form' do
-         - Rental.all_filters.each do |filt|
-            %div{:class=>"#{filt}_label"}
-               = filt
-            %div{:class=>"#{filt}_select"}
-               = select_tag filt, options_for_select(Rental.unique_options(filt), :selected => params[filt]), :include_blank => true
-
-      = submit_tag 'Search'
-      = submit_tag 'Clear'
-
 <table>
   <thead>
     <tr>
@@ -51,7 +39,6 @@
         <td><%= rental.days_used %></td>
         <td><%= rental.on_time_price %></td>
         <td><%= link_to 'Show', rental %></td>
-<!--    <td><%= link_to 'Edit', edit_rental_path(rental) %></td> -->
         <td><%= link_to 'Destroy', rental, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
@@ -59,5 +46,24 @@
 </table>
 
 <br>
+<%= link_to 'New Rental', new_rental_path%>
+<%= link_to 'Search Rentals', search_find_path%>
 
-<%= link_to 'New Rental', new_rental_path %>
+<div class="search">
+  <h1 class="search">Search</h1>
+  <%= form_tag rentals_path, :method => :get, :id => 'filter_form' do %>
+    <div class="grid-container">
+      <% Rental.all_filters.each do |filt| %>
+        <div class="<%= filt %>_label">
+          <%= filt %>
+        </div>
+        <div class="<%= filt %>_select">
+          <%= select_tag filt, options_for_select(Rental.unique_options(filt), :selected => params[filt]), :include_blank => true %>
+        </div>
+      <% end %>
+    </div>
+    <%= submit_tag 'Search' %>
+    <%= submit_tag 'Clear' %>
+  <% end %>
+</div>
+

@@ -1,9 +1,0 @@
-%h1 Search
-=flash[:warning]
-=form_tag('/search/find', :controller => "search", :method => "get", :action => "search") do
-   .search_field
-   %select{ :name => "search_filters" }
-      %option{ :value => "Please select" }= "Please select"
-      %option{ :value => "First_name" }= "First Name"
-   =text_field_tag :s
-   =submit_tag 'Search'

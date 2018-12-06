@@ -11,25 +11,21 @@ class RentalsController < ApplicationController
   def show
   end
 
-  # GET /rentals/new
+
   def new
     @user_fname = User.all.map{|u| u.first_name}
     @user_lname = User.all.map{|x| x.last_name}
     @inventory_gear = Inventory.all.map{|t| t.Gear_Type}
     @inventory_model = Inventory.all.map{|t| t.Model}
     @inventory_brand = Inventory.all.map{|t| t.Brand}
-    
-    
-    # @user_options.order(:last_name, :asc)
     @rental = Rental.new
-
   end
 
   # GET /rentals/1/edit
   def edit
   end
- 
-  def index
+  
+   def index
    results = nil
    
    case params[:commit]
@@ -40,13 +36,13 @@ class RentalsController < ApplicationController
     results = filter_rentals
     store_filter_in_session
     if results.nil? || results.empty?
-     flash[:warning] = "no courses found"
+     flash[:warning] = "no rentals found"
     end
    end
-   @rentals = results.nil? || Rental.all : results
+   @rentals = results.nil?  ? Rental.all : results
   end
 
-  private 
+ 
   def filter_rentals
     filter = {}
     Rental.all_filters do |filt|
@@ -91,8 +87,7 @@ class RentalsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /rentals/1
-  # PATCH/PUT /rentals/1.json
+
   def update
     respond_to do |format|
       if @rental.update(rental_params)
@@ -122,6 +117,6 @@ class RentalsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def rental_params
-      params.require(:rental).permit(:user_ID,:first_name,:last_name,:Gear_Type,:Model,:Brand,:rental_date, :return_date,:days_used, :on_time_price)
+                  params.require(:rental).permit(:user_ID,:first_name,:last_name,:Gear_Type,:Model,:Brand,:rental_date, :return_date,:days_used, :on_time_price)
     end
 end

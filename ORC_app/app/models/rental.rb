@@ -2,26 +2,28 @@ class Rental < ActiveRecord::Base
    belongs_to :users
    belongs_to :inventories
 
-
+#Validations to the model
+  validates :first_name , presence :true
+  validates :last_name, presence :true
 
   def self.find_rental_by_username username
     begin
-      Rentals.find_by_username(username)
+      Rental.find_by_username(username)
     rescure ActiveRecord::RecordNotFound
       nil
     end
   end
 
  def self.all_filters
-  %w(First_Name Last_Name)
+  %w(first_name last_name)
  end
    
 
  def self.filt_as_col filt
    case filt
-   when "First_Name"
+   when "first_name"
     return :first_name
-   when "Last_Name"
+   when "last_name"
     return :last_name
    end
  end
@@ -38,5 +40,14 @@ class Rental < ActiveRecord::Base
   end
  end
 
+
+
+ def self.find_by_username username
+  begin
+   Rental.where(username).to_a
+  rescue ActiveRecord::RecordNotFound
+   nil
+  end
+ end
 
 end
