@@ -30,7 +30,7 @@ h1 {
 h1.title {
   margin: 0 0 1em;
   padding: 10px;
-  background-color: brown;
+  background-color: blue;
   color: white;
   border-bottom: 4px brown;
   font-size: 2em;
@@ -62,10 +62,10 @@ table#users th, table#users td {
   text-align: left;
 }
 #notice, #warning {
-  background: rosybrown;
+  background: white;
   margin: 1em 0;
   padding: 4px;
-  color  : red;
+  color  : green;
 }
 form label {
   display: block;
