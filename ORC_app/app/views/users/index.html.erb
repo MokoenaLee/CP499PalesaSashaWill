@@ -12,12 +12,12 @@
 <table class = "table table-striped table-hover">
   <thead>
     <tr>
-      <th>First name</th>
-      <th>Last name</th>
+      <th>First Name</th>
+      <th>Last Name</th>
       <th>Email adress</th>
-      <th>Student id</th>
+      <th>Student ID</th>
       <th>Phone</th>
-      <th colspan="3"></th>
+      <th colspan="2"></th>
     </tr>
   </thead>
 
@@ -25,13 +25,12 @@
     <% @users.each do |user| %>
       <tr data-toggle="modal" data-target="#Modal">
         <td><%= user.first_name %></td>
-
         <td><%= user.last_name %></td>
-
         <td><%= user.email_address %></td>
         <td><%= user.student_ID %></td>
         <td><%= user.phone %></td>
-        <td><%= link_to 'Show', user%></td>
+        <td><%= link_to 'Edit', edit_user_path(user), class: "btn btn-outline-success"%></td>
+        <td><%= link_to 'Destroy', @user, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger" %></td>
         </td>
       </tr>
     <% end %>
@@ -44,16 +43,22 @@
 
 
 <!-- Modal -->
-<div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="ModalLabel"></h5>
+        <h5 class="modal-title" id="ModalLabel"> First and Last name here</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body" id="ModalBody">
+          User Info Here
+      </div>
+      <div class="modal-body" id="ModalBody2">
+          User Info Here
+      </div>
+      <div class="modal-body" id="ModalBody3">
           User Info Here
       </div>
     </div>

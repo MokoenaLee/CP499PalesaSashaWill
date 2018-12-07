@@ -18,8 +18,8 @@ class RentalsController < ApplicationController
     @inventory_gear = Inventory.all.map{|t| t.Gear_Type}
     @inventory_model = Inventory.all.map{|t| t.Model}
     @inventory_brand = Inventory.all.map{|t| t.Brand}
-    
-    
+
+
     # @user_options.order(:last_name, :asc)
     @rental = Rental.new
 

@@ -16,4 +16,4 @@
 //= require jquery3
 //= require popper
 //= require bootstrap
-//= require modal_js.js
+//= require modaljs.js

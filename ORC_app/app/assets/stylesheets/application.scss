@@ -1,4 +1,5 @@
 @import 'bootstrap';
+
 html, body {
   margin: 0;
   padding: 0;
@@ -14,7 +15,7 @@ div#main {
 a {
   background: transparent;
   color: brown;
-  text-decoration: underline;
+  text-decoration: none;
   font-weight: bold;
 }
 h1 {

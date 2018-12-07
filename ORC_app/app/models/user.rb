@@ -1,4 +1,4 @@
 class User < ActiveRecord::Base
-  has_many :inventories, :dependent => :destroy
-  
+  has_many :inventories, :through => :rentals
+
 end

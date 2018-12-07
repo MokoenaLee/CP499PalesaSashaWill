@@ -13,31 +13,17 @@
 
   <div class="field">
     <%= f.label :first_name %>
-    <%= f.select(:first_name,@user_fname)%>
-    <p>
-    </p>
+    <%= f.text_field :first_name, data: {autocomplete_source: User.order(:first_name).map(&:first_name)} %>    
   </div>
 
 <div class="field">
     <%= f.label :last_name %>
-    <%= f.select(:last_name, @user_lname)%>
-    <p>
-    </p>
+    <%= f.select :last_name, @user_lname %>
   </div>
 
   <div class="field">
     <%= f.label :Gear_Type %><br>
-    <%= f.select(:Gear_Type,@inventory_gear)%>
-  </div>
-
- <div class="field">
-    <%= f.label :Model %><br>
-    <%= f.select(:Model, @inventory_model)%>
-  </div>
-
- <div class="field">
-    <%= f.label :Brand %><br>
-    <%= f.select(:Brand, @inventory_brand)%>
+    <%= f.text_field :Gear_Type %>
   </div>
 
   <div class="field">
