@@ -1,0 +1,44 @@
+<table id="courses">
+  <thead class="fixed">
+    <tr>
+      <th>Block</th>
+      <th>Department</th>
+      <th>Title</th>
+      <th>Year</th>
+      <th>Instructor</th>
+      <th>Reserved</th>
+      <th>Minimum Points</th>
+      <th>Waitlist</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @courses.each do |course| %>
+      <tr class="course" id="<%= course.id %>">
+        <td>
+          <%= course.block %>
+        </td>
+        <td>
+          <%= course.department %>
+        </td>
+        <td>
+          <%= course.title %>
+        </td>
+        <td>
+          <%= "#{course.semester} #{course.year}" %>
+        </td>
+        <td>
+          <%= course.instructor %>
+        </td>
+        <td>
+          <%= course.reserved %>
+        </td>
+        <td>
+          <%= course.minimum_points %>
+        </td>
+        <td>
+          <%= course.waitlist %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

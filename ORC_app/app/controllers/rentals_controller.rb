@@ -6,8 +6,6 @@ class RentalsController < ApplicationController
     @rentals = Rental.all
   end
 
-  # GET /rentals/1
-  # GET /rentals/1.json
   def show
   end
 
@@ -25,33 +23,43 @@ class RentalsController < ApplicationController
   def edit
   end
   
-   def index
-   results = nil
-   
-   case params[:commit]
-   when 'Clear'
-    clear_sessions_of_filters
-    redirect_to rentals_path
-   when 'Search'
-    results = filter_rentals
-    store_filter_in_session
-    if results.nil? || results.empty?
-     flash[:warning] = "no rentals found"
+  def index
+    results = nil
+
+    case params[:commit]
+    when "Clear"
+      clear_sessions_of_filters
+      redirect_to rentals_path
+      return
+   when "Search"
+      results = filter_rentals
+      store_filter_in_session
+      puts "in the rental controller in search"
+      puts results
+      if results.nil? || results.empty?
+        flash[:warning] = "No rentals found"
+      end
     end
-   end
-   @rentals = results.nil?  ? Rental.all : results
+
+   @rentals = results.nil? ? Rental.all : results
+
   end
 
- 
+
   def filter_rentals
-    filter = {}
-    Rental.all_filters do |filt|
-     if !(params[filt].nil? || params[filt].empty?)
-       filter[filt_as_col filt] = params[filt]
+     filter = {}
+     puts "in filter s method"
+     Rental.all_filters.each do |filt|
+        if !(params[filt].nil? || params[filt].empty?)
+           puts "inside the all filters for loop"
+           puts "params[filt]"
+           puts params[filt]
+           filter[Rental.filt_as_col filt] = params[filt]
+        end
+     puts filter
      end
-   puts filter
-   end
-    return Rental.find_where filter
+     puts "returning the where clause"
+     return Rental.find_where filter
   end
 
 

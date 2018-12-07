@@ -3,8 +3,8 @@ class Rental < ActiveRecord::Base
    belongs_to :inventories
 
 #Validations to the model
-  validates :first_name , presence :true
-  validates :last_name, presence :true
+  validates :first_name , presence: true
+  validates :last_name, presence: true
 
   def self.find_rental_by_username username
     begin
@@ -39,7 +39,6 @@ class Rental < ActiveRecord::Base
    nil
   end
  end
-
 
 
  def self.find_by_username username

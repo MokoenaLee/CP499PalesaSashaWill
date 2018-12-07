@@ -1,0 +1,33 @@
+<table>
+  <thead>
+    <tr>
+      <th>Renter First Name|</th>
+      <th>Renter Last Name|</th>
+      <th>Gear Type|</th>
+      <th>Brand|</th>
+      <th>Model|</th>
+      <th>Rental date |</th>
+      <th>Return date |</th>
+      <th>Days used |</th>
+      <th>On time price |</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @rentals.each do |rental| %>
+      <tr>
+        <td><%= rental.first_name%></td>
+        <td><%= rental.last_name%></td>
+        <td><%= rental.Gear_Type %></td>
+        <td><%= rental.Model %></td>
+        <td><%= rental.Brand %></td>
+        <td><%= rental.rental_date %></td>
+        <td><%= rental.return_date %></td>
+        <td><%= rental.days_used %></td>
+        <td><%= rental.on_time_price %></td>
+        <td><%= link_to 'Show', rental %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

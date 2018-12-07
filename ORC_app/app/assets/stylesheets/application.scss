@@ -1,0 +1,146 @@
+body {
+   background-image: image-url('bg.jpg');
+   background-repeat: no-repeat;
+   background-size: 100%;
+   background-attachment: fixed;
+}
+
+html {
+  background: white;
+  color: DarkSlateGrey;
+  font-family: Helvetica, sans-serif;
+  font-size: 10pt;
+}
+
+div#main {
+  padding: 0 20px 20px;
+}
+
+a {
+  background: transparent;
+  color: black;
+  font-weight: bold;
+}
+
+h1.search, h1.courses {
+  color: black;
+  font-size: 150%;
+  font-style: italic;
+  display: block;
+  border-bottom: 1px solid DarkSlateGrey;
+  background-color: rgba(208,155,44, 0.8);
+  padding: 10px;
+}
+
+h1.title {
+  margin: 0 0 1em;
+  padding: 10px;
+  background-color: rgb(208,155,44);
+  border-bottom: 1px wheat;
+  color: black;
+  font-size: 2em;
+  font-style: normal;
+  text-align: center;
+}
+
+table{
+   transform: translate(0px, -18px);
+}
+
+table#courses {
+  border-collapse: collapse;
+  width: 100%;
+  border-bottom: 2px solid black;
+}
+
+table#courses thead.fixed {
+   background-color: gold;
+}
+
+table#courses th {
+  border: 0.5px solid white;
+  font-weight: bold;
+  background-color: wheat;
+}
+
+table#courses th, table#courses td {
+  padding: 6px;
+  text-align: left;
+  background: rgba(255, 255, 255, 0.8)
+}
+
+table#courses tr.course:hover{
+  background-color: #f5f5f5;
+}
+
+#notice #warning {
+  background: rosybrown;
+  margin: 1em 0;
+}
+
+img.logo {
+   height: 50%;
+   width: 50%;
+   padding: 10px;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 0.5fr 2fr;
+  grid-column-gap: 10px;
+  grid-row-gap: 5px;
+}
+
+.Title_label {
+   grid-row: 1;
+   grid-column: 1;
+}
+
+.Title_select {
+   grid-row: 1;
+   grid-column: 2;
+}
+
+.Instrutor_label {
+   grid-row: 2;
+   grid-column: 1;
+}
+
+.Instructor_select {
+   grid-row: 2;
+   grid-column: 2;
+}
+
+.Department_label {
+   grid-row: 3;
+   grid-column: 1;
+}
+
+.Department_select {
+   color: red;
+   grid-row: 3;
+   grid-column: 2;
+}
+
+.filter_item{
+   grid-row: 4;
+   grid-column: 1;
+}
+.clear_item{
+   grid-row: 4;
+   grid-column: 2;
+}
+
+.search{
+   background-color: rgba(255, 255, 255, 0.8);
+   padding-bottom: 15px;
+}
+
+select { width: 20em }
+
+#filter_form { 
+   margin: auto;
+   width: 50%;
+}
+
+// haha
