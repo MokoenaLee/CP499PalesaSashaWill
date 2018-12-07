@@ -21,13 +21,14 @@ class UsersController < ApplicationController
   def edit
   end
 
-  # POST /users
-  # POST /users.json
   def create
     @user = User.new(user_params)
+    puts "extract email address"
+    puts @user.email_address
 
     respond_to do |format|
       if @user.save
+        UserMailer.rental_confirmation(@user).deliver_now
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
@@ -61,7 +62,7 @@ class UsersController < ApplicationController
     end
   end
 
-  private
+  
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
@@ -69,6 +70,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :email_adress, :student_ID, :phone)
+      params.require(:user).permit(:first_name, :last_name,:email_address, :student_ID, :phone)
     end
 end
