@@ -11,69 +11,75 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :Bulk %><br>
-    <%= f.check_box :Bulk %>
+<div class="container-fluid">
+  <div class="form-group">
+    <%= f.label :Bulk %>
+    <%= f.check_box :Bulk, class: "form-control" %>
   </div>
-  <div class="field">
-    <%= f.label :Gear_Type %><br>
-    <%= f.text_field :Gear_Type %>
+  <div class="form-group">
+    <%= f.label :Gear_Type %>
+    <%= f.text_field :Gear_Type, class: "form-control" %><br>
   </div>
-  <div class="field">
-    <%= f.label :Brand %><br>
-    <%= f.text_field :Brand %>
+  <div class="form-group">
+    <%= f.label :Brand %>
+    <%= f.text_field :Brand, class: "form-control" %><br>
   </div>
-  <div class="field">
-    <%= f.label :Model %><br>
-    <%= f.text_field :Model %>
+  <div class="form-group">
+    <%= f.label :Model %>
+    <%= f.text_field :Model, class: "form-control" %><br>
   </div>
-  <div class="field">
-    <%= f.label :Color %><br>
-    <%= f.text_field :Color %>
+  <div class="form-group">
+    <%= f.label :Color %>
+    <%= f.text_field :Color, class: "form-control" %><br>
   </div>
-  <div class="field">
-    <%= f.label :Size %><br>
-    <%= f.text_field :Size %>
+  <div class="form-group">
+    <%= f.label :Size %>
+    <%= f.text_field :Size, class: "form-control" %><br>
   </div>
-  <div class="field">
-    <%= f.label :Serial_Number %><br>
-    <%= f.text_field :Serial_Number %>
+  <div class="form-group">
+    <%= f.label :Serial_Number %>
+    <%= f.text_field :Serial_Number, class: "form-control" %><br>
   </div>
-  <div class="field">
-    <%= f.label :Retail %><br>
-    <%= f.text_field :Retail %>
+  <div class="form-group">
+    <%= f.label :Retail %>
+    <%= f.text_field :Retail, class: "form-control" %><br>
+</div>
+  <div class="form-group">
+    <%= f.label :Purchase_Price %>
+    <%= f.text_field :Purchase_Price, class: "form-control" %><br>
   </div>
-  <div class="field">
-    <%= f.label :Purchase_Price %><br>
-    <%= f.text_field :Purchase_Price %>
+  <div class="form-group">
+    <%= f.label :Total_Spent %>
+    <%= f.text_field :Total_Spent, class: "form-control" %><br>
   </div>
-  <div class="field">
-    <%= f.label :Total_Spent %><br>
-    <%= f.text_field :Total_Spent %>
+  <div class="form-group">
+    <%= f.label :Date_Purchased %>
+    <%= f.text_field :Date_Purchased, class: "form-control" %><br>
   </div>
-  <div class="field">
-    <%= f.label :Date_Purchased %><br>
-    <%= f.text_field :Date_Purchased %>
+  <div class="form-group">
+    <%= f.label :Purchase_Method %>
+    <%= f.text_field :Purchase_Method, class: "form-control" %><br>
   </div>
-  <div class="field">
-    <%= f.label :Purchase_Method %><br>
-    <%= f.text_field :Purchase_Method %>
+  <div class="form-group">
+    <%= f.label :Reason %>
+    <%= f.text_area :Reason, class: "form-control" %><br>
   </div>
-  <div class="field">
-    <%= f.label :Reason %><br>
-    <%= f.text_area :Reason %>
+  <div class="form-group">
+    <%= f.label :Gear_Category %>
+    <%= f.text_field :Gear_Category, class: "form-control" %><br>
   </div>
-  <div class="field">
-    <%= f.label :Gear_Category %><br>
-    <%= f.text_field :Gear_Category %>
+  <div class="form-group">
+    <%= f.label :Available %>
+    <%= f.check_box :Available, class: "form-control" %>
   </div>
-  <div class="field">
-    <%= f.label :Available %><br>
-    <%= f.check_box :Available %>
-  </div>
-
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Submit", class: "btn btn-primary" %>
   </div>
+
+  <br>
+      <%= link_to 'Back', inventories_path, class: "btn btn-outline-secondary" %>
+  <p></p>
+
+</div>
 <% end %>

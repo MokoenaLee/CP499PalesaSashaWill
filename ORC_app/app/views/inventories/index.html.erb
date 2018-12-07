@@ -1,22 +1,17 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Inventories</h1>
-<p>
-  This page displays all items in inventory.
-</p>
-<p>
-  <a href="http://localhost:3000/rentals">View Rentals</a>
-  <a href="http://localhost:3000/users">View Users</a>
-</p>
+<div class="container-fluid">
+    <h2>Itemized Inventory</h2>
+    <h1></h1>
+    <p>
+      This page displays all itemized and bulk items in inventory.
+    </p>
+    <p>
+    <%= link_to 'Add New Item', new_inventory_path, class: "btn btn-outline-info" %>
+    </p>
+</div>
 
-<h2>Itemized Inventory</h2>
-
-
-<p>
-<%= link_to 'New Inventory', new_inventory_path %>
-</p>
-
-<table>
+<table class = "table table-striped table-hover">
   <thead>
     <tr>
       <th>Gear type</th>
@@ -30,9 +25,9 @@
     </tr>
   </thead>
 
-  <tbody>
+  <tbody id="itemList">
     <% @inventories.each do |inventory| %>
-      <tr>
+      <tr data-toggle="modal" data-target="#ItemModal">
         <td><%= inventory.Gear_Type %></td>
         <td><%= inventory.Brand %></td>
         <td><%= inventory.Model %></td>
@@ -40,8 +35,8 @@
         <td><%= inventory.Size %></td>
         <td><%= inventory.Serial_Number %></td>
         <td><%= inventory.Gear_Category %></td>
-        <td><%= link_to 'Show', inventory %></td>
-
+        <td><%= link_to 'Edit', edit_inventory_path(inventory), class: "btn btn-outline-success" %></td>
+        <td><%= link_to 'Destroy', inventory, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger" %></td>
       </tr>
     <% end %>
   </tbody>
@@ -49,18 +44,19 @@
 
 <br>
 
+<div class="container-fluid">
+    <h2>Bulk Inventory</h2>
+</div>
 
-<h2>Bulk Inventory</h2>
 
-
-<table>
+<table class = "table table-striped table-hover">
   <thead>
     <tr>
       <th>Gear Type</th>
       <th>Gear Category</th>
       <th>Quantity</th>
       <th>Notes</th>
-      <th colspan="3"></th>
+      <th colspan="0"></th>
     </tr>
   </thead>
 
@@ -71,13 +67,13 @@
         <td><%= bulk.Gear_Category %></td>
         <td><%= bulk.Quantity %></td>
         <td><%= bulk.Notes %></td>
-        <td><%= link_to 'Show', inventory %></td>
 
       </tr>
     <% end %>
   </tbody>
 </table>
 
+<!-- Code to union both bulk and itemized into one table
 <<table>
   <<thead>
     <<tr>
@@ -95,9 +91,46 @@
     <% end %>
   </tbody>
 </table>
-
+-->
 
 <br>
 
+<div class="container-fluid">
+    <%= link_to 'Add New Item', new_inventory_path, class: "btn btn-outline-info" %>
+</div>
+<p></p>
 
-<%= link_to 'New Inventory', new_inventory_path %>
+<!-- Modal -->
+<div class="modal fade" id="ItemModal" tabindex="-1" role="dialog" aria-labelledby="ItemModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ItemModalLabel"> First and Last name here</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="ItemModalBody">
+          Item Info Here
+      </div>
+      <div class="modal-body" id="ItemModalBody2">
+          Item Info Here
+      </div>
+      <div class="modal-body" id="ItemModalBody3">
+          Item Info Here
+      </div>
+      <div class="modal-body" id="ItemModalBody4">
+          Item Info Here
+      </div>
+      <div class="modal-body" id="ItemModalBody5">
+          Item Info Here
+      </div>
+      <div class="modal-body" id="ItemModalBody6">
+          Item Info Here
+      </div>
+      <div class="modal-body" id="ItemModalBody7">
+          Item Info Here
+      </div>
+    </div>
+  </div>
+</div>

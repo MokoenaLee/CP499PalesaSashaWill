@@ -1,5 +1,5 @@
 class InventoriesController < ApplicationController
-  before_action :set_inventory, :searchAllInventories, only: [:show, :edit, :update, :destroy]
+  before_action :set_inventory, only: [:show, :edit, :update, :destroy]
 
   # GET /inventories
   # GET /inventories.json
@@ -61,13 +61,6 @@ class InventoriesController < ApplicationController
       format.html { redirect_to inventories_url, notice: 'Inventory was successfully destroyed.' }
       format.json { head :no_content }
     end
-  end
-
-  def searchAllInventories
-    @inventory.searchAllInventories
-    fullInventory = Bulk.all_bulk + Itemized.all_it
-    puts "BLAH"
-    puts fullInventory
   end
 
   private

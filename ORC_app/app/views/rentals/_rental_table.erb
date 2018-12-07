@@ -1,15 +1,13 @@
-<table>
+<table class = "table table-striped table-hover">
   <thead>
     <tr>
-      <th>Renter First Name|</th>
-      <th>Renter Last Name|</th>
-      <th>Gear Type|</th>
-      <th>Brand|</th>
-      <th>Model|</th>
-      <th>Rental date |</th>
-      <th>Return date |</th>
-      <th>Days used |</th>
-      <th>On time price |</th>
+      <th>Renter First Name</th>
+      <th>Renter Last Name</th>
+      <th>Gear Type</th>
+      <th>Rental Date</th>
+      <th>Return Date</th>
+      <th>Days Used</th>
+      <th>On Time Price</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -20,13 +18,12 @@
         <td><%= rental.first_name%></td>
         <td><%= rental.last_name%></td>
         <td><%= rental.Gear_Type %></td>
-        <td><%= rental.Model %></td>
-        <td><%= rental.Brand %></td>
         <td><%= rental.rental_date %></td>
         <td><%= rental.return_date %></td>
         <td><%= rental.days_used %></td>
         <td><%= rental.on_time_price %></td>
-        <td><%= link_to 'Show', rental %></td>
+        <td><%= link_to 'Edit', edit_rental_path(rental), class: "btn btn-outline-success" %></td>
+        <td><%= link_to 'Destroy', rental, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger" %></td>
       </tr>
     <% end %>
   </tbody>

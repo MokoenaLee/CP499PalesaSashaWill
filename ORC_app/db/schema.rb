@@ -61,8 +61,6 @@ ActiveRecord::Schema.define(version: 20181203202725) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "Gear_Type"
-    t.string   "Model"
-    t.string   "Brand"
     t.string   "rental_date"
     t.string   "return_date"
     t.integer  "days_used"

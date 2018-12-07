@@ -1,80 +1,82 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Gear type:</strong>
-  <%= @inventory.Gear_Type %>
-</p>
+<div class="container-fluid">
+    <p>
+      <strong>Gear type:</strong>
+      <%= @inventory.Gear_Type %>
+    </p>
 
-<p>
-  <strong>Brand:</strong>
-  <%= @inventory.Brand %>
-</p>
+    <p>
+      <strong>Brand:</strong>
+      <%= @inventory.Brand %>
+    </p>
 
-<p>
-  <strong>Model:</strong>
-  <%= @inventory.Model %>
-</p>
+    <p>
+      <strong>Model:</strong>
+      <%= @inventory.Model %>
+    </p>
 
-<p>
-  <strong>Color:</strong>
-  <%= @inventory.Color %>
-</p>
+    <p>
+      <strong>Color:</strong>
+      <%= @inventory.Color %>
+    </p>
 
-<p>
-  <strong>Size:</strong>
-  <%= @inventory.Size %>
-</p>
+    <p>
+      <strong>Size:</strong>
+      <%= @inventory.Size %>
+    </p>
 
-<p>
-  <strong>Serial number:</strong>
-  <%= @inventory.Serial_Number %>
-</p>
+    <p>
+      <strong>Serial number:</strong>
+      <%= @inventory.Serial_Number %>
+    </p>
 
-<p>
-  <strong>Retail:</strong>
-  <%= @inventory.Retail %>
-</p>
+    <p>
+      <strong>Retail:</strong>
+      <%= @inventory.Retail %>
+    </p>
 
-<p>
-  <strong>Purchase price:</strong>
-  <%= @inventory.Purchase_Price %>
-</p>
+    <p>
+      <strong>Purchase price:</strong>
+      <%= @inventory.Purchase_Price %>
+    </p>
 
-<p>
-  <strong>Total spent:</strong>
-  <%= @inventory.Total_Spent %>
-</p>
+    <p>
+      <strong>Total spent:</strong>
+      <%= @inventory.Total_Spent %>
+    </p>
 
-<p>
-  <strong>Date purchased:</strong>
-  <%= @inventory.Date_Purchased %>
-</p>
+    <p>
+      <strong>Date purchased:</strong>
+      <%= @inventory.Date_Purchased %>
+    </p>
 
-<p>
-  <strong>Purchase method:</strong>
-  <%= @inventory.Purchase_Method %>
-</p>
+    <p>
+      <strong>Purchase method:</strong>
+      <%= @inventory.Purchase_Method %>
+    </p>
 
-<p>
-  <strong>Reason:</strong>
-  <%= @inventory.Reason %>
-</p>
+    <p>
+      <strong>Reason:</strong>
+      <%= @inventory.Reason %>
+    </p>
 
-<p>
-  <strong>Gear category:</strong>
-  <%= @inventory.Gear_Category %>
-</p>
+    <p>
+      <strong>Gear category:</strong>
+      <%= @inventory.Gear_Category %>
+    </p>
 
-<p>
-  <strong>Available:</strong>
-  <%= @inventory.Available %>
-</p>
+    <p>
+      <strong>Available:</strong>
+      <%= @inventory.Available %>
+    </p>
 
-<p>
-  <strong>Bulk:</strong>
-  <%= @inventory.Bulk %>
-</p>
+    <p>
+      <strong>Bulk:</strong>
+      <%= @inventory.Bulk %>
+    </p>
 
-<%= link_to 'Edit', edit_inventory_path(@inventory) %> |
-<%= link_to 'Destroy', @inventory, method: :delete, data: { confirm: 'Are you sure?' } %> |
-<%= link_to 'Back', inventories_path %>
+    <%= link_to 'Edit', edit_inventory_path(@inventory), class: "btn btn-outline-success" %>
+    <%= link_to 'Destroy', @inventory, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger" %>
+    <%= link_to 'Back', inventories_path, class: "btn btn-outline-secondary" %>
+</div>
