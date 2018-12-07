@@ -24,11 +24,11 @@ $('document').ready(function(){
     if($('#itemList').length){
         var listOfItems = document.getElementById("itemList").getElementsByTagName("tr");
         for (i=0; i< listOfItems.length; i++){
-            listOfItems[i].addEventListener("click", activateItem);
+            listOfItems[i].addEventListener("click", activateItem2);
         }
     }
 
-    function activateItem(){
+    function activateItem2(){
         var array_of_info = this.innerText.split("	");
         var gear_type = array_of_info[0];
         var brand = array_of_info[1];
@@ -37,17 +37,15 @@ $('document').ready(function(){
         var size = array_of_info[4];
         var serial_number = array_of_info[5];
         var gear_category = array_of_info[6];
-        var something = array_of_info[7];
 
-        document.getElementById("ModalLabel").innerHTML = "Item ID: ";
-        document.getElementById("ModalBody").innerHTML = "Gear Type: " + gear_type;
-        document.getElementById("ModalBody2").innerHTML = "Brand: " + brand;
-        document.getElementById("ModalBody3").innerHTML = "Model: " + model;
-        document.getElementById("ModalBody4").innerHTML = "Color: " + color;
-        document.getElementById("ModalBody5").innerHTML = "Size: " + size;
-        document.getElementById("ModalBody6").innerHTML = "Serial Number: " + serial_number;
-        document.getElementById("ModalBody7").innerHTML = "Gear Category: " + gear_category;
-        document.getElementById("ModalBody8").innerHTML = "?: " + something;
+        document.getElementById("ItemModalLabel").innerHTML = "Item ID: ";
+        document.getElementById("ItemModalBody").innerHTML = "Gear Type: " + gear_type;
+        document.getElementById("ItemModalBody2").innerHTML = "Brand: " + brand;
+        document.getElementById("ItemModalBody3").innerHTML = "Model: " + model;
+        document.getElementById("ItemModalBody4").innerHTML = "Color: " + color;
+        document.getElementById("ItemModalBody5").innerHTML = "Size: " + size;
+        document.getElementById("ItemModalBody6").innerHTML = "Serial Number: " + serial_number;
+        document.getElementById("ItemModalBody7").innerHTML = "Gear Category: " + gear_category;
     }
 
 });
