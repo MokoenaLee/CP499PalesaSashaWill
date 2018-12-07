@@ -1,3 +1,8 @@
+require 'barby'
+require 'barby/barcode/code_39'
+require 'barby/outputter/png_outputter'
+
+
 class InventoriesController < ApplicationController
   before_action :set_inventory, :searchAllInventories, only: [:show, :edit, :update, :destroy]
 
@@ -6,7 +11,6 @@ class InventoriesController < ApplicationController
   def index
     # @inventories = Inventory.all + Bulk.all
     @inventories = Inventory.all
-    @bulks = Bulk.all
   end
 
   # GET /inventories/1
@@ -30,6 +34,8 @@ class InventoriesController < ApplicationController
 
     respond_to do |format|
       if @inventory.save
+        ##create unique id and save as primary key
+
         format.html { redirect_to @inventory, notice: 'Inventory was successfully created.' }
         format.json { render :show, status: :created, location: @inventory }
       else
@@ -66,12 +72,37 @@ class InventoriesController < ApplicationController
   def searchAllInventories
     @inventory.searchAllInventories
     fullInventory = Bulk.all_bulk + Itemized.all_it
-    puts "BLAH"
-    puts fullInventory
+
   end
 
+  # def generate
+  #   # fnsku            = Inventory.select(:blahID).where(Gear_Type: "Wetsuit", Size: "Small").last
+  #   fnsku = 'ABC123'
+  #   puts fnsku
+  #   barcode          = Barby::Code128A.new(fnsku)
+  #   outputter        = Barby::PDFWriterOutputter.new(barcode)
+  #
+  #   outputter.height = 50
+  #   outputter.xdim   = 1
+  #
+  #   filepath    = 'barcode.pdf'
+  #   fname = '/Users/lfcarney/Desktop/CP499PalesaSashaWill/ORC_app/public/Barcodes/barcode.pdf'
+  #   doc   = outputter.to_pdf
+  #   barcode.annotate_pdf(doc)
+  #   # File.open(fname, 'w'){ |f| f.write outputter.annotate_pdf(pdf) }
+  # end
+  def generate_barcodes # check to see if we don't already have this barcode image uri = CGI.escape(symbology) + '_' + CGI.escape(data) + '.jpg' fname = RAILS_ROOT + '/public/Barcodes/' + uri #fname = '/var/www/html/arc_cloud/arcdevelopment/' + uri
+    fname = Rails.root.join("public/Barcodes/code128.png")
+    fnsku = Inventory.select(:blahID).where(Gear_Type: "Wetsuit", Size: "Small").last
+    fnsku = fnsku.blahID
+    barcode = Barby::Code39.new(fnsku, true)
+    File.open( fname, 'wb'){|f| f.write barcode.to_png(:height => 20, :margin => 5)}
+  end
+  helper_method :generate_barcodes
+
+
   private
-    # Use callbacks to share common setup or constraints between actions.
+    # Use callbacks to shar common setup or constraints between actions.
     def set_inventory
       @inventory = Inventory.find(params[:id])
     end
