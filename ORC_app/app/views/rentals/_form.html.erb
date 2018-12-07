@@ -11,39 +11,46 @@
     </div>
   <% end %>
 
-  <div class="field">
+<div class="container-fluid">
+  <div class="form-group"><br>
     <%= f.label :first_name %>
-    <%= f.text_field :first_name, data: {autocomplete_source: User.order(:first_name).map(&:first_name)} %>    
+    <%= f.text_field :first_name, class: "form-control"%><br>
   </div>
 
-<div class="field">
+  <div class="form-group">
     <%= f.label :last_name %>
-    <%= f.select :last_name, @user_lname %>
+    <%= f.text_field :last_name, class: "form-control"%><br>
   </div>
 
-  <div class="field">
-    <%= f.label :Gear_Type %><br>
-    <%= f.text_field :Gear_Type %>
+  <div class="form-group">
+    <%= f.label :Gear_Type %>
+    <%= f.text_field :Gear_Type, class: "form-control"%><br>
   </div>
 
-  <div class="field">
-    <%= f.label :rental_date %><br>
-    <%= f.text_field :rental_date %>
+  <div class="form-group">
+    <%= f.label :rental_date %>
+    <%= f.text_field :rental_date, class: "form-control"%><br>
   </div>
-  <div class="field">
-    <%= f.label :return_date %><br>
-    <%= f.text_field :return_date %>
+  <div class="form-group">
+    <%= f.label :return_date %>
+    <%= f.text_field :return_date, class: "form-control"%><br>
   </div>
-  <div class="field">
-    <%= f.label :days_used %><br>
-    <%= f.number_field :days_used %>
+  <div class="form-group">
+    <%= f.label :days_used %>
+    <%= f.text_field :days_used, class: "form-control"%><br>
   </div>
-  <div class="field">
-    <%= f.label :on_time_price %><br>
-    <%= f.text_field :on_time_price %>
+  <div class="form-group">
+    <%= f.label :on_time_price %>
+    <%= f.text_field :on_time_price, class: "form-control"%>
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Submit", class: "btn btn-primary" %>
   </div>
+
+  <br>
+      <%= link_to 'Back', rentals_path, class: "btn btn-outline-secondary" %>
+  <p></p>
+
+</div>
 <% end %>

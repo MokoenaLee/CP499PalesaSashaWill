@@ -1,50 +1,43 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>First Name:</strong>
-  <%= @rental.first_name %>
-</p>
+<div class="container-fluid">
+    <p>
+      <strong>First Name:</strong>
+      <%= @rental.first_name %>
+    </p>
 
-<p>
-<<<<<<< HEAD
-  <strong>Last Name:</strong>
-  <%= @rental.last_name %>
-</p>
+    <p>
+      <strong>Last Name:</strong>
+      <%= @rental.last_name %>
+    </p>
 
-<p>
-  <strong>Gear Type:</strong>
-  <%= @rental.Gear_Type %>
-</p>
+    <p>
+      <strong>Gear Type:</strong>
+      <%= @rental.Gear_Type %>
+    </p>
 
-<p>
-  <strong>Model:</strong>
-  <%= @rental.Model %>
-</p>
+    <p>
+      <strong>Rental date:</strong>
+      <%= @rental.rental_date %>
+    </p>
 
-<p>
-  <strong>Brand:</strong>
-  <%= @rental.Brand %>
-</p>
+    <p>
+      <strong>Return date:</strong>
+      <%= @rental.return_date %>
+    </p>
 
-<p>
-  <strong>Rental date:</strong>
-  <%= @rental.rental_date %>
-</p>
+    <p>
+      <strong>Days used:</strong>
+      <%= @rental.days_used %>
+    </p>
 
-<p>
-  <strong>Return date:</strong>
-  <%= @rental.return_date %>
-</p>
+    <p>
+      <strong>On time price:</strong>
+      <%= @rental.on_time_price %>
+    </p>
 
-<p>
-  <strong>Days used:</strong>
-  <%= @rental.days_used %>
-</p>
+    <%= link_to 'Edit', edit_rental_path(@rental), class: "btn btn-outline-success" %>
+    <%= link_to 'Destroy', @rental, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger" %>
+    <%= link_to 'Back', rentals_path, class: "btn btn-outline-secondary" %>
 
-<p>
-  <strong>On time price:</strong>
-  <%= @rental.on_time_price %>
-</p>
-
-<!-- <%= link_to 'Edit', edit_rental_path(@rental) %> | -->
-<%= link_to 'Back', rentals_path %>
+</div>
