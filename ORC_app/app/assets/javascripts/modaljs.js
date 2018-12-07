@@ -21,4 +21,33 @@ $('document').ready(function(){
         document.getElementById("ModalBody3").innerHTML = "Phone Number: " + phone_number;
     }
 
+    if($('#itemList').length){
+        var listOfItems = document.getElementById("itemList").getElementsByTagName("tr");
+        for (i=0; i< listOfItems.length; i++){
+            listOfItems[i].addEventListener("click", activateItem);
+        }
+    }
+
+    function activateItem(){
+        var array_of_info = this.innerText.split("	");
+        var gear_type = array_of_info[0];
+        var brand = array_of_info[1];
+        var model = array_of_info[2];
+        var color = array_of_info[3];
+        var size = array_of_info[4];
+        var serial_number = array_of_info[5];
+        var gear_category = array_of_info[6];
+        var something = array_of_info[7];
+
+        document.getElementById("ModalLabel").innerHTML = "Item ID: ";
+        document.getElementById("ModalBody").innerHTML = "Gear Type: " + gear_type;
+        document.getElementById("ModalBody2").innerHTML = "Brand: " + brand;
+        document.getElementById("ModalBody3").innerHTML = "Model: " + model;
+        document.getElementById("ModalBody4").innerHTML = "Color: " + color;
+        document.getElementById("ModalBody5").innerHTML = "Size: " + size;
+        document.getElementById("ModalBody6").innerHTML = "Serial Number: " + serial_number;
+        document.getElementById("ModalBody7").innerHTML = "Gear Category: " + gear_category;
+        document.getElementById("ModalBody8").innerHTML = "?: " + something;
+    }
+
 });

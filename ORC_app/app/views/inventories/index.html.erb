@@ -26,9 +26,9 @@
     </tr>
   </thead>
 
-  <tbody>
+  <tbody id="itemList">
     <% @inventories.each do |inventory| %>
-      <tr>
+      <tr data-toggle="modal" data-target="#Modal">
         <td><%= inventory.Gear_Type %></td>
         <td><%= inventory.Brand %></td>
         <td><%= inventory.Model %></td>
@@ -100,3 +100,41 @@
     <%= link_to 'Add New Item', new_inventory_path, class: "btn btn-outline-info" %>
 </div>
 <p></p>
+
+<!-- Modal -->
+<div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ModalLabel"> First and Last name here</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="ModalBody">
+          Item Info Here
+      </div>
+      <div class="modal-body" id="ModalBody2">
+          Item Info Here
+      </div>
+      <div class="modal-body" id="ModalBody3">
+          Item Info Here
+      </div>
+      <div class="modal-body" id="ModalBody4">
+          Item Info Here
+      </div>
+      <div class="modal-body" id="ModalBody5">
+          Item Info Here
+      </div>
+      <div class="modal-body" id="ModalBody6">
+          Item Info Here
+      </div>
+      <div class="modal-body" id="ModalBody7">
+          Item Info Here
+      </div>
+      <div class="modal-body" id="ModalBody8">
+          Item Info Here
+      </div>
+    </div>
+  </div>
+</div>
