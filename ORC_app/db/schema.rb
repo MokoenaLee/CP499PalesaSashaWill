@@ -38,7 +38,6 @@ ActiveRecord::Schema.define(version: 20181203202725) do
   end
 
   create_table "inventories", force: :cascade do |t|
-    t.integer "user_id"
     t.boolean "Bulk"
     t.string  "Gear_Type"
     t.string  "Brand"
@@ -56,8 +55,6 @@ ActiveRecord::Schema.define(version: 20181203202725) do
     t.string  "Gear_Category"
     t.string  "Available"
   end
-
-  add_index "inventories", ["user_id"], name: "index_inventories_on_user_id"
 
   create_table "rentals", force: :cascade do |t|
     t.integer  "user_ID"

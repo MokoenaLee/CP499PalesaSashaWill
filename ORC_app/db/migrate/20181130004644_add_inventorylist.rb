@@ -4,7 +4,6 @@ class AddInventorylist < ActiveRecord::Migration
   def change
     inventories = CSV.read(Dir.pwd + "/db/itemized_inventory.csv", :headers => true)
     inventories.each do |row|
-
      Inventory.create({
       #:IID => row[0],
       :Bulk => row[0],
