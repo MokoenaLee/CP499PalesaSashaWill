@@ -4,6 +4,6 @@ class UserMailer < ApplicationMailer
  def rental_confirmation(user)
    @user = user
    
-   mail to: @user.email_address, subject: "rental confirmation"
+   mail to: @user.email_address, subject: "Rental confirmation"
   end
 end

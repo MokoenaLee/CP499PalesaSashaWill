@@ -16,7 +16,7 @@
           <%= filt %>
         </div>
         <div class="<%= filt %>_select">
-          <%= select_tag filt, options_for_select(Rental.unique_options(filt), :selected => params[filt]), :include_blank => true %>
+          <%= select_tag filt, options_for_select(Rental.return_options(filt), :selected => params[filt]), :include_blank => true %>
         </div>
       <% end %>
     </div>
