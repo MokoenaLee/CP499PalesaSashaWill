@@ -13,8 +13,6 @@ class RentalsController < ApplicationController
     @user_fname = User.all.map{|u| u.first_name}
     @user_lname = User.all.map{|x| x.last_name}
     @inventory_gear = Inventory.all.map{|t| t.Gear_Type}
-    @inventory_model = Inventory.all.map{|t| t.Model}
-    @inventory_brand = Inventory.all.map{|t| t.Brand}
     @rental = Rental.new
     
   end

@@ -1,12 +1,9 @@
 class CreateInventories < ActiveRecord::Migration
   def change
     create_table :inventories do |t|
-<<<<<<< HEAD
        t.belongs_to :user,index: true
       # self.primary_key = IID
-=======
        t.string 'blahID', :null => FALSE
->>>>>>> sashasBranch
        t.boolean 'Bulk'
        t.string 'Gear_Type'
        t.string 'Brand'
