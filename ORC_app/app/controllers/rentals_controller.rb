@@ -1,7 +1,6 @@
 class RentalsController < ApplicationController
   before_action :set_rental, only: [:show, :edit, :update, :destroy]
-  # GET /rentals
-  # GET /rentals.json
+  
   def index
     @rentals = Rental.all
   end
@@ -17,9 +16,10 @@ class RentalsController < ApplicationController
     @inventory_model = Inventory.all.map{|t| t.Model}
     @inventory_brand = Inventory.all.map{|t| t.Brand}
     @rental = Rental.new
+    
   end
 
-  # GET /rentals/1/edit
+  
   def edit
   end
   
@@ -48,17 +48,12 @@ class RentalsController < ApplicationController
 
   def filter_rentals
      filter = {}
-     puts "in filter s method"
      Rental.all_filters.each do |filt|
         if !(params[filt].nil? || params[filt].empty?)
-           puts "inside the all filters for loop"
-           puts "params[filt]"
-           puts params[filt]
            filter[Rental.filt_as_col filt] = params[filt]
         end
      puts filter
      end
-     puts "returning the where clause"
      return Rental.find_where filter
   end
 
@@ -83,9 +78,13 @@ class RentalsController < ApplicationController
 
   def create
     @rental = Rental.new(rental_params)
+    
 
     respond_to do |format|
       if @rental.save
+        puts "rental email address"
+        puts @rental.email_address
+        RentalMailer.rental_confirmation(@rental).deliver_now
         format.html { redirect_to @rental, notice: 'Rental was successfully created.' }
         format.json { render :show, status: :created, location: @rental }
       else
@@ -125,6 +124,6 @@ class RentalsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def rental_params
-                  params.require(:rental).permit(:user_ID,:first_name,:last_name,:Gear_Type,:Model,:Brand,:rental_date, :return_date,:days_used, :on_time_price)
+                  params.require(:rental).permit(:user_ID,:first_name,:last_name,:email_address,:Gear_Type,:Model,:Brand,:rental_date, :return_date,:days_used, :on_time_price)
     end
 end

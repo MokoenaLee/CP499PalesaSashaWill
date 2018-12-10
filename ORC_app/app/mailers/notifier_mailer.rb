@@ -2,9 +2,9 @@ class NotifierMailer < ActionMailer::Base
   default from: "leeann.mokoena@gmail.com"
   layout 'mailer'
   
-  def instructions(user)
-   @name = user.name
+  def instructions(parameter)
+   @name = parameter.first_name
 
-   mail to: user.email, subject: 'Rental confirmed'
+   mail to: parameter.email_address, subject: 'Rental confirmed'
   end
 end

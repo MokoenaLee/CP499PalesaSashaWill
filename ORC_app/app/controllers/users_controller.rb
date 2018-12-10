@@ -23,8 +23,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    puts "extract email address"
-    puts @user.email_address
+   
 
     respond_to do |format|
       if @user.save
