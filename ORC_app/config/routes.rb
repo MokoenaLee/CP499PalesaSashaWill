@@ -3,7 +3,15 @@ Rails.application.routes.draw do
   resources :inventories
   resources :users
   resource :users
-  root :to => redirect('/users')
+  #root :to => redirect('/')
+
+  get'/' =>'admins#index'
+  post '/sessions' =>'sessions#create'
+  post'/'=>'admins#create'
+  get '/dashboard' => 'desktops#index'
+
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
