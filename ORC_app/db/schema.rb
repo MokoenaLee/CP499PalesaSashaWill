@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 20181211205731) do
 
   create_table "inventories", force: :cascade do |t|
     t.integer "user_id"
-    t.string  "blahID",         null: false
+    t.string  "blahID"
     t.boolean "Bulk"
     t.string  "Gear_Type"
     t.string  "Brand"
@@ -74,15 +74,11 @@ ActiveRecord::Schema.define(version: 20181211205731) do
     t.string "blah"
   end
 
-  add_index "inventories", ["user_id"], name: "index_inventories_on_user_id"
-
   create_table "rentals", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
     t.string   "email_address"
     t.string   "Gear_Type"
-    t.string   "Model"
-    t.string   "Brand"
     t.string   "rental_date"
     t.integer  "days_used"
     t.string   "return_date"
