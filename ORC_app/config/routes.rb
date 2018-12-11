@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  devise_for :administrators
+  devise_for :admins
   resources :rentals
   resources :inventories
   resources :users
