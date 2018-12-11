@@ -17,7 +17,7 @@
                 <%= link_to 'Inventory', inventories_path, class: "btn btn-light" %>
             </div>
             <ul class="nav navbar-nav navbar-right">
-                    <li>Sign Out</li>
+                <%= link_to "Sign Out", destroy_administrator_session_path, method: :delete, class: "btn btn-light" %>
             </ul>
         </nav>
     </header>
