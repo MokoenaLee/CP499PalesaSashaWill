@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 20181210235719) do
     t.string "Gear_Type"
     t.string "daily"
     t.string "weekly"
+    t.string "blah"
   end
 
   create_table "rentals", force: :cascade do |t|

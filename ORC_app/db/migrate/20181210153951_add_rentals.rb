@@ -1,4 +1,5 @@
 require 'csv'
+#Price is filled dynamically so it has been taken away as a CSV assigned field
 class AddRentals < ActiveRecord::Migration
   def change
      rentals = CSV.read(Dir.pwd + "/db/rental_inventory.csv", :headers => true)

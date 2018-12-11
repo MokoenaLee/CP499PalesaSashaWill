@@ -115,14 +115,20 @@ class RentalsController < ApplicationController
 
   def generate_rental_price
     gear_type = @rental.Gear_Type.downcase.titleize
-    Float days_used = @rental.days_used.to_f
+    days_used = @rental.days_used.to_f
     if days_used < 5
       working_price = days_used*(Pricing.select(:daily).where(Gear_Type: gear_type).last.daily.to_i)
       @rental.on_time_price = '$'+ working_price.to_s
     else
-      weeks = (days_used/7).ceil
-      working_price = weeks*(Pricing.select(:weekly).where(Gear_Type: gear_type).last.weekly.to_i)
-      @rental.on_time_price = '$'+ working_price.to_s
+      if days_used%7 != 0
+        temp = (days_used/7).floor
+        @rental.on_time_price = (temp*(Pricing.select(:weekly).where(Gear_Type: gear_type).last.weekly.to_i)) + ((days_used-(temp*7))*(Pricing.select(:daily).where(Gear_Type: gear_type).last.daily.to_i))
+
+      else
+        weeks = (days_used/7)
+        working_price = weeks*(Pricing.select(:weekly).where(Gear_Type: gear_type).last.weekly.to_i)
+        @rental.on_time_price = '$'+ working_price.to_s
+      end
     end
   end
   helper_method :generate_rental_price
