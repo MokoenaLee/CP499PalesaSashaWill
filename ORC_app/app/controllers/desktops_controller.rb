@@ -1,0 +1,2 @@
+class DesktopsController < ApplicationController
+end
