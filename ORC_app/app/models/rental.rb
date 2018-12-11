@@ -3,8 +3,13 @@ class Rental < ActiveRecord::Base
    belongs_to :inventories
 
 #Validations to the model
-  validates :first_name , presence: true
+  validates :first_name ,presence: true
   validates :last_name, presence: true
+  
+
+   def send_instructions(user)
+    NotifierMailer.instructions(self).deliver_now
+   end
 
   def self.find_rental_by_username username
     begin
@@ -13,6 +18,7 @@ class Rental < ActiveRecord::Base
       nil
     end
   end
+
 
  def self.all_filters
   %w(first_name last_name)
@@ -28,8 +34,8 @@ class Rental < ActiveRecord::Base
    end
  end
 
- def self.unique_options filt
-   Rental.uniq.pluck(Rental.filt_as_col filt)
+ def self.return_options filt
+   Rental.pluck(Rental.filt_as_col filt)
  end
 
  def self.find_where hash
