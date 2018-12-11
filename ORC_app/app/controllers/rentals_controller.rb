@@ -93,6 +93,7 @@ class RentalsController < ApplicationController
 
 
   def update
+    generate_rental_price
     respond_to do |format|
       if @rental.update(rental_params)
         format.html { redirect_to @rental, notice: 'Rental was successfully created.' }

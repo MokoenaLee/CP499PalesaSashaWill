@@ -4,7 +4,7 @@ class CreateUsers < ActiveRecord::Migration
      t.string 'first_name'
      t.string 'last_name'
      t.string 'email_address'
-     t.string 'student_ID'
+     t.string 'student_ID', :null => FALSE
      t.string 'phone'
     end
   end

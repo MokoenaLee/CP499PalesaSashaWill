@@ -16,6 +16,7 @@
     <tr>
       <th>Gear type</th>
       <th>Brand</th>
+      <th>Model</th>
       <th>Color</th>
       <th>Size</th>
       <th>Serial number</th>
@@ -29,6 +30,8 @@
       <tr data-toggle="modal" data-target="#ItemModal">
         <td><%= inventory.Gear_Type %></td>
         <td><%= inventory.Brand %></td>
+        <td><%= inventory.Model %></td>
+        <td><%= inventory.Color %></td>
         <td><%= inventory.Size %></td>
         <td><%= inventory.Serial_Number %></td>
         <td><%= inventory.Gear_Category %></td>
@@ -58,7 +61,6 @@
   </thead>
 
   <tbody>
-    <% @bulks = Bulk.all_bulk %>
     <% @bulks.each do |bulk| %>
       <tr>
         <td><%= bulk.Gear_Type %></td>
@@ -80,8 +82,6 @@
     </tr>
   </thead>
   <<tbody>
-    <% generate_barcodes %>
-    <img src= Rails.root + "public/Barcodes/code128.png" alt="Italian Trulli">
     <% @blahs = Bulk.all_bulk + Inventory.all_it%>
     <% @blahs.each do |blah| %>
     <<tr>

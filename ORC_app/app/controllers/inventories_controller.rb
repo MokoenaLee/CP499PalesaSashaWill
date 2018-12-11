@@ -31,6 +31,7 @@ class InventoriesController < ApplicationController
   # POST /inventories.json
   def create
     @inventory = Inventory.new(inventory_params)
+    generate_barcodes
 
     respond_to do |format|
       if @inventory.save
@@ -76,11 +77,15 @@ class InventoriesController < ApplicationController
   end
 
   def generate_barcodes # check to see if we don't already have this barcode image uri = CGI.escape(symbology) + '_' + CGI.escape(data) + '.jpg' fname = RAILS_ROOT + '/public/Barcodes/' + uri #fname = '/var/www/html/arc_cloud/arcdevelopment/' + uri
-    fname = Rails.root.join("public/Barcodes/code128.png")
-    fnsku = Inventory.select(:blahID).where(Gear_Type: "Wetsuit", Size: "Small").last
+    gt = @inventory.Gear_Type
+    size = @inventory.size
+    fnsku = Inventory.select(:blahID).where(Gear_Type: gt, Size: size).last
     fnsku = fnsku.blahID
+    fname = Rails.root.join("public/Barcodes/"+fnsku+".png")
     barcode = Barby::Code39.new(fnsku, true)
-    File.open( fname, 'wb'){|f| f.write barcode.to_png(:height => 20, :margin => 5)}
+    File.open( fname, 'wb'){|f| f.write barcode.to_png(:height => 40, :margin => 3)}
+
+
   end
   helper_method :generate_barcodes
 

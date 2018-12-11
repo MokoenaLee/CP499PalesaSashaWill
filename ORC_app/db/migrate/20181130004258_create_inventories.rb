@@ -13,7 +13,8 @@ class CreateInventories < ActiveRecord::Migration
        t.string 'Gear_Category'
        t.string 'Location'
        t.boolean 'Available'
-       t.string 'Notes'
+       t.text 'Notes'
      end
   end
+  
 end

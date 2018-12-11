@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 20181210235719) do
     t.string  "Gear_Category"
     t.string  "Location"
     t.boolean "Available"
-    t.string  "Notes"
+    t.text    "Notes"
   end
 
   add_index "inventories", ["user_id"], name: "index_inventories_on_user_id"
@@ -78,7 +78,7 @@ ActiveRecord::Schema.define(version: 20181210235719) do
     t.string "first_name"
     t.string "last_name"
     t.string "email_address"
-    t.string "student_ID"
+    t.string "student_ID",    null: false
     t.string "phone"
   end
 
