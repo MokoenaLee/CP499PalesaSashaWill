@@ -1,7 +1,6 @@
 require 'csv'
-class CreateAddrentals < ActiveRecord::Migration
+class AddRentals < ActiveRecord::Migration
   def change
-    create_table :addrentals do |t|
      rentals = CSV.read(Dir.pwd + "/db/rental_inventory.csv", :headers => true)
      rentals.each do |row|
       Rental.create({
@@ -12,9 +11,7 @@ class CreateAddrentals < ActiveRecord::Migration
       :rental_date => row[4],
       :days_used => row[5],
       :return_date => row[6],
-      :on_time_price => row[7]
       })
     end
   end
  end
-end

@@ -1,6 +1,6 @@
 class RentalsController < ApplicationController
   before_action :set_rental, only: [:show, :edit, :update, :destroy]
-  
+
   def index
     @rentals = Rental.all
   end
@@ -14,13 +14,13 @@ class RentalsController < ApplicationController
     @user_lname = User.all.map{|x| x.last_name}
     @inventory_gear = Inventory.all.map{|t| t.Gear_Type}
     @rental = Rental.new
-    
   end
 
-  
+
   def edit
+    generate_rental_price
   end
-  
+
   def index
     results = nil
 
@@ -70,19 +70,18 @@ class RentalsController < ApplicationController
       session[filt] = params[filt]
     end
    end
-   
+
   end
 
 
   def create
     @rental = Rental.new(rental_params)
-    
-
+    generate_rental_price
     respond_to do |format|
       if @rental.save
         puts "rental email address"
         puts @rental.email_address
-        RentalMailer.rental_confirmation(@rental).deliver_now
+        # RentalMailer.rental_confirmation(@rental).deliver_now
         format.html { redirect_to @rental, notice: 'Rental was successfully created.' }
         format.json { render :show, status: :created, location: @rental }
       else
@@ -113,6 +112,20 @@ class RentalsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def generate_rental_price
+    gear_type = @rental.Gear_Type.downcase.titleize
+    Float days_used = @rental.days_used.to_f
+    if days_used < 5
+      working_price = days_used*(Pricing.select(:daily).where(Gear_Type: gear_type).last.daily.to_i)
+      @rental.on_time_price = '$'+ working_price.to_s
+    else
+      weeks = (days_used/7).ceil
+      working_price = weeks*(Pricing.select(:weekly).where(Gear_Type: gear_type).last.weekly.to_i)
+      @rental.on_time_price = '$'+ working_price.to_s
+    end
+  end
+  helper_method :generate_rental_price
 
   private
     # Use callbacks to share common setup or constraints between actions.
