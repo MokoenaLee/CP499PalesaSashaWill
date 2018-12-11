@@ -1,8 +1,8 @@
-first_name,last_name,email_address,Gear_Type,rental_date,days_used,return_date,on_time_price
-Mary,Watkins,mwatkins@coloradocollege.edu,Fat Bike,12/5/18,1,12/6/18,2.00
-Joseph ,Muldoons,jmuldoons@coloradocollege.edu,WetSuit,11/2/18,3,11/5/18,3.00
-Angela,Barnes,abarnes@coloradocollege.edu,Pogies,8/5/17,2,8/7/18,5.00
-Miliaku,Ngbeza,mngbeza@coloradocollege.edu,WetSuit,5/2/18,1,5/3/18,3.00
-Ben ,Mensa,bmensa@coloradocollege.edu,Pogies,5/3/18,1,5/4/18,3.00
-Richard,Barnes,rbarnes@coloradocollege.edu,WetSuit,5/4/18,1,5/5/18,3.00
-Hailey,Xan,hxan@coloradocollege.edu,ski boots,5/5/18,1,5/6/18,10.00
+renter_ID,first_name,last_name,email_address,Gear_Type,rental_date,days_used,return_date,on_time_price
+1,Mary,Watkins,mwatkins@coloradocollege.edu,Fat Bike,12/5/18,1,12/6/18,2
+2,Joseph ,Muldoons,jmuldoons@coloradocollege.edu,WetSuit,11/2/18,3,11/5/18,3
+3,Angela,Barnes,abarnes@coloradocollege.edu,Pogies,8/5/17,2,8/7/18,5
+4,Miliaku,Ngbeza,mngbeza@coloradocollege.edu,WetSuit,5/2/18,1,5/3/18,3
+5,Ben ,Mensa,bmensa@coloradocollege.edu,Pogies,5/3/18,1,5/4/18,3
+6,Richard,Barnes,rbarnes@coloradocollege.edu,WetSuit,5/4/18,1,5/5/18,3
+7,Hailey,Xan,hxan@coloradocollege.edu,ski boots,5/5/18,1,5/6/18,10

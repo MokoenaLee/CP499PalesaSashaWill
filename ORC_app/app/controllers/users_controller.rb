@@ -64,11 +64,14 @@ class UsersController < ApplicationController
   
     # Use callbacks to share common setup or constraints between actions.
     def set_user
+      puts "what is in params[:id]"
+      puts params[:id]
       @user = User.find(params[:id])
+      
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:first_name, :last_name,:email_address, :student_ID, :phone)
+      params.require(:user).permit(:renter_ID,:first_name, :last_name,:email_address, :student_ID, :phone, rentals_attributes: [:Gear_Type, :id])
     end
 end
