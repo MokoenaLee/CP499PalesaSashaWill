@@ -1,13 +1,12 @@
 Rails.application.routes.draw do
+  devise_for :administrators
+  devise_for :admins
   resources :rentals
   resources :inventories
   resources :users
   resource :users
-  #root :to => redirect('/')
+  root :to => redirect('/dashboard')
 
-  get'/' =>'admins#index'
-  post '/sessions' =>'sessions#create'
-  post'/'=>'admins#create'
   get '/dashboard' => 'desktops#index'
 
 
