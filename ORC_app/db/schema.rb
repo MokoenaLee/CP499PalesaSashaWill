@@ -52,36 +52,40 @@ ActiveRecord::Schema.define(version: 20181211205731) do
 
   create_table "inventories", force: :cascade do |t|
     t.integer "user_id"
+    t.string  "blahID",         null: false
     t.boolean "Bulk"
     t.string  "Gear_Type"
     t.string  "Brand"
-    t.string  "Model"
-    t.string  "Color"
     t.string  "Size"
-    t.string  "Quantity"
     t.string  "Serial_Number"
-    t.string  "Retail"
-    t.string  "Purchase_Price"
-    t.string  "Total_Spent"
     t.string  "Date_Purchased"
-    t.string  "Purchase_Method"
-    t.string  "Reason"
     t.string  "Gear_Category"
-    t.string  "Available"
+    t.string  "Location"
+    t.boolean "Available"
+    t.string  "Notes"
+  end
+
+  add_index "inventories", ["user_id"], name: "index_inventories_on_user_id"
+
+  create_table "pricings", force: :cascade do |t|
+    t.string "Gear_Type"
+    t.string "daily"
+    t.string "weekly"
+    t.string "blah"
   end
 
   add_index "inventories", ["user_id"], name: "index_inventories_on_user_id"
 
   create_table "rentals", force: :cascade do |t|
-    t.integer  "user_ID"
     t.string   "first_name"
     t.string   "last_name"
+    t.string   "email_address"
     t.string   "Gear_Type"
     t.string   "Model"
     t.string   "Brand"
     t.string   "rental_date"
-    t.string   "return_date"
     t.integer  "days_used"
+    t.string   "return_date"
     t.string   "on_time_price"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false

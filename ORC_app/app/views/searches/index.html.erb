@@ -1,0 +1,15 @@
+<h1>Search</h1>
+<%= flash[:warning] %>
+<%= form_tag('/search/find', :controller => "searches", :method => "get", :action => "search") do %>
+  <div class="search_field"></div>
+  <select name="search_filters">
+    <option value="Please select">
+      <%= "Please select" %>
+    </option>
+    <option value="first_name">
+      <%= "First Name" %>
+    </option>
+  </select>
+  <%= text_field_tag :s %>
+  <%= submit_tag 'Search' %>
+<% end %>
