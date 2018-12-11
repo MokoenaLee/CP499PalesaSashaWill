@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20181211025040) do
+=======
+ActiveRecord::Schema.define(version: 20181210235719) do
+>>>>>>> cfa6511668999c5742d05c7a0d5d826d52af7976
 
   create_table "bulks", force: :cascade do |t|
     t.string  "Gear_Type"
@@ -53,6 +57,13 @@ ActiveRecord::Schema.define(version: 20181211025040) do
   end
 
   add_index "inventories", ["user_id"], name: "index_inventories_on_user_id"
+
+  create_table "pricings", force: :cascade do |t|
+    t.string "Gear_Type"
+    t.string "daily"
+    t.string "weekly"
+    t.string "blah"
+  end
 
   create_table "rentals", force: :cascade do |t|
     t.integer  "renter_ID"

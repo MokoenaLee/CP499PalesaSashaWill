@@ -1,11 +1,12 @@
 class Rental < ActiveRecord::Base
    belongs_to :users
    belongs_to :inventories
+   has_one :pricings #pricing model table added with dependency. A rental will only ever have one price and a price will only belong to one Rental
 
 #Validations to the model
   validates :first_name ,presence: true
   validates :last_name, presence: true
-  
+
 
    def send_instructions(user)
     NotifierMailer.instructions(self).deliver_now
@@ -23,7 +24,7 @@ class Rental < ActiveRecord::Base
  def self.all_filters
   %w(first_name last_name)
  end
-   
+
 
  def self.filt_as_col filt
    case filt
