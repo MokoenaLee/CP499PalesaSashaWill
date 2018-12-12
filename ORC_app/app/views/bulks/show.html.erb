@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<div class="container-fluid">
+    <p>
+      <strong>Gear type:</strong>
+      <%= @bulk.Gear_Type %>
+    </p>
+
+    <p>
+      <strong>Gear category:</strong>
+      <%= @bulk.Gear_Category %>
+    </p>
+
+    <p>
+      <strong>Quantity:</strong>
+      <%= @bulk.Quantity %>
+    </p>
+
+    <p>
+      <strong>Notes:</strong>
+      <%= @bulk.Notes %>
+    </p>
+
+    <%= link_to 'Edit', edit_bulk_path(@bulk), class: "btn btn-outline-success" %>
+    <%= link_to 'Destroy', @bulk, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger" %>
+    <%= link_to 'Back', inventories_path, class: "btn btn-outline-secondary" %>
+</div>

@@ -7,7 +7,8 @@
       This page displays all itemized and bulk items in inventory.
     </p>
     <p>
-    <%= link_to 'Add New Item', new_inventory_path, class: "btn btn-outline-info" %>
+    <%= link_to 'Add New Itemized Item', new_inventory_path, class: "btn btn-outline-info" %>
+    <%= link_to 'Add New Bulk Item', new_bulk_path, class: "btn btn-outline-info" %>
     </p>
 </div>
 
@@ -52,7 +53,7 @@
       <th>Gear Category</th>
       <th>Quantity</th>
       <th>Notes</th>
-      <th colspan="0"></th>
+      <th colspan="2"></th>
     </tr>
   </thead>
 
@@ -64,15 +65,16 @@
         <td><%= bulk.Gear_Category %></td>
         <td><%= bulk.Quantity %></td>
         <td><%= bulk.Notes %></td>
-
+        <td><%= link_to 'Edit', edit_bulk_path(bulk), class: "btn btn-outline-success" %></td>
+        <td><%= link_to 'Destroy', bulk, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger" %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <div class="container-fluid">
-    <%= link_to 'Add New Item', new_inventory_path, class: "btn btn-outline-info" %>
-</div>
+    <%= link_to 'Add New Itemized Item', new_inventory_path, class: "btn btn-outline-info" %>
+    <%= link_to 'Add New Bulk Item', new_bulk_path, class: "btn btn-outline-info" %></div>
 <p></p>
 
 <!-- Modal -->

@@ -1,4 +1,4 @@
-class BulkController < ApplicationController
+class BulksController < ApplicationController
     before_action :authenticate_administrator!
     before_action :set_bulk, only: [:show, :edit, :update, :destroy]
 
@@ -10,7 +10,7 @@ class BulkController < ApplicationController
     # GET /users/new
     def new
        @bulk = Bulk.new
-       create
+
     end
 
     # GET /users/1/edit
@@ -50,9 +50,9 @@ class BulkController < ApplicationController
     # DELETE /users/1
     # DELETE /users/1.json
     def destroy
-      @user.destroy
+      @bulk.destroy
       respond_to do |format|
-        format.html { redirect_to bulks_url, notice: 'Bulk item was successfully destroyed.' }
+        format.html { redirect_to inventories_path, notice: 'Bulk item was successfully destroyed.' }
         format.json { head :no_content }
       end
     end
