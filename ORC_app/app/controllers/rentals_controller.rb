@@ -10,6 +10,7 @@ class RentalsController < ApplicationController
 
 
   def new
+    #code for when we used drop downs to select options
     @user_fname = User.all.map{|u| u.first_name}
     @user_lname = User.all.map{|x| x.last_name}
     @inventory_gear = Inventory.all.map{|t| t.Gear_Type}
@@ -79,7 +80,7 @@ class RentalsController < ApplicationController
     generate_rental_price
     respond_to do |format|
       if @rental.save
-        RentalMailer.rental_confirmation(@rental).deliver_now
+        #RentalMailer.rental_confirmation(@rental).deliver_now
         format.html { redirect_to @rental, notice: 'Rental was successfully created.' }
         format.json { render :show, status: :created, location: @rental }
       else
@@ -114,6 +115,8 @@ class RentalsController < ApplicationController
   def generate_rental_price
     gear_type = @rental.Gear_Type.downcase.titleize
     days_used = @rental.days_used.to_f
+    puts "days used"
+    puts days_used
     if days_used < 5
       working_price = days_used*(Pricing.select(:daily).where(Gear_Type: gear_type).last.daily.to_i)
       @rental.on_time_price = '$'+ working_price.to_s
