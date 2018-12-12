@@ -17,9 +17,44 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-  # GET /users/1/edit
+
+  #def new
+    #@users  = User.find_where(params[:student_ID])
+    #puts "In the other new method"
+    #results = nil
+    #puts "before commit"
+    #if params[:commit] == "Find"
+      #results = filter_users
+      #puts "in the Find case"
+      #if results.nil? || results.empty?
+       #  flash[:warning] = "No student with that ID found"
+      #end
+    #else 
+      # redirect_to new_rental 
+    #end 
+  # @users = results.nil? ? User.all : results
+   #puts "users"
+   #puts @users
+  #end
+ 
+
   def edit
   end
+  
+ # def filter_users
+     #filter = {}
+     #puts "in user filter"
+     #User.all_filters.each do |filt|
+        #if !(params[filt].nil? || params[filt].empty?)
+           #filter[User.filt_as_col filt] = params[filt]
+        #end
+    # puts filter
+     #end
+     #return User.find_where filter
+     #puts "user find where"
+     #puts User.find_where filter
+  #end
+  
 
   def create
     @user = User.new(user_params)
@@ -37,8 +72,6 @@ class UsersController < ApplicationController
     end
   end
 
-  # PATCH/PUT /users/1
-  # PATCH/PUT /users/1.json
   def update
     respond_to do |format|
       if @user.update(user_params)
@@ -51,8 +84,7 @@ class UsersController < ApplicationController
     end
   end
 
-  # DELETE /users/1
-  # DELETE /users/1.json
+ 
   def destroy
     @user.destroy
     respond_to do |format|
@@ -70,8 +102,10 @@ class UsersController < ApplicationController
       
     end
 
+    #returns a table row
+    
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:renter_ID,:first_name, :last_name,:email_address, :student_ID, :phone, rentals_attributes: [:Gear_Type, :id])
+      params.require(:user).permit(:user_ID,:first_name, :last_name,:email_address, :student_ID, :phone, rentals_attributes: [:Gear_Type, :id], )
     end
 end

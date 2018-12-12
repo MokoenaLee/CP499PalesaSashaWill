@@ -16,7 +16,7 @@ class RentalsController < ApplicationController
     @rental = Rental.new
   end
 
-
+  
   def edit
     generate_rental_price
   end
@@ -72,16 +72,14 @@ class RentalsController < ApplicationController
    end
 
   end
-
-
+  
+  
   def create
     @rental = Rental.new(rental_params)
     generate_rental_price
     respond_to do |format|
       if @rental.save
-        puts "rental email address"
-        puts @rental.email_address
-        # RentalMailer.rental_confirmation(@rental).deliver_now
+        RentalMailer.rental_confirmation(@rental).deliver_now
         format.html { redirect_to @rental, notice: 'Rental was successfully created.' }
         format.json { render :show, status: :created, location: @rental }
       else
@@ -141,7 +139,7 @@ class RentalsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def rental_params
-                  params.require(:rental).permit(:user_ID,:first_name,:last_name,:email_address,
+                  params.require(:rental).permit(:user_ID,:renter_ID,:first_name,:last_name,:email_address,
 :Gear_Type,:Model,:Brand,:rental_date, :return_date,:days_used, :on_time_price)
     end
 end
