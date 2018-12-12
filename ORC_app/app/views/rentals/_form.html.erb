@@ -12,6 +12,7 @@
    <% end %>
 
 
+
 <div class="container-fluid">
     
   <div class="row">
@@ -23,16 +24,57 @@
         <%= f.label :last_name %>
         <%= f.text_field :last_name, class: "form-control"%><br>
     </div>
+
+<!--
+<div class="container-fluid", id = 'rentalForm' >
+  <div id = 'fn' class="form-group" ><br>
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name, class: "form-control"%><br>
+       <script type="javascript">
+    // first = document.getElementbyID
+      .onkeyup = function () { // or first.onchange
+      ln.value = fn.value;
+    };</script> 
   </div>
 
+
+  <div id = 'ln' class="form-group" >
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name, class: "form-control"%><br>
+
+  </div>
+-->
   <div class="form-group">
     <%= f.label :email_address %>
     <%= f.text_field :email_address, class: "form-control"%><br>
   </div>
 
-  <div class="form-group">
-    <%= f.label :Gear_Type %>
-    <%= f.text_field :Gear_Type, class: "form-control"%><br>
+  <div id = "BID" class="form-group" >
+    <%= lab = f.label :blahID %>
+    <%= f.text_field :blahID, class: "form-control", placeholder: "Please Scan Item Here"%><br>
+    <!-- <script type="javascript">
+      (function($) {
+    var _timeoutHandler = 0,
+        _inputString = '',
+        _onKeypress = function(e) {
+            if (_timeoutHandler) {
+                clearTimeout(_timeoutHandler);
+            }
+            _inputString += e.key;
+
+            _timeoutHandler = setTimeout(function () {
+                if (_inputString.length <= 3) {
+                    _inputString = '';
+                    return;
+                }
+                $(e.target).trigger('altdeviceinput', _inputString);
+                _inputString = '';
+
+            }, 20);
+        };
+        $(document).on({keypress: _onKeypress});
+})($);
+    </script> -->
   </div>
 
   <div class="row">

@@ -9,7 +9,8 @@ class AddUserlist < ActiveRecord::Migration
       :last_name => row[1],
       :email_address => row[2],
       :student_ID => row[3],
-      :phone => row[4]
+      :phone => row[4],
+      :iclass => row[5].to_i
       })
   end
   end

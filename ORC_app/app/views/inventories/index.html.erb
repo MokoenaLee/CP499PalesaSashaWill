@@ -70,30 +70,6 @@
   </tbody>
 </table>
 
-<!-- Code to union both bulk and itemized into one table
-<<table>
-  <<thead>
-    <<tr>
-      <<th>id</th>
-      <<th>gear_type</th>
-    </tr>
-  </thead>
-  <<tbody>
-    <% generate_barcodes %>
-    <img src= Rails.root + "public/Barcodes/code128.png" alt="Italian Trulli">
-    <% @blahs = Bulk.all_bulk + Inventory.all_it%>
-    <% @blahs.each do |blah| %>
-    <<tr>
-      <<td><%= blah.id %></td>
-      <<td><%= blah.Gear_Type %></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
--->
-
-<br>
-
 <div class="container-fluid">
     <%= link_to 'Add New Item', new_inventory_path, class: "btn btn-outline-info" %>
 </div>

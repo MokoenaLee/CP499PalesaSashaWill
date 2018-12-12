@@ -32,8 +32,20 @@ class InventoriesController < ApplicationController
   # POST /inventories.json
   def create
     @inventory = Inventory.new(inventory_params)
+<<<<<<< HEAD
+    theID = uniqueID
+    @inventory.blahID = theID
+    generate_barcodes
+=======
+<<<<<<< HEAD
+    theID = uniqueID
+    @inventory.blahID = theID
+    generate_barcodes
+=======
     @inventory.blahID = uniqueID
 
+>>>>>>> 229b359bb25b35250423d16f911cfd8c695368e1
+>>>>>>> sashasBranch
 
     respond_to do |format|
       if @inventory.save
@@ -94,11 +106,12 @@ class InventoriesController < ApplicationController
   end
 
   def generate_barcodes # check to see if we don't already have this barcode image uri = CGI.escape(symbology) + '_' + CGI.escape(data) + '.jpg' fname = RAILS_ROOT + '/public/Barcodes/' + uri #fname = '/var/www/html/arc_cloud/arcdevelopment/' + uri
-    fname = Rails.root.join("public/Barcodes/code128.png")
-    fnsku = Inventory.select(:blahID).where(Gear_Type: "Wetsuit", Size: "Small").last
-    fnsku = fnsku.blahID
+    fnsku = @inventory.blahID
+    fname = Rails.root.join("public/Barcodes/"+fnsku+".png")
     barcode = Barby::Code39.new(fnsku, true)
-    File.open( fname, 'wb'){|f| f.write barcode.to_png(:height => 20, :margin => 5)}
+    File.open( fname, 'wb'){|f| f.write barcode.to_png(:height => 60, :margin => 3)}
+
+
   end
   helper_method :generate_barcodes
 
@@ -111,6 +124,6 @@ class InventoriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def inventory_params
-      params.require(:inventory).permit(:Bulk, :Gear_Type, :Brand, :Model, :Color, :Size, :Serial_Number, :Retail, :Purchase_Price, :Total_Spent, :Date_Purchased, :Purchase_Method, :Reason, :Gear_Category, :Available)
+      params.require(:inventory).permit(:Bulk, :Gear_Type, :Brand, :Model, :Color, :Size, :Serial_Number, :Retail, :Purchase_Price, :Total_Spent, :Date_Purchased, :Purchase_Method, :Reason, :Gear_Category, :Available, :blahID)
     end
 end
