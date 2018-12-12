@@ -1,6 +1,6 @@
 class BulkController < ApplicationController
     before_action :authenticate_administrator!
-    before_action :set_user, only: [:show, :edit, :update, :destroy]
+    before_action :set_bulk, only: [:show, :edit, :update, :destroy]
 
     # GET /users/1
     # GET /users/1.json
@@ -59,12 +59,12 @@ class BulkController < ApplicationController
 
 
       # Use callbacks to share common setup or constraints between actions.
-      def set_user
+      def set_bulk
         @bulk = Bulk.find(params[:id])
       end
 
       # Never trust parameters from the scary internet, only allow the white list through.
       def bulk_params
-        params.require(:user).permit(:Gear_Type, :Gear_Category,:Quantity, :Notes)
+        params.require(:bulk).permit(:Gear_Type, :Gear_Category,:Quantity, :Notes)
       end
   end
