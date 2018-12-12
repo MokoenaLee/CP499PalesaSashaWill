@@ -31,6 +31,8 @@ class InventoriesController < ApplicationController
   # POST /inventories.json
   def create
     @inventory = Inventory.new(inventory_params)
+    theID = uniqueID
+    @inventory.blahID = theID
     generate_barcodes
 
     respond_to do |format|
@@ -76,14 +78,26 @@ class InventoriesController < ApplicationController
 
   end
 
-  def generate_barcodes # check to see if we don't already have this barcode image uri = CGI.escape(symbology) + '_' + CGI.escape(data) + '.jpg' fname = RAILS_ROOT + '/public/Barcodes/' + uri #fname = '/var/www/html/arc_cloud/arcdevelopment/' + uri
+  def uniqueID
     gt = @inventory.Gear_Type
-    size = @inventory.size
-    fnsku = Inventory.select(:blahID).where(Gear_Type: gt, Size: size).last
-    fnsku = fnsku.blahID
+    s = @inventory.Size
+    dp = @inventory.Date_Purchased
+    gc = @inventory.Gear_Category
+    otherobj = Inventory.where(Gear_Type:gt, Size: s).order(Gear_Type: :asc, Size: :asc).last
+    year = dp.split("/")[2].split(//).last(2).join
+    if(otherobj)
+      currID = otherobj.blahID.split("-")[2]
+      return "#{(gt.split.map(&:chr).join.upcase)+(gc[0].upcase)}-#{s}-#{currID.to_i+1}-#{year}"
+    else
+      return "#{(gt.split.map(&:chr).join.upcase)+(gc[0].upcase)}-#{s}-1-#{year}"
+    end
+  end
+
+  def generate_barcodes # check to see if we don't already have this barcode image uri = CGI.escape(symbology) + '_' + CGI.escape(data) + '.jpg' fname = RAILS_ROOT + '/public/Barcodes/' + uri #fname = '/var/www/html/arc_cloud/arcdevelopment/' + uri
+    fnsku = @inventory.blahID
     fname = Rails.root.join("public/Barcodes/"+fnsku+".png")
     barcode = Barby::Code39.new(fnsku, true)
-    File.open( fname, 'wb'){|f| f.write barcode.to_png(:height => 40, :margin => 3)}
+    File.open( fname, 'wb'){|f| f.write barcode.to_png(:height => 60, :margin => 3)}
 
 
   end
@@ -98,6 +112,6 @@ class InventoriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def inventory_params
-      params.require(:inventory).permit(:Bulk, :Gear_Type, :Brand, :Model, :Color, :Size, :Serial_Number, :Retail, :Purchase_Price, :Total_Spent, :Date_Purchased, :Purchase_Method, :Reason, :Gear_Category, :Available)
+      params.require(:inventory).permit(:Bulk, :Gear_Type, :Brand, :Model, :Color, :Size, :Serial_Number, :Retail, :Purchase_Price, :Total_Spent, :Date_Purchased, :Purchase_Method, :Reason, :Gear_Category, :Available, :blahID)
     end
 end

@@ -8,10 +8,12 @@ class AddRentals < ActiveRecord::Migration
       :first_name => row[0],
       :last_name => row[1],
       :email_address => row[2],
-      :Gear_Type => row[3],
-      :rental_date => row[4],
-      :days_used => row[5],
-      :return_date => row[6],
+      :iclass => row[3],
+      :blahID => row[4],
+      :Gear_Type => row[5],
+      :rental_date => row[6],
+      :days_used => row[7],
+      :return_date => row[8]
       })
     end
   end
