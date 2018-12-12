@@ -1,5 +1,8 @@
 class RentalsController < ApplicationController
-  before_action :set_rental, only: [:show, :edit, :update, :destroy, :errPopup]
+
+  before_action :authenticate_administrator!
+  before_action :set_rental, only: [:show, :edit, :update, :destroy]
+
 
   def index
     @rentals = Rental.all

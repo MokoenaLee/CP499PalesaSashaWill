@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   resources :users
   get '/search', :controller => :search, :to => 'searches#index'
   get '/search/find', :controller => :search, :to => 'searches#search'
-  root :to => redirect('/administrators/sign_up')
+  root :to => "users#index"
+  get '/dashboard' => 'desktops#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

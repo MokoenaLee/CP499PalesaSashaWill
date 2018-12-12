@@ -4,6 +4,7 @@ require 'barby/outputter/png_outputter'
 
 
 class InventoriesController < ApplicationController
+  before_action :authenticate_administrator!
   before_action :set_inventory, only: [:show, :edit, :update, :destroy]
 
   # GET /inventories
