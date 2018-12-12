@@ -6,16 +6,11 @@ class AddInventorylist < ActiveRecord::Migration
   def change
     inventories = CSV.read(Dir.pwd + "/db/itemized_inventory.csv", :headers => true)
     inventories.each do |row|
-      tempSize = row[3]
-      if tempSize == "N/A"
-        tempSize = "0"
-      end
-
     @inventory = Inventory.create({
       :Bulk => row[0],
       :Gear_Type => row[1],
       :Brand => row[2],
-      :Size => tempSize,
+      :Size => row[3],
       :Serial_Number => row[4],
       :Date_Purchased => row[5],
       :Gear_Category => row[6],
@@ -38,6 +33,7 @@ class AddInventorylist < ActiveRecord::Migration
       return "#{(gt.split.map(&:chr).join.upcase)+(gc[0].upcase)}-#{s}-1-#{year}"
     end
   end
+
   def generate_barcodes # check to see if we don't already have this barcode image uri = CGI.escape(symbology) + '_' + CGI.escape(data) + '.jpg' fname = RAILS_ROOT + '/public/Barcodes/' + uri #fname = '/var/www/html/arc_cloud/arcdevelopment/' + uri
     fnsku = @inventory.blahID + ".png"
     fname = File.join(Rails.root, "public/Barcodes/", fnsku)

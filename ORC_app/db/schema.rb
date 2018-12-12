@@ -35,23 +35,7 @@ ActiveRecord::Schema.define(version: 20181211205731) do
     t.boolean "Bulk"
   end
 
-  create_table "generals", force: :cascade do |t|
-    t.string "type_name"
-    t.string "staff"
-    t.string "date"
-    t.string "upstairs"
-    t.string "trip_room"
-    t.string "nso_room"
-    t.string "rented"
-    t.string "in_repair"
-    t.string "total"
-    t.string "track_easy"
-    t.string "comparison"
-    t.string "notes"
-  end
-
   create_table "inventories", force: :cascade do |t|
-    t.integer "user_id"
     t.string  "blahID"
     t.boolean "Bulk"
     t.string  "Gear_Type"
@@ -65,19 +49,18 @@ ActiveRecord::Schema.define(version: 20181211205731) do
     t.text    "Notes"
   end
 
-  add_index "inventories", ["user_id"], name: "index_inventories_on_user_id"
-
   create_table "pricings", force: :cascade do |t|
     t.string "Gear_Type"
     t.string "daily"
     t.string "weekly"
-    t.string "blah"
   end
 
   create_table "rentals", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
     t.string   "email_address"
+    t.integer  "iclass"
+    t.string   "blahID"
     t.string   "Gear_Type"
     t.string   "rental_date"
     t.integer  "days_used"
@@ -87,12 +70,16 @@ ActiveRecord::Schema.define(version: 20181211205731) do
     t.datetime "updated_at",    null: false
   end
 
+  add_index "rentals", ["blahID"], name: "index_rentals_on_blahID"
+  add_index "rentals", ["iclass"], name: "index_rentals_on_iclass"
+
   create_table "users", force: :cascade do |t|
-    t.string "first_name"
-    t.string "last_name"
-    t.string "email_address"
-    t.string "student_ID",    null: false
-    t.string "phone"
+    t.string  "first_name"
+    t.string  "last_name"
+    t.string  "email_address"
+    t.string  "student_ID",    null: false
+    t.string  "phone"
+    t.integer "iclass"
   end
 
 end

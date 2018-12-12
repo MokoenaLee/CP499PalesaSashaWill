@@ -28,8 +28,6 @@
       <tr data-toggle="modal" data-target="#ItemModal">
         <td><%= inventory.Gear_Type %></td>
         <td><%= inventory.Brand %></td>
-        <td><%= inventory.Model %></td>
-        <td><%= inventory.Color %></td>
         <td><%= inventory.Size %></td>
         <td><%= inventory.Serial_Number %></td>
         <td><%= inventory.Gear_Category %></td>
@@ -59,6 +57,7 @@
   </thead>
 
   <tbody>
+    <% @bulks = Bulk.all_bulk %>
     <% @bulks.each do |bulk| %>
       <tr>
         <td><%= bulk.Gear_Type %></td>
@@ -70,28 +69,6 @@
     <% end %>
   </tbody>
 </table>
-
-<!-- Code to union both bulk and itemized into one table
-<<table>
-  <<thead>
-    <<tr>
-      <<th>id</th>
-      <<th>gear_type</th>
-    </tr>
-  </thead>
-  <<tbody>
-    <% @blahs = Bulk.all_bulk + Inventory.all_it%>
-    <% @blahs.each do |blah| %>
-    <<tr>
-      <<td><%= blah.id %></td>
-      <<td><%= blah.Gear_Type %></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
--->
-
-<br>
 
 <div class="container-fluid">
     <%= link_to 'Add New Item', new_inventory_path, class: "btn btn-outline-info" %>

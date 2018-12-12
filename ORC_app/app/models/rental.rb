@@ -1,8 +1,9 @@
 class Rental < ActiveRecord::Base
+   # has_many :inventories, :class_name => "Inventory", :foreign_key => 'blahID'
+   # has_one :users, :class_name => "User", :foreign_key => 'iclass'
    belongs_to :users
    belongs_to :inventories
    has_one :pricings #pricing model table added with dependency. A rental will only ever have one price and a price will only belong to one Rental
-
 #Validations to the model
   validates :first_name ,presence: true
   validates :last_name, presence: true
