@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'bulk/new'
+
+  get 'bulk/create'
+
+  get 'bulk/show'
+
   devise_for :administrators
   devise_for :admins
   resources :rentals

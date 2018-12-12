@@ -26,7 +26,6 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
 
-
     respond_to do |format|
       if @user.save
         #UserMailer.rental_confirmation(@user).deliver_now
@@ -71,6 +70,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:first_name, :last_name,:email_address, :student_ID, :phone)
+      params.require(:user).permit(:first_name, :last_name, :email_address, :student_ID, :phone, :iclass)
     end
 end
