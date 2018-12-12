@@ -39,9 +39,12 @@
       <strong>On time price:</strong>
       <%= @rental.on_time_price %>
     </p>
-
+    
     <%= link_to 'Edit', edit_rental_path(@rental), class: "btn btn-outline-success" %>
     <%= link_to 'Destroy', @rental, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger" %>
     <%= link_to 'Back', rentals_path, class: "btn btn-outline-secondary"%>
+
+    <br>
+     <%= mail_to "@rental.email_address", "Send Confirmation Email", cc: "ahlber@coloradocollege.edu", subject: "Your Rental Confirmation", body: "You rented the following from us: @rental.Gear_Type on this date: @rental.rental_date"  %>
 
 </div>
