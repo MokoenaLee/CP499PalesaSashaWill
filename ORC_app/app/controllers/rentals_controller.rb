@@ -78,13 +78,16 @@ class RentalsController < ApplicationController
   def create
     @rental = Rental.new(rental_params)
     generate_rental_price
+    puts "@rental email" 
+    puts @rental.email_address
     respond_to do |format|
-      if @rental.save
+      if valid_email?(@rental.email_address)
+        @rental.save
         #RentalMailer.rental_confirmation(@rental).deliver_now
         format.html { redirect_to @rental, notice: 'Rental was successfully created.' }
         format.json { render :show, status: :created, location: @rental }
       else
-        format.html { render :new }
+        format.html { render :new, notice: "Something went wrong with one of the fields. Please re-enter" }
         format.json { render json: @rental.errors, status: :unprocessable_entity }
       end
     end
@@ -138,6 +141,11 @@ class RentalsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_rental
       @rental = Rental.find(params[:id])
+    end
+
+    def valid_email?(email)
+    
+     email.present? && (email =~ /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i) && Rental.find_by(email: email).empty? 
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
