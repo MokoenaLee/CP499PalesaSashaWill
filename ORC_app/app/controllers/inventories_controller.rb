@@ -31,9 +31,14 @@ class InventoriesController < ApplicationController
   # POST /inventories.json
   def create
     @inventory = Inventory.new(inventory_params)
+<<<<<<< HEAD
     theID = uniqueID
     @inventory.blahID = theID
     generate_barcodes
+=======
+    @inventory.blahID = uniqueID
+
+>>>>>>> 229b359bb25b35250423d16f911cfd8c695368e1
 
     respond_to do |format|
       if @inventory.save
@@ -79,6 +84,7 @@ class InventoriesController < ApplicationController
   end
 
   def uniqueID
+<<<<<<< HEAD
     gt = @inventory.Gear_Type
     s = @inventory.Size
     dp = @inventory.Date_Purchased
@@ -91,6 +97,20 @@ class InventoriesController < ApplicationController
     else
       return "#{(gt.split.map(&:chr).join.upcase)+(gc[0].upcase)}-#{s}-1-#{year}"
     end
+=======
+      gt = @inventory.Gear_Type
+      s = @inventory.Size
+      dp = @inventory.Date_Purchased
+      gc = @inventory.Gear_Category
+      otherobj = Inventory.where(Gear_Type: gt, Size: s).order(Gear_Type: :asc, Size: :asc).last
+      year = dp.split("/")[2].split(//).last(2).join
+      if(otherobj)
+          currID = otherobj.blahID.split("-")[2]
+          return "#{(gt.split.map(&:chr).join.upcase)+(gc[0].upcase)}-#{s}-#{currID.to_i+1}-#{year}"
+      else
+          return "#{(gt.split.map(&:chr).join.upcase)+(gc[0].upcase)}-#{s}-1-#{year}"
+      end
+>>>>>>> 229b359bb25b35250423d16f911cfd8c695368e1
   end
 
   def generate_barcodes # check to see if we don't already have this barcode image uri = CGI.escape(symbology) + '_' + CGI.escape(data) + '.jpg' fname = RAILS_ROOT + '/public/Barcodes/' + uri #fname = '/var/www/html/arc_cloud/arcdevelopment/' + uri
