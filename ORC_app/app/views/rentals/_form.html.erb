@@ -1,4 +1,4 @@
-<%= form_for(@rental) do |f| %>
+<%= form_for(@rental)do |f| %>
   <% if @rental.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@rental.errors.count, "error") %> prohibited this rental from being saved:</h2>
@@ -11,21 +11,39 @@
     </div>
    <% end %>
 
-
 <div class="container-fluid">
+ <div id = "ic" class="form-group" onkeydown="if (event.keyCode == 13) event.preventDefault()" >
+   <%= f.label :iclass %>
+    <%= f.text_field :iclass, class: "form-control", placeholder: "Please Scan Gold Card Here" %><br>
+ </div>
+
+ <!-- <script type="text/javascript">
+   var iclass_field = document.getElementById("ic").getElementsByTagName("input")[0];
+   let timeout;
+   iclass_field.addEventListener("input", () => {clearTimeout(timeout);
+     timeout = setTimeout(() => populateFields(iclass_field), 500);
+   });
+   function populateFields(iclass){
+     var temp = iclass.value;
+     var studIC = parseInt(temp);
+     // var actrec = get_info_from_iclass(studIC);
+     alert("COMPLETE");
+}
+  </script> -->
+
 
   <div class="row">
-    <div class="col">
+    <div id = "fn" class="col">
         <%= f.label :first_name %>
         <%= f.text_field :first_name, class: "form-control"%><br>
     </div>
-    <div class="col">
+    <div id = "ln" class="col">
         <%= f.label :last_name %>
         <%= f.text_field :last_name, class: "form-control"%><br>
     </div>
-  </div>
 
-  <div class="form-group">
+  </div>
+  <div id = "em" class="form-group">
     <%= f.label :email_address %>
     <%= f.text_field :email_address, class: "form-control"%><br>
   </div>

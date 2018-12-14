@@ -5,13 +5,19 @@ Rails.application.routes.draw do
   devise_for :administrators
   devise_for :admins
   resources :bulks
-  resources :rentals
+  resources :rentals do
+      get 'get_info_from_iclass'
+  end
+    # post  "/rentals/:rental_id/rentals/get_info_from_iclass"
   resources :inventories
   resources :users
   get '/search', :controller => :search, :to => 'searches#index'
   get '/search/find', :controller => :search, :to => 'searches#search'
   root :to => "users#index"
   get '/dashboard' => 'desktops#index'
+
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

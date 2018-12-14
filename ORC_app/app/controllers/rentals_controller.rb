@@ -1,7 +1,9 @@
 require 'csv'
 class RentalsController < ApplicationController
+
   before_action :authenticate_administrator!
   before_action :set_rental, only: [:show, :edit, :update, :destroy]
+
 
   def index
     @rentals = Rental.all
@@ -107,6 +109,7 @@ class RentalsController < ApplicationController
   end
 
 
+
     def destroy
         f = File.join(Rails.root, "public/archive.csv")
         CSV.open(f, "ab") do |csv|
@@ -138,6 +141,26 @@ class RentalsController < ApplicationController
     end
   end
   helper_method :generate_rental_price
+
+  def get_gear_type
+    tempID = @rental.blahID.split(".png")[0]
+    @rental.blahID = tempID
+    if(tempID)
+      @rental.Gear_Type = Inventory.where(blahID: tempID).last.Gear_Type
+      @rental.save
+    end
+  end
+
+  def get_info_from_iclass
+    respond_to do |format|
+        format.js { render :nothing => true }
+    end
+    return User.where(iclass: 21905).last
+
+    # return Rental.get_user_from_iclass(iclass)
+  end
+  helper_method :get_info_from_iclass
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
