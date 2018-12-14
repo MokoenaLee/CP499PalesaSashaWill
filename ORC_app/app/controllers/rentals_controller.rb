@@ -1,3 +1,4 @@
+require 'csv'
 class RentalsController < ApplicationController
   before_action :authenticate_administrator!
   before_action :set_rental, only: [:show, :edit, :update, :destroy]
@@ -106,13 +107,17 @@ class RentalsController < ApplicationController
   end
 
 
-  def destroy
-    @rental.destroy
-    respond_to do |format|
-      format.html { redirect_to rentals_url, notice: 'Rental was successfully destroyed.' }
-      format.json { head :no_content }
+    def destroy
+        f = File.join(Rails.root, "public/archive.csv")
+        CSV.open(f, "ab") do |csv|
+            csv << @rental.attributes.values
+        end
+        @rental.destroy
+        respond_to do |format|
+            format.html { redirect_to rentals_url, notice: 'Rental was successfully destroyed.' }
+            format.json { head :no_content }
+        end
     end
-  end
 
   def generate_rental_price
     gear_type = @rental.Gear_Type.downcase.titleize
