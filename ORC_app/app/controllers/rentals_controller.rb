@@ -1,8 +1,5 @@
 class RentalsController < ApplicationController
-
-  before_action :authenticate_administrator!
-  before_action :set_rental, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_rental, only: [:show, :edit, :update, :destroy, :errPopup]
 
   def index
     @rentals = Rental.all
@@ -114,13 +111,17 @@ class RentalsController < ApplicationController
 
 
   def destroy
+    f = File.join(Rails.root, "public/file.csv")
+    CSV.open(f, "ab") do |csv|
+      csv << @rental.attribute_names
+      csv << @rental.attributes.values
+    end
     @rental.destroy
     respond_to do |format|
       format.html { redirect_to rentals_url, notice: 'Rental was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
-
   def generate_rental_price
     # gear_type = @rental.Gear_Type.downcase.titleize
     days_used = @rental.days_used.to_f
@@ -159,9 +160,16 @@ class RentalsController < ApplicationController
     end
   end
 
-  def errPopup
-    closesttype = Rental.errPopup
+  def get_info_from_iclass
+    respond_to do |format|
+        format.js { render :nothing => true }
+    end
+    return User.where(iclass: 21905).last
+
+    # return Rental.get_user_from_iclass(iclass)
   end
+  helper_method :get_info_from_iclass
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
