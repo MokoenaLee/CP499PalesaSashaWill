@@ -1,7 +1,7 @@
 class Rental < ActiveRecord::Base
    belongs_to :users
-   belongs_to :inventories
-   has_one :pricings #pricing model table added with dependency. A rental will only ever have one price and a price will only belong to one Rental
+   #belongs_to :inventories
+   #has_one :pricings #pricing model table added with dependency. A rental will only ever have one price and a price will only belong to one Rental
 
 #Validations to the model
 
@@ -13,7 +13,7 @@ class Rental < ActiveRecord::Base
   def self.find_rental_by_username username
     begin
       Rental.find_by_username(username)
-    rescure ActiveRecord::RecordNotFound
+    rescue ActiveRecord::RecordNotFound
       nil
     end
   end

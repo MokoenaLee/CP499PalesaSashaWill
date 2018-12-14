@@ -5,7 +5,6 @@ class AddUserlist < ActiveRecord::Migration
     users = CSV.read(Dir.pwd + "/db/New_Fake_Users.csv", :headers => true)
     users.each do |row|
      User.create({
-      :renter_ID => row[0],
       :first_name => row[1],
       :last_name => row[2],
       :email_address => row[3],

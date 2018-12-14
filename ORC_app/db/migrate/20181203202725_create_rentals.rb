@@ -1,8 +1,6 @@
 class CreateRentals < ActiveRecord::Migration
   def change
     create_table :rentals do |t|
-      t.integer :renter_ID
-      t.integer :inventory_ID
       t.string :first_name
       t.string :last_name
       t.string :email_address

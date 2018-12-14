@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
-  resources :rentals
   resources :inventories
-  resources :users
+  resources :users 
+  resources :rentals
+  
   get '/search', :controller => :search, :to => 'searches#index'
   get '/search/find', :controller => :search, :to => 'searches#search'
   root :to => redirect('/users')

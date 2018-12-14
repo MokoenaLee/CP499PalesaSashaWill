@@ -1,8 +1,9 @@
 class User < ActiveRecord::Base
-  has_many :rentals
-  has_many :inventories, :through => :rentals, :dependent => :destroy
-  #self.primary_key = "renter_ID"
-  #accepts_nested_attributes_for :rentals
+  attr_accessor :rentals_attributes
+  has_many :rentals, :dependent => :destroy
+  #has_many :inventories #:through => :rentals, :dependent => :destroy
+  accepts_nested_attributes_for :rentals, allow_destroy: true, reject_if: :all_blank
+ 
 
 
   def send_instructions
@@ -13,14 +14,6 @@ class User < ActiveRecord::Base
   %w(student_ID)
  end
 
-
-  def self.filt_as_col filt
-   if filt == "student_ID"
-    return :student_ID
-   else 
-    return 
-   end
- end
 
  def self.return_options filt
    User.pluck(User.filt_as_col filt)

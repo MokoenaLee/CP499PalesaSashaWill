@@ -1,64 +1,41 @@
-<%= form_for(@rental) do |f| %>
-  <% if @rental.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@rental.errors.count, "error") %> prohibited this rental from being saved:</h2>
-
-      <ul>
-      <% @rental.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-   <% end %>
-
+<p id="notice"><%= notice %></p>
 
 <div class="container-fluid">
-  <div class="form-group"><br>
-    <%= f.label :first_name, "First Name" %>
-    <%= f.text_field :first_name, class: "form-control"%><br>
-  </div>
+    <p>
+      <strong>First name:</strong>
+      <%= @user.first_name %>
+    </p>
 
+    <p>
+      <strong>Last name:</strong>
+      <%= @user.last_name %>
+    </p>
+ 
+  
+    <p>
+      <strong>Email adress:</strong>
+      <%= @user.email_address %>
+    </p>
 
-  <div class="form-group">
-    <%= f.label :last_name, "Last Name" %>
-    <%= f.text_field :last_name, class: "form-control"%><br>
-  </div>
+    <p>
+      <strong>Student id:</strong>
+      <%= @user.student_ID %>
+    </p>
 
-  <div class="form-group">
-    <%= f.label :email_address, "email address" %>
-    <%= f.text_field :email_address, class: "form-control"%><br>
-  </div>
+    <p>
+      <strong>Phone:</strong>
+      <%= @user.phone %>
+    </p>
 
-  <div class="form-group">
-    <%= f.label :Gear_Type,"Gear type" %>
-    <%= f.text_field :Gear_Type, class: "form-control"%><br>
-  </div>
+   <h4>List of rentals: </h4>
+   <% @user.rentals.each do |rental|%>
+     <p><%= rental.Gear_Type%></p>
+     <p><%= rental.rental_date%></p>
+     <p><%= rental.return_date%></p>
+     <p><%= rental.days_used%></p>
+   <%end%>
 
-  <div class="form-group">
-    <%= f.label :rental_date, "Rental date" %>
-    <%= f.text_field :rental_date, class: "form-control"%><br>
-  </div>
-  <div class="form-group">
-    <%= f.label :return_date, "Return date" %>
-    <%= f.text_field :return_date, class: "form-control"%><br>
-  </div>
-  <div class="form-group">
-    <%= f.label :days_used, "Days used" %>
-    <%= f.text_field :days_used, class: "form-control"%><br>
-  </div>
-  <div class="form-group">
-    <%= f.label :on_time_price, "On time price" %>
-    <%= f.text_field :on_time_price, class: "form-control"%>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Submit", class: "btn btn-primary" %>
-  </div>
-
-  <br>
-      <%= link_to 'Back', rentals_path, class: "btn btn-outline-secondary" %>
-  <p>
-  </p>
-
+    <%= link_to 'Edit', edit_user_rental_path(@user), class: "btn btn-outline-success" %>
+    <%= link_to 'Destroy', @user, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger" %> 
+    <%= link_to 'Back', users_path, class: "btn btn-outline-secondary" %>
 </div>
-<% end %>

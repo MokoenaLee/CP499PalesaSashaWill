@@ -7,29 +7,12 @@
       This page displays all currently rented items.
     </p>
 
-<div class="container-fluid">
-  <h1 class="search">Search</h1>
-  <%= form_tag rentals_path, :method => :get, :id => 'filter_form' do %>
-    <div class="grid-container">
-      <% Rental.all_filters.each do |filt| %>
-        <div class="<%= filt %>_label">
-          <%= filt %>
-        </div>
-        <div class="<%= filt %>_select">
-          <%= select_tag filt, options_for_select(Rental.return_options(filt), :selected => params[filt]), :include_blank => true %>
-        </div>
-      <% end %>
-    </div>
-    <%= submit_tag 'Search' %>
-    <%= submit_tag 'Clear' %>
-  <% end %>
+
 
 </div>
 <%= render :partial => "rental_table" %>
 </div>
 
 
-<div class="container-fluid">
-    <%= link_to 'Create New Rental', new_rental_path, class: "btn btn-outline-info" %>
-</div>
+
 

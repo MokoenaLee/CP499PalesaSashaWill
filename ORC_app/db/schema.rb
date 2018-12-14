@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181211025040) do
+ActiveRecord::Schema.define(version: 20181214021258) do
 
   create_table "bulks", force: :cascade do |t|
     t.string  "Gear_Type"
@@ -38,7 +38,6 @@ ActiveRecord::Schema.define(version: 20181211025040) do
   end
 
   create_table "inventories", force: :cascade do |t|
-    t.integer "user_id"
     t.string  "blahID",         null: false
     t.boolean "Bulk"
     t.string  "Gear_Type"
@@ -52,8 +51,6 @@ ActiveRecord::Schema.define(version: 20181211025040) do
     t.string  "Notes"
   end
 
-  add_index "inventories", ["user_id"], name: "index_inventories_on_user_id"
-
   create_table "pricings", force: :cascade do |t|
     t.string "Gear_Type"
     t.string "daily"
@@ -62,8 +59,6 @@ ActiveRecord::Schema.define(version: 20181211025040) do
   end
 
   create_table "rentals", force: :cascade do |t|
-    t.integer  "renter_ID"
-    t.integer  "inventory_ID"
     t.string   "first_name"
     t.string   "last_name"
     t.string   "email_address"
@@ -74,15 +69,18 @@ ActiveRecord::Schema.define(version: 20181211025040) do
     t.string   "on_time_price"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.integer  "user_id"
   end
 
+  add_index "rentals", ["user_id"], name: "index_rentals_on_user_id"
+
   create_table "users", force: :cascade do |t|
-    t.integer "renter_ID"
-    t.string  "first_name"
-    t.string  "last_name"
-    t.string  "email_address"
-    t.string  "student_ID"
-    t.string  "phone"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "email_address"
+    t.string "student_ID"
+    t.string "phone"
+    t.string "rentals_attributes"
   end
 
 end

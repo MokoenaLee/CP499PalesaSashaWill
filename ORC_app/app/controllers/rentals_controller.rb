@@ -15,6 +15,7 @@ class RentalsController < ApplicationController
     @user_lname = User.all.map{|x| x.last_name}
     @inventory_gear = Inventory.all.map{|t| t.Gear_Type}
     @rental = Rental.new
+
   end
 
   
@@ -82,15 +83,19 @@ class RentalsController < ApplicationController
     puts @rental.email_address
     respond_to do |format|
       if valid_email?(@rental.email_address)
+        puts "inside validate"
         @rental.save
-        #RentalMailer.rental_confirmation(@rental).deliver_now
         format.html { redirect_to @rental, notice: 'Rental was successfully created.' }
         format.json { render :show, status: :created, location: @rental }
       else
-        format.html { render :new, notice: "Something went wrong with one of the fields. Please re-enter" }
+        flash[:notice] = "Oops! Something went wrong with one or more of the fields. Make sure inputs are valid"
+        #flash.keep(:notice)
+        format.html { render :new}
         format.json { render json: @rental.errors, status: :unprocessable_entity }
+        
       end
     end
+     
   end
 
 
@@ -145,7 +150,7 @@ class RentalsController < ApplicationController
 
     def valid_email?(email)
     
-     email.present? && (email =~ /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i) && Rental.find_by(email: email).empty? 
+     email.present? && (email =~ /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i) && Rental.find_rental_by_username(:email_address => email).empty? 
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
