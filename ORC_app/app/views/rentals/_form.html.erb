@@ -1,41 +1,114 @@
 <p id="notice"><%= notice %></p>
 
+
 <div class="container-fluid">
-    <p>
-      <strong>First name:</strong>
-      <%= @user.first_name %>
-    </p>
 
-    <p>
-      <strong>Last name:</strong>
-      <%= @user.last_name %>
-    </p>
- 
-  
-    <p>
-      <strong>Email adress:</strong>
-      <%= @user.email_address %>
-    </p>
-
-    <p>
-      <strong>Student id:</strong>
-      <%= @user.student_ID %>
-    </p>
-
-    <p>
-      <strong>Phone:</strong>
-      <%= @user.phone %>
-    </p>
-
-   <h4>List of rentals: </h4>
-   <% @user.rentals.each do |rental|%>
-     <p><%= rental.Gear_Type%></p>
-     <p><%= rental.rental_date%></p>
-     <p><%= rental.return_date%></p>
-     <p><%= rental.days_used%></p>
-   <%end%>
-
+ <!--
     <%= link_to 'Edit', edit_user_rental_path(@user), class: "btn btn-outline-success" %>
     <%= link_to 'Destroy', @user, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger" %> 
     <%= link_to 'Back', users_path, class: "btn btn-outline-secondary" %>
+
+-->
+  <div class="row">
+    <div class="col">
+        <%= f.label :first_name %>
+        <%= f.text_field :first_name, class: "form-control"%><br>
+    </div>
+    <div class="col">
+        <%= f.label :last_name %>
+        <%= f.text_field :last_name, class: "form-control"%><br>
+    </div>
+
+<!--
+<div class="container-fluid", id = 'rentalForm' >
+  <div id = 'fn' class="form-group" ><br>
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name, class: "form-control"%><br>
+       <script type="javascript">
+    // first = document.getElementbyID
+      .onkeyup = function () { // or first.onchange
+      ln.value = fn.value;
+    };</script> 
+  </div>
+
+
+  <div id = 'ln' class="form-group" >
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name, class: "form-control"%><br>
+
+  </div>
+-->
+  <div class="form-group">
+    <%= f.label :email_address %>
+    <%= f.text_field :email_address, class: "form-control"%><br>
+  </div>
+
+  <div id = "BID" class="form-group" >
+    <%= lab = f.label :blahID %>
+    <%= f.text_field :blahID, class: "form-control", placeholder: "Please Scan Item Here"%><br>
+    <!-- <script type="javascript">
+      (function($) {
+    var _timeoutHandler = 0,
+        _inputString = '',
+        _onKeypress = function(e) {
+            if (_timeoutHandler) {
+                clearTimeout(_timeoutHandler);
+            }
+            _inputString += e.key;
+
+            _timeoutHandler = setTimeout(function () {
+                if (_inputString.length <= 3) {
+                    _inputString = '';
+                    return;
+                }
+                $(e.target).trigger('altdeviceinput', _inputString);
+                _inputString = '';
+
+            }, 20);
+        };
+        $(document).on({keypress: _onKeypress});
+})($);
+    </script> -->
+  </div>
+
+  <div class="row">
+    <div class="col">
+        <%= f.label :rental_date %>
+        <%= f.text_field :rental_date, class: "form-control"%><br>
+    </div>
+    <div class="col">
+        <%= f.label :return_date %>
+        <%= f.text_field :return_date, class: "form-control"%><br>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :days_used %>
+    <%= f.text_field :days_used, class: "form-control"%><br>
+  </div>
+
+
+  <div class="row">
+    <div class="col">
+        <%= f.label "Daily Rate" %>
+        <%= f.text_field :days_used, class: "form-control"%>
+    </div>
+    <div class="col">
+        <%= f.label "Weekly Rate" %>
+        <%= f.text_field :days_used, class: "form-control"%>
+    </div>
+  </div>
+
+
+ <p></p>
+
+  <div class="actions">
+    <%= f.submit "Submit", class: "btn btn-primary" %>
+  </div>
+
+  <br>
+      <%= link_to 'Back', rentals_path, class: "btn btn-outline-secondary" %>
+  <p></p>
+
+
 </div>

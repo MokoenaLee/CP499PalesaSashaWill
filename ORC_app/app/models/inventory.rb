@@ -3,4 +3,9 @@ class Inventory < ActiveRecord::Base
   #has_many :rentals
   #has_many :users, :through => :rentals
   #belongs_to :users
+
+  has_many :rentals
+  has_many :users, through: :rentals
+  # has_many :users, :through => :rentals
+>
 end

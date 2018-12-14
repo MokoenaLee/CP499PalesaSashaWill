@@ -1,11 +1,17 @@
 Rails.application.routes.draw do
+<<<<<<< HEAD
+=======
+  devise_for :administrators
+  devise_for :admins
+  resources :rentals
   resources :inventories
   resources :users 
-  resources :rentals
+
   
   get '/search', :controller => :search, :to => 'searches#index'
   get '/search/find', :controller => :search, :to => 'searches#search'
-  root :to => redirect('/users')
+  root :to => "users#index"
+  get '/dashboard' => 'desktops#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

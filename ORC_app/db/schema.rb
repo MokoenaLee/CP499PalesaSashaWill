@@ -11,7 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181214021258) do
+
+ActiveRecord::Schema.define(version: 20181211205731) do
+
+  create_table "administrators", force: :cascade do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+  end
+
+  add_index "administrators", ["email"], name: "index_administrators_on_email", unique: true
+  add_index "administrators", ["reset_password_token"], name: "index_administrators_on_reset_password_token", unique: true
+
 
   create_table "bulks", force: :cascade do |t|
     t.string  "Gear_Type"
@@ -22,23 +37,12 @@ ActiveRecord::Schema.define(version: 20181214021258) do
     t.boolean "Bulk"
   end
 
-  create_table "generals", force: :cascade do |t|
-    t.string "type_name"
-    t.string "staff"
-    t.string "date"
-    t.string "upstairs"
-    t.string "trip_room"
-    t.string "nso_room"
-    t.string "rented"
-    t.string "in_repair"
-    t.string "total"
-    t.string "track_easy"
-    t.string "comparison"
-    t.string "notes"
-  end
-
   create_table "inventories", force: :cascade do |t|
+<<<<<<< HEAD
     t.string  "blahID",         null: false
+=======
+    t.string  "blahID"
+>>>>>>> 62ce51bb9cc65ad16cb136676de8e7c3a53f346c
     t.boolean "Bulk"
     t.string  "Gear_Type"
     t.string  "Brand"
@@ -48,20 +52,21 @@ ActiveRecord::Schema.define(version: 20181214021258) do
     t.string  "Gear_Category"
     t.string  "Location"
     t.boolean "Available"
-    t.string  "Notes"
+    t.text    "Notes"
   end
 
   create_table "pricings", force: :cascade do |t|
     t.string "Gear_Type"
     t.string "daily"
     t.string "weekly"
-    t.string "blah"
   end
 
   create_table "rentals", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
     t.string   "email_address"
+    t.integer  "iclass"
+    t.string   "blahID"
     t.string   "Gear_Type"
     t.string   "rental_date"
     t.integer  "days_used"
@@ -72,6 +77,7 @@ ActiveRecord::Schema.define(version: 20181214021258) do
     t.integer  "user_id"
   end
 
+<<<<<<< HEAD
   add_index "rentals", ["user_id"], name: "index_rentals_on_user_id"
 
   create_table "users", force: :cascade do |t|
@@ -81,6 +87,18 @@ ActiveRecord::Schema.define(version: 20181214021258) do
     t.string "student_ID"
     t.string "phone"
     t.string "rentals_attributes"
+=======
+  add_index "rentals", ["blahID"], name: "index_rentals_on_blahID"
+  add_index "rentals", ["iclass"], name: "index_rentals_on_iclass"
+
+  create_table "users", force: :cascade do |t|
+    t.string  "first_name"
+    t.string  "last_name"
+    t.string  "email_address"
+    t.string  "student_ID",    null: false
+    t.string  "phone"
+    t.integer "iclass"
+>>>>>>> 62ce51bb9cc65ad16cb136676de8e7c3a53f346c
   end
 
 end

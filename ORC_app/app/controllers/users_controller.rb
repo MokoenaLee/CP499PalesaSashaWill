@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :authenticate_administrator!
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -11,6 +12,7 @@ class UsersController < ApplicationController
 
 
   def new
+
     @user = User.new
     @user.rentals.build
   end
@@ -24,7 +26,6 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    
     puts "rentals_attributes =============================="
     puts @user.rentals_attributes
     respond_to do |format|
@@ -32,7 +33,7 @@ class UsersController < ApplicationController
         @user.save
         puts "are attributes in here"
         puts @user.rentals_attributes
-        #UserMailer.rental_confirmation(@user).deliver_now
+
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
@@ -43,6 +44,8 @@ class UsersController < ApplicationController
       end
     end
   end
+
+
 
   def update
     respond_to do |format|
@@ -66,7 +69,7 @@ class UsersController < ApplicationController
     end
   end
 
-  
+
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       puts "what is in params[:id]"
