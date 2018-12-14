@@ -7,8 +7,9 @@
       This page displays all currently rented items.
     </p>
 
+
 <div class="search">
-  <h1 class="search">Search</h1>
+  <h4 class="search">Search</h4>
   <%= form_tag rentals_path, :method => :get, :id => 'filter_form' do %>
     <div class="grid-container">
       <% Rental.all_filters.each do |filt| %>
@@ -23,6 +24,9 @@
     <%= submit_tag 'Search' %>
     <%= submit_tag 'Clear' %>
   <% end %>
+  <p></p>
+  <%= link_to 'Create New Rental', new_rental_path, class: "btn btn-outline-info" %>
+  <p></p>
 
 </div>
 <%= render :partial => "rental_table" %>
@@ -32,4 +36,3 @@
 <div class="container-fluid">
     <%= link_to 'Create New Rental', new_rental_path, class: "btn btn-outline-info" %>
 </div>
-

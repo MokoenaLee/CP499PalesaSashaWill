@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
+
+
+
   devise_for :administrators
   devise_for :admins
-  # resources :rentals
+  resources :bulks
   resources :rentals do
       get 'get_info_from_iclass'
   end
