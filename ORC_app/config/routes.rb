@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
-<<<<<<< HEAD
-=======
+
   devise_for :administrators
   devise_for :admins
-  resources :rentals
+ 
   resources :inventories
-  resources :users 
+  resources :users do
+    resources :rentals
+  end
 
   
   get '/search', :controller => :search, :to => 'searches#index'

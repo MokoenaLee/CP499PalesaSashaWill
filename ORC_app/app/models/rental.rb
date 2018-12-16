@@ -8,6 +8,7 @@ class Rental < ActiveRecord::Base
 
    belongs_to :inventories
    has_one :pricings #pricing model table added with dependency. A rental will only ever have one price and a price will only belong to one Rental
+   accepts_nested_attributes_for :inventories
 
 #Validations to the model
 

@@ -34,7 +34,7 @@ class AddInventorylist < ActiveRecord::Migration
     end
   end
 
-  def generate_barcodes # check to see if we don't already have this barcode image uri = CGI.escape(symbology) + '_' + CGI.escape(data) + '.jpg' fname = RAILS_ROOT + '/public/Barcodes/' + uri #fname = '/var/www/html/arc_cloud/arcdevelopment/' + uri
+  def generate_barcodes 
     fnsku = @inventory.blahID + ".png"
     fname = File.join(Rails.root, "public/Barcodes/", fnsku)
     barcode = Barby::Code39.new(fnsku, true)

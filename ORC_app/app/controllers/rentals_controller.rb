@@ -14,9 +14,9 @@ class RentalsController < ApplicationController
 
   def new
     #code for when we used drop downs to select options
-    @user_fname = User.all.map{|u| u.first_name}
-    @user_lname = User.all.map{|x| x.last_name}
-    @inventory_gear = Inventory.all.map{|t| t.Gear_Type}
+    #@user_fname = User.all.map{|u| u.first_name}
+   # @user_lname = User.all.map{|x| x.last_name}
+    #@inventory_gear = Inventory.all.map{|t| t.Gear_Type}
     @rental = Rental.new
 
   end
@@ -131,14 +131,13 @@ class RentalsController < ApplicationController
   def generate_rental_price
     # gear_type = @rental.Gear_Type.downcase.titleize
     days_used = @rental.days_used.to_f
-<<<<<<< HEAD
     puts "days used"
     puts days_used
-=======
+
     parsefile = @rental.blahID.split(".png")[0]
     @rental.blahID = parsefile
     gear_type = Inventory.where(blahID: parsefile).last.Gear_Type
->>>>>>> 62ce51bb9cc65ad16cb136676de8e7c3a53f346c
+
     if days_used < 5
       if(!Pricing.where(Gear_Type: gear_type))
 
@@ -188,11 +187,11 @@ class RentalsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def rental_params
-<<<<<<< HEAD
-                  params.require(:rental).permit(:user_ID,:renter_ID,:first_name,:last_name,:email_address,
-:Gear_Type,:Model,:Brand,:rental_date, :return_date,:days_used, :on_time_price)
-=======
-                  params.require(:rental).permit(:user_ID,:first_name,:last_name,:email_address,:blahID, :Gear_Type,:Model,:Brand,:rental_date, :return_date,:days_used, :on_time_price)
->>>>>>> 62ce51bb9cc65ad16cb136676de8e7c3a53f346c
+
+                  #params.require(:rental).permit(:user_ID,:renter_ID,:first_name,:last_name,:email_address,
+#:Gear_Type,:Model,:Brand,:rental_date, :return_date,:days_used, :on_time_price)
+
+                  params.require(:rental).permit(:user_ID,:first_name,:last_name,:email_address,:student_ID, :phone, :blahID, rentals_attributes: [:id,:_destroy, :Gear_Type, :rental_date, :return_date, :days_used, :on_time_price])
+
     end
 end

@@ -26,21 +26,35 @@
       <strong>Phone:</strong>
       <%= @user.phone %>
     </p>
-  
-   
-   <p>
-  <% if @user.rentals.present? %>
-     <h4>List of rentals: </h4>
-     <% @user.rentals.each do |rental|%>
-       <p><%= rental.Gear_Type%></p>
-       <p><%= rental.rental_date%></p>
-       <p><%= rental.return_date%></p>
-       <p><%= rental.days_used%></p>
-    <%end%>
-    <%else%>
+ 
+    <% if @user.present? %>
+      <h5>List of rentals: </h5>
+      <% @user.rentals.each do |rental|%>
+         <h6>In the spec loop</6>
+         <p>
+            <strong>Gear Type:</strong>
+           <%= rental.Gear_Type%>
+          </p>
+         <p> 
+           <strong>Rental Date</strong>
+           <%= rental.rental_date%>
+         </p>
+         <p>
+           <strong>Return Date</strong>
+           <%= rental.return_date%>
+         </p>
+         <p>
+           <strong>Days Used</strong>
+           <%= rental.days_used%>
+         </p>
+      <%end%>
+   <%else%>
     <h5> No rentals for this user yet</h5>
    <%end%>
-  <p>
+   <br>
+  
+ <%= mail_to "@rental.email_address", "Send Confirmation Email", cc: "ahlber@coloradocollege.edu", subject: "Your Rental Confirmation", body: "Thank you for renting with us!Your summary is as follows" + @user.student_ID  %>
+
     <%= link_to 'Edit', edit_user_path(@user), class: "btn btn-outline-success" %>
     <%= link_to 'Destroy', @user, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger" %> 
     <%= link_to 'Back', users_path, class: "btn btn-outline-secondary" %>

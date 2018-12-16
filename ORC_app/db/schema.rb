@@ -11,8 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 20181211205731) do
+ActiveRecord::Schema.define(version: 20181214041940) do
 
   create_table "administrators", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -27,7 +26,6 @@ ActiveRecord::Schema.define(version: 20181211205731) do
   add_index "administrators", ["email"], name: "index_administrators_on_email", unique: true
   add_index "administrators", ["reset_password_token"], name: "index_administrators_on_reset_password_token", unique: true
 
-
   create_table "bulks", force: :cascade do |t|
     t.string  "Gear_Type"
     t.string  "Gear_Category"
@@ -38,11 +36,8 @@ ActiveRecord::Schema.define(version: 20181211205731) do
   end
 
   create_table "inventories", force: :cascade do |t|
-<<<<<<< HEAD
-    t.string  "blahID",         null: false
-=======
+    t.integer "user_id"
     t.string  "blahID"
->>>>>>> 62ce51bb9cc65ad16cb136676de8e7c3a53f346c
     t.boolean "Bulk"
     t.string  "Gear_Type"
     t.string  "Brand"
@@ -55,6 +50,8 @@ ActiveRecord::Schema.define(version: 20181211205731) do
     t.text    "Notes"
   end
 
+  add_index "inventories", ["user_id"], name: "index_inventories_on_user_id"
+
   create_table "pricings", force: :cascade do |t|
     t.string "Gear_Type"
     t.string "daily"
@@ -65,6 +62,8 @@ ActiveRecord::Schema.define(version: 20181211205731) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "email_address"
+    t.string   "student_ID"
+    t.string   "phone"
     t.integer  "iclass"
     t.string   "blahID"
     t.string   "Gear_Type"
@@ -75,21 +74,13 @@ ActiveRecord::Schema.define(version: 20181211205731) do
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.integer  "user_id"
+    t.integer  "inventory_id"
   end
 
-<<<<<<< HEAD
-  add_index "rentals", ["user_id"], name: "index_rentals_on_user_id"
-
-  create_table "users", force: :cascade do |t|
-    t.string "first_name"
-    t.string "last_name"
-    t.string "email_address"
-    t.string "student_ID"
-    t.string "phone"
-    t.string "rentals_attributes"
-=======
   add_index "rentals", ["blahID"], name: "index_rentals_on_blahID"
   add_index "rentals", ["iclass"], name: "index_rentals_on_iclass"
+  add_index "rentals", ["inventory_id"], name: "index_rentals_on_inventory_id"
+  add_index "rentals", ["user_id"], name: "index_rentals_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string  "first_name"
@@ -98,7 +89,6 @@ ActiveRecord::Schema.define(version: 20181211205731) do
     t.string  "student_ID",    null: false
     t.string  "phone"
     t.integer "iclass"
->>>>>>> 62ce51bb9cc65ad16cb136676de8e7c3a53f346c
   end
 
 end

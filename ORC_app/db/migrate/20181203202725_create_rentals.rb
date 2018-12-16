@@ -4,6 +4,8 @@ class CreateRentals < ActiveRecord::Migration
       t.string :first_name
       t.string :last_name
       t.string :email_address
+      t.string :student_ID
+      t.string :phone
       t.integer :iclass
       t.string :blahID
       t.string :Gear_Type

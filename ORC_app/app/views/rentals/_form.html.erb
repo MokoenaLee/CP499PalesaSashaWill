@@ -3,12 +3,6 @@
 
 <div class="container-fluid">
 
- <!--
-    <%= link_to 'Edit', edit_user_rental_path(@user), class: "btn btn-outline-success" %>
-    <%= link_to 'Destroy', @user, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger" %> 
-    <%= link_to 'Back', users_path, class: "btn btn-outline-secondary" %>
-
--->
   <div class="row">
     <div class="col">
         <%= f.label :first_name %>
@@ -19,25 +13,9 @@
         <%= f.text_field :last_name, class: "form-control"%><br>
     </div>
 
-<!--
-<div class="container-fluid", id = 'rentalForm' >
-  <div id = 'fn' class="form-group" ><br>
-    <%= f.label :first_name %>
-    <%= f.text_field :first_name, class: "form-control"%><br>
-       <script type="javascript">
-    // first = document.getElementbyID
-      .onkeyup = function () { // or first.onchange
-      ln.value = fn.value;
-    };</script> 
-  </div>
 
 
-  <div id = 'ln' class="form-group" >
-    <%= f.label :last_name %>
-    <%= f.text_field :last_name, class: "form-control"%><br>
 
-  </div>
--->
   <div class="form-group">
     <%= f.label :email_address %>
     <%= f.text_field :email_address, class: "form-control"%><br>
@@ -99,8 +77,38 @@
     </div>
   </div>
 
+<div class="form-group">
+    <%= f.label :email_address %>
+    <%= f.text_field :email_address,:placehlder => "example@coloradocollege.edu" ,class: "form-control" %><br>
+  </div>
+  <div class="form-group">
+    <%= f.label :student_ID %>
+    <%= f.number_field :student_ID, class: "form-control" %><br>
+  </div>
+  <div class="form-group">
+    <%= f.label :phone %>
+    <%= f.number_field :phone, class: "form-control" %><br>
+  </div>
 
- <p></p>
+  <table class = "table">
+   <thead>
+      <tr>
+        <th>Gear Type</th>
+        <th>Rental Date</th>
+        <th>Renturn Date</th>
+        <th>Days Used</th>
+        <th>On time price</th>
+     
+      </tr>
+   </thead>
+   <tbody class = "fields">
+    <%= f.simple_fields_for :users do |builder| %>
+      <%= render 'rental', f:builder%>
+    <%end%>  
+   </tbody>
+  </table>
+
+
 
   <div class="actions">
     <%= f.submit "Submit", class: "btn btn-primary" %>
