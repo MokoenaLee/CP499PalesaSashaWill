@@ -1,15 +1,18 @@
 require 'csv'
+require 'responders'
 class RentalsController < ApplicationController
+  respond_to :json
+
 
   before_action :authenticate_administrator!
   before_action :set_rental, only: [:show, :edit, :update, :destroy]
-
 
   def index
     @rentals = Rental.all
   end
 
   def show
+    generate_rental_price
   end
 
 
@@ -23,6 +26,7 @@ class RentalsController < ApplicationController
 
   def edit
     generate_rental_price
+
   end
 
   def index
@@ -80,6 +84,7 @@ class RentalsController < ApplicationController
 
   def create
     @rental = Rental.new(rental_params)
+    get_gear_type
     generate_rental_price
     respond_to do |format|
       if @rental.save
@@ -125,18 +130,23 @@ class RentalsController < ApplicationController
   def generate_rental_price
     gear_type = @rental.Gear_Type.downcase.titleize
     days_used = @rental.days_used.to_f
-    if days_used < 5
+    parsefile = @rental.blahID.split(".png")[0]
+    @rental.blahID = parsefile
+    gear_type = Inventory.where(blahID: parsefile).last.Gear_Type
+     if days_used < 5
       working_price = days_used*(Pricing.select(:daily).where(Gear_Type: gear_type).last.daily.to_i)
       @rental.on_time_price = '$'+ working_price.to_s
+      @rental.save
     else
       if days_used%7 != 0
         temp = (days_used/7).floor
         @rental.on_time_price = (temp*(Pricing.select(:weekly).where(Gear_Type: gear_type).last.weekly.to_i)) + ((days_used-(temp*7))*(Pricing.select(:daily).where(Gear_Type: gear_type).last.daily.to_i))
-
+        @rental.save
       else
         weeks = (days_used/7)
         working_price = weeks*(Pricing.select(:weekly).where(Gear_Type: gear_type).last.weekly.to_i)
         @rental.on_time_price = '$'+ working_price.to_s
+        @rental.save
       end
     end
   end
@@ -152,13 +162,11 @@ class RentalsController < ApplicationController
   end
 
   def get_info_from_iclass
-    respond_to do |format|
-        format.js { render :nothing => true }
-    end
-    return User.where(iclass: 21905).last
+      @user = User.where(iclass: params[:iclass]).last
+      respond_with @user
+      end
 
     # return Rental.get_user_from_iclass(iclass)
-  end
   helper_method :get_info_from_iclass
 
 
@@ -170,6 +178,6 @@ class RentalsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def rental_params
-                  params.require(:rental).permit(:user_ID,:first_name,:last_name,:email_address,:Gear_Type,:Model,:Brand,:rental_date, :return_date,:days_used, :on_time_price)
+                  params.require(:rental).permit(:iclass,:first_name,:last_name,:email_address,:Gear_Type,:Model,:Brand,:rental_date, :return_date,:days_used, :on_time_price, :blahID)
     end
 end
