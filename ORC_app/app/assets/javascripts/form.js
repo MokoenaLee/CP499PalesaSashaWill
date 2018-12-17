@@ -1,21 +1,16 @@
  $('document').ready(function () {
 
+   if(document.getElementById("ic") != null){
+    console.log("EHRER")
     var iclass_field = document.getElementById("ic").getElementsByTagName("input")[0];
     console.log(iclass_field == null);
     let timeout;
     iclass_field.addEventListener("input", () => {
     clearTimeout(timeout);
-     timeout = setTimeout(() => populateFields(iclass_field), 500);
+     timeout = setTimeout(() => populate_fields(iclass_field), 500);
   });
- //
- //
- //        // iclass_field.onkeypress = function(e){
- //        // var key = e.charCode || e.keyCode || 0;
- //        // if(key == 13){
- //        //   e.preventDefault;
- //        // }
 
-        function populateFields(iclass) {
+        function populate_fields(iclass) {
           var temp = iclass.value;
           var studIC = parseInt(temp);
           $.ajax({
@@ -23,24 +18,21 @@
             url: "rentals/get_info_from_iclass",
             data: {iclass : temp},
             dataType: 'text',
-            async: false,
-            success: function(data) {
-                    alert('success');
-                },
-                error: function(data) {
+            async: true,
+            success: update_form,
+            error: function(data) {
                     alert("Fail");
                 }
           });
-        //   alert(request.responseText);
-        //   $.get("rentals/get_info_from_iclass", {studIC: studIC}, function (data) {
-        //   data = $.parseJSON(data.d);
-        //                if (data.ErrorFound) {
-        //                    showMessage(data.ErrorMessage, 2, true);
-        //                }
-        //   document.getElementById("fn").getElementsByTagName("input")[0].value = data.first_name;
-        //   document.getElementById("ln").getElementsByTagName("input")[0].value = data.last_name;
-        //   document.getElementById("em").getElementsByTagName("input")[0].value = data.email_address;
-        // });
+      }
+
+      function update_form(data){
+        var data = JSON.parse(data);
+        console.log("BLAH", data)
+        document.getElementById("fn").getElementsByTagName("input")[0].value = data.first_name;
+        document.getElementById("ln").getElementsByTagName("input")[0].value = data.last_name;
+        document.getElementById("em").getElementsByTagName("input")[0].value = data.email_address;
+
       }
 
 
@@ -61,6 +53,7 @@
 
 //         $.post("/rentals/:rental_id/rentals/get_info_from_iclass", {iclass: studIC}, function(data){alert("BLAH")});
 //
+}
 });
 
 //
