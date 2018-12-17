@@ -12,16 +12,14 @@ require 'rails_helper'
 
    click_button 'Add New User'
 
-   fill_in 'First name', with: @user.email
+   fill_in 'First name', with: @user.first_name
    fill_in 'Last name', with: @user.last_name
-   fill_in 'Student id', with: @user.student_id
-   fill_in 'Gear type', with: @user.gear_type
-   fill_in 'Rental date', with: @user.rental_date
-   fill_in 'Return date', with: @user.return_date
-   fill_in 'On Time Price', with: @user.on_time_price
+   fill_in 'Email address', with: @user.email
+   fill_in 'iclass', with: @user.iclass
+   
    click_button 'Submit'
 
-   expect(page).to have_content "Welcome! You have signed up successfully"
+   expect(page).to have_content "user added successfully"
 
   
    end

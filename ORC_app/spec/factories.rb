@@ -3,12 +3,12 @@ FactoryBot.define do
   email_address{"L@email.com"}
   first_name{"Mary"}
   last_name{"Mathias"}
-  student_ID{"12345"}
-  gear_type{"WetSuit"}
-  rental_date{"12/2/2018"}
-  return_date{"12/3/2018"}
-  days_used{"1"}
-  on_time_price{"3.00"}
+  iclass{"12345"}
+  #gear_type{"WetSuit"}
+  #rental_date{"12/2/2018"}
+  #return_date{"12/3/2018"}
+  #days_used{"1"}
+  #on_time_price{"3.00"}
   #password{"M1234"}
   end
 

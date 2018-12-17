@@ -21,6 +21,18 @@ require 'rails_helper'
 
   
    end
+
+ # scenario 'with invalid credentials' do
+    #visit new_administrator_session_path
+     
+   #fill_in 'Email', with: @administrator.email
+   #fill_in 'Password', with: @administrator.password
+   #fill_in 'Password confirmation', with: @administrator.password_confirmation_empt
+   #click_button 'Sign up'
+
+   #expect(page).to have_content "1 error prohibited this administrator from being saved: Password confirmation doesn't match Password"
+
+ # end 
   end
  
 
