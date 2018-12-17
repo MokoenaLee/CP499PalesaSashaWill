@@ -1,0 +1,12 @@
+<div class = "container-fluid">
+
+  <div>
+    <%= form_tag users_path , :method => :get, :id => "search_form" do %>
+        <%= User.all_filters.each do |user|%>
+         <%= label_tag(:iclass, "Student Iclass Number")%>
+         <%= select_tag(user, options_for_select(User.return_options(user), :selected => params[user]))%>
+         <%= submit_tag 'Find' %>
+        <%end%>
+    <%end%>
+ </div>
+</div>

@@ -1,8 +1,9 @@
-first_name,last_name,email_address,iclass,blahID,Gear_Type,rental_date,days_used,return_date,on_time_price
-Neil,Dowd,neil.dowd@coloradocollege.edu,219142,FBG-Small-1-18,Fat Bike,12/5/18,1,12/6/18,2
-Anna,Henderson,anna.henderson@coloradocollege.edu,988172,WB-Small-2-18,WetSuit,11/2/18,3,11/5/18,3
-Jane,Murray,jane.murray@coloradocollege.edu,166256,PB-5mm-2-18,Pogies,8/5/17,2,8/7/18,5
-William,McGrath,william.mcgrath@coloradocollege.edu,625367,WB-Large-2-18,WetSuit,5/2/18,1,5/3/18,3
-Sebastian,Vaughan,sebastian.vaughan@coloradocollege.edu,372841,PB-5mm-1-18,Pogies,5/3/18,1,5/4/18,3
-Mary,Manning,mary.manning@coloradocollege.edu,199088,WB-X-Large-1-18,WetSuit,5/4/18,1,5/5/18,3
-Sasha,Carney,s_carney@coloradocollege.edu,21905,NRR-2.0 oz-2-18,Wetsuit,5/5/18,1,5/6/18,10
+first_name,last_name,email_address,iclass,blahID,Gear_Type,rental_date,days_used,return_date
+Neil,Dowd,neil.dowd@coloradocollege.edu,219142,FBG-Small-1-18,Fat Bike,12/5/18,1,12/6/18
+Anna,Henderson,anna.henderson@coloradocollege.edu,988172,WB-Small-2-18,WetSuit,11/2/18,3,11/5/18
+Jane,Murray,jane.murray@coloradocollege.edu,166256,PB-5mm-2-18,Pogies,8/5/17,2,8/7/18
+William,McGrath,william.mcgrath@coloradocollege.edu,625367,WB-Large-2-18,WetSuit,5/2/18,1,5/3/18
+Sebastian,Vaughan,sebastian.vaughan@coloradocollege.edu,372841,PB-5mm-1-18,Pogies,5/3/18,1,5/4/18
+Mary,Manning,mary.manning@coloradocollege.edu,199088,WB-X-Large-1-18,WetSuit,5/4/18,1,5/5/18
+Sasha,Carney,s_carney@coloradocollege.edu,21905,NRR-2.0 oz-2-18,Wetsuit,5/5/18,1,5/6/18
+>>>>>>> 62ce51bb9cc65ad16cb136676de8e7c3a53f346c,,,,,,,,

@@ -2,57 +2,59 @@ class UsersController < ApplicationController
   before_action :authenticate_administrator!
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
-  # GET /users
-  # GET /users.json
   def index
     @users = User.all
   end
 
-  # GET /users/1
-  # GET /users/1.json
+
   def show
   end
 
-  # GET /users/new
+
   def new
-     @user = User.new
+    @user = User.new
+      3.times{@user.rentals.build}
   end
 
-  # GET /users/1/edit
+
   def edit
+   @user.rentals.build
   end
+
+
 
   def create
     @user = User.new(user_params)
-
     respond_to do |format|
-      if @user.save
-        #UserMailer.rental_confirmation(@user).deliver_now
+      if valid_email?(@user.email_address)
+        @user.save
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
+        flash.keep(:notice)
+        flash[:notice] = "Oops! Something went wrong with one or more of the fields. Make sure inputs are valid"
         format.html { render :new }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # PATCH/PUT /users/1
-  # PATCH/PUT /users/1.json
+
+
   def update
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
+
         format.html { render :edit }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /users/1
-  # DELETE /users/1.json
+
   def destroy
     @user.destroy
     respond_to do |format|
@@ -63,11 +65,19 @@ class UsersController < ApplicationController
 
     # Use callbacks to share common setup or constraints between actions.
     def set_user
+      puts "what is in params[:id]"
+      puts params[:id]
       @user = User.find(params[:id])
+
+    end
+
+    def valid_email?(email)
+
+     email.present? && (email =~ /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i) && Rental.find_rental_by_username(:email_address => email).empty?
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :email_address, :student_ID, :phone, :iclass)
+      params.require(:user).permit(:user_ID,:first_name, :last_name,:email_address, :student_ID, :phone, rentals_attributes: [:id,:_destroy, :Gear_Type, :rental_date, :return_date, :days_used, :on_time_price])
     end
 end

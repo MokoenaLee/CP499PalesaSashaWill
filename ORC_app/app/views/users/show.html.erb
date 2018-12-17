@@ -10,7 +10,8 @@
       <strong>Last name:</strong>
       <%= @user.last_name %>
     </p>
-
+ 
+  
     <p>
       <strong>Email adress:</strong>
       <%= @user.email_address %>
@@ -25,7 +26,21 @@
       <strong>Phone:</strong>
       <%= @user.phone %>
     </p>
-
+  
+   
+   <p>
+  <% if @user.rentals.present? %>
+     <h4>List of rentals: </h4>
+     <% @user.rentals.each do |rental|%>
+       <p><%= rental.Gear_Type%></p>
+       <p><%= rental.rental_date%></p>
+       <p><%= rental.return_date%></p>
+       <p><%= rental.days_used%></p>
+    <%end%>
+    <%else%>
+    <h5> No rentals for this user yet</h5>
+   <%end%>
+  <p>
     <%= link_to 'Edit', edit_user_path(@user), class: "btn btn-outline-success" %>
     <%= link_to 'Destroy', @user, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger" %> 
     <%= link_to 'Back', users_path, class: "btn btn-outline-secondary" %>

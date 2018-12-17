@@ -6,7 +6,9 @@ class CreateUsers < ActiveRecord::Migration
      t.string 'email_address'
      t.string 'student_ID', :null => FALSE
      t.string 'phone'
+
      t.integer 'iclass'
+
     end
   end
 end

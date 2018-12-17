@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181211205731) do
+ActiveRecord::Schema.define(version: 20181214021258) do
 
   create_table "administrators", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20181211205731) do
   end
 
   create_table "inventories", force: :cascade do |t|
+    t.integer "user_id"
     t.string  "blahID"
     t.boolean "Bulk"
     t.string  "Gear_Type"
@@ -48,6 +49,8 @@ ActiveRecord::Schema.define(version: 20181211205731) do
     t.boolean "Available"
     t.text    "Notes"
   end
+
+  add_index "inventories", ["user_id"], name: "index_inventories_on_user_id"
 
   create_table "pricings", force: :cascade do |t|
     t.string "Gear_Type"
@@ -68,10 +71,12 @@ ActiveRecord::Schema.define(version: 20181211205731) do
     t.string   "on_time_price"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.integer  "user_id"
   end
 
   add_index "rentals", ["blahID"], name: "index_rentals_on_blahID"
   add_index "rentals", ["iclass"], name: "index_rentals_on_iclass"
+  add_index "rentals", ["user_id"], name: "index_rentals_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string  "first_name"

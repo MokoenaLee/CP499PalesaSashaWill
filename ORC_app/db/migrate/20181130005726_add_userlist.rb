@@ -11,6 +11,7 @@ class AddUserlist < ActiveRecord::Migration
       :student_ID => row[3],
       :phone => row[4],
       :iclass => row[5].to_i
+
       })
   end
   end
