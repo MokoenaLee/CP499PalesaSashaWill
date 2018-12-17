@@ -25,7 +25,7 @@ class BulksController < ApplicationController
         if @bulk.save
           #UserMailer.rental_confirmation(@user).deliver_now
           format.html { redirect_to @bulk, notice: 'Bulk item was successfully created.' }
-          format.json { render :show, status: :created, location: @user }
+          format.json { render :show, status: :created, location: @bulk }
         else
           format.html { render :new }
           format.json { render json: @bulk.errors, status: :unprocessable_entity }

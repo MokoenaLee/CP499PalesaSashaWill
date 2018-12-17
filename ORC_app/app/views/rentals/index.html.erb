@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <div class="container-fluid">
-    <h2>Current Rentals</h2>
+    <h2>Current Itemized Item Rentals</h2>
     <h1></h1>
     <p>
       This page displays all currently rented items.
@@ -25,14 +25,56 @@
     <%= submit_tag 'Clear' %>
   <% end %>
   <p></p>
-  <%= link_to 'Create New Rental', new_rental_path, class: "btn btn-outline-info" %>
+  <%= link_to 'Create New Itemized Item Rental', new_rental_path, class: "btn btn-outline-info" %>
+  <%= link_to 'Create New Bulk Item Rental', new_bulk_rental_path, class: "btn btn-outline-info" %>
   <p></p>
 
 </div>
 <%= render :partial => "rental_table" %>
 </div>
 
+<div class="container-fluid">
+    <h2>Current Bulk Item Rentals</h2>
+</div>
+
+<table class = "table table-striped table-hover">
+  <thead>
+    <tr>
+      <th>Renter First Name</th>
+      <th>Renter Last Name</th>
+      <th>Renter Email</th>
+      <th>Gear Type</th>
+      <th>Gear Category</th>
+      <th>Quantity</th>
+      <th>Rental Date</th>
+      <th>Return Date</th>
+      <th>On Time Price</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @bulk_rentals = BulkRental.all_bulk_rental %>
+    <% @bulk_rentals.each do |bulk_rental| %>
+      <tr>
+        <td><%= bulk_rental.renter_first_name %></td>
+        <td><%= bulk_rental.renter_last_name %></td>
+        <td><%= bulk_rental.renter_email %></td>
+        <td><%= bulk_rental.gear_type %></td>
+        <td><%= bulk_rental.gear_category %></td>
+        <td><%= bulk_rental.Quantity %></td>
+        <td><%= bulk_rental.rental_date %></td>
+        <td><%= bulk_rental.return_date %></td>
+        <td><%= bulk_rental.on_time_price %></td>
+        <td><%= link_to 'Edit', edit_bulk_rental_path(bulk_rental), class: "btn btn-outline-success" %></td>
+        <td><%= link_to 'Destroy', bulk_rental, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
 <div class="container-fluid">
-    <%= link_to 'Create New Rental', new_rental_path, class: "btn btn-outline-info" %>
+    <%= link_to 'Create New Itemized Item Rental', new_rental_path, class: "btn btn-outline-info" %>
+    <%= link_to 'Create New Bulk Item Rental', new_bulk_rental_path, class: "btn btn-outline-info" %>
+
 </div>
