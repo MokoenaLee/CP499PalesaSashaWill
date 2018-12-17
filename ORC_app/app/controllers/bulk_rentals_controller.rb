@@ -52,7 +52,7 @@ class BulkRentalsController < ApplicationController
     def destroy
       @bulk_rental.destroy
       respond_to do |format|
-        format.html { redirect_to inventories_path, notice: 'Bulk item rental was successfully destroyed.' }
+        format.html { redirect_to rentals_path, notice: 'Bulk item rental was successfully destroyed.' }
         format.json { head :no_content }
       end
     end
@@ -65,6 +65,6 @@ class BulkRentalsController < ApplicationController
 
       # Never trust parameters from the scary internet, only allow the white list through.
       def bulk_rental_params
-        params.require(:bulk_rental).permit(:Gear_Type, :Gear_Category,:Quantity, :Notes)
+        params.require(:bulk_rental).permit(:renter_first_name, :renter_last_name, :renter_email, :gear_type, :gear_category, :Quantity, :rental_date, :return_date, :on_time_price)
       end
   end
