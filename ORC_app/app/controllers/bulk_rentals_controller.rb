@@ -50,11 +50,15 @@ class BulkRentalsController < ApplicationController
     # DELETE /users/1
     # DELETE /users/1.json
     def destroy
-      @bulk_rental.destroy
-      respond_to do |format|
-        format.html { redirect_to rentals_path, notice: 'Bulk item rental was successfully destroyed.' }
-        format.json { head :no_content }
-      end
+        f = File.join(Rails.root, "public/archive.csv")
+        CSV.open(f, "ab") do |csv|
+            csv << @bulk_rental.attributes.values
+        end
+        @bulk_rental.destroy
+        respond_to do |format|
+            format.html { redirect_to rentals_url, notice: 'Rental was successfully archived.' }
+            format.json { head :no_content }
+        end
     end
 
 

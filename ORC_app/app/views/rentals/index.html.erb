@@ -67,7 +67,7 @@
         <td><%= bulk_rental.return_date %></td>
         <td><%= bulk_rental.on_time_price %></td>
         <td><%= link_to 'Edit', edit_bulk_rental_path(bulk_rental), class: "btn btn-outline-success" %></td>
-        <td><%= link_to 'Destroy', bulk_rental, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger" %></td>
+        <td><%= link_to 'Archive', bulk_rental, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-dark" %></td>
       </tr>
     <% end %>
   </tbody>
