@@ -1,8 +1,6 @@
 <table class = "table table-striped table-hover">
   <thead>
     <tr>
-      <th>Renter First Name</th>
-      <th>Renter Last Name</th>
       <th>Email:</th>
       <th>Gear Type</th>
       <th>Item ID</th>
@@ -17,17 +15,13 @@
   <tbody>
     <% @rentals.each do |rental| %>
       <tr>
-        <td><%= rental.first_name%></td>
-        <td><%= rental.last_name%></td>
-        <td><%= rental.email_address%></td>
+        <td><%= rental.user_id %></td>
         <td><%= rental.Gear_Type %></td>
         <td><%= rental.blahID %></td>
         <td><%= rental.rental_date %></td>
         <td><%= rental.return_date %></td>
         <td><%= rental.days_used %></td>
         <td><%= rental.on_time_price %></td>
-        <td><%= link_to 'Edit', edit_rental_path(rental), class: "btn btn-outline-success" %></td>
-        <td><%= link_to 'Destroy', rental, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger" %></td>
       </tr>
     <% end %>
   </tbody>

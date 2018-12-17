@@ -30,7 +30,6 @@
     <% if @user.present? %>
       <h5>List of rentals: </h5>
       <% @user.rentals.each do |rental|%>
-         <h6>In the spec loop</6>
          <p>
             <strong>Gear Type:</strong>
            <%= rental.Gear_Type%>
@@ -46,6 +45,10 @@
          <p>
            <strong>Days Used</strong>
            <%= rental.days_used%>
+         </p>
+         <p>
+           <strong>Price</strong>
+           <%= rental.on_time_price%>
          </p>
       <%end%>
    <%else%>

@@ -22,10 +22,10 @@ class RentalsController < ApplicationController
   end
 
   
-  def edit
-    get_gear_type
-    generate_rental_price
-  end
+  #def edit
+   # get_gear_type
+   # generate_rental_price
+  #end
 
   def index
     results = nil
@@ -80,33 +80,33 @@ class RentalsController < ApplicationController
   end
   
   
-  def create
-    @rental = Rental.new(rental_params)
-    get_gear_type
+  #def create
+    #@rental = Rental.new(rental_params)
+    #get_gear_type
 
-    generate_rental_price
-    puts "@rental email" 
-    puts @rental.email_address
-    respond_to do |format|
-      if valid_email?(@rental.email_address)
-        puts "inside validate"
-        @rental.save
-        format.html { redirect_to @rental, notice: 'Rental was successfully created.' }
-        format.json { render :show, status: :created, location: @rental }
-      else
-        flash[:notice] = "Oops! Something went wrong with one or more of the fields. Make sure inputs are valid"
-        #flash.keep(:notice)
-        format.html { render :new}
-        format.json { render json: @rental.errors, status: :unprocessable_entity }
+    #generate_rental_price
+    #puts "@rental email" 
+    #puts @rental.email_address
+    #respond_to do |format|
+     # if valid_email?(@rental.email_address)
+       # puts "inside validate"
+        #@rental.save
+        #format.html { redirect_to @rental, notice: 'Rental was successfully created.' }
+        #format.json { render :show, status: :created, location: @rental }
+      #else
+       # flash[:notice] = "Oops! Something went wrong with one or more of the fields. Make sure inputs are valid"
+       # flash.keep(:notice)
+       # format.html { render :new}
+        #format.json { render json: @rental.errors, status: :unprocessable_entity }
         
-      end
-    end
+      #end
+    #end
      
-  end
+ # end
 
 
   def update
-    # generate_rental_price
+     generate_rental_price
     get_gear_type
     respond_to do |format|
       if @rental.update(rental_params)
@@ -129,10 +129,8 @@ class RentalsController < ApplicationController
   end
 
   def generate_rental_price
-    # gear_type = @rental.Gear_Type.downcase.titleize
+     gear_type = @rental.Gear_Type.downcase.titleize
     days_used = @rental.days_used.to_f
-    puts "days used"
-    puts days_used
 
     parsefile = @rental.blahID.split(".png")[0]
     @rental.blahID = parsefile
@@ -188,10 +186,10 @@ class RentalsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def rental_params
 
-                  #params.require(:rental).permit(:user_ID,:renter_ID,:first_name,:last_name,:email_address,
-#:Gear_Type,:Model,:Brand,:rental_date, :return_date,:days_used, :on_time_price)
+                  
 
-                  params.require(:rental).permit(:user_ID,:first_name,:last_name,:email_address,:student_ID, :phone, :blahID, rentals_attributes: [:id,:_destroy, :Gear_Type, :rental_date, :return_date, :days_used, :on_time_price])
+                  params.require(:rental).permit(:user_ID,:first_name,:last_name,:email_address,:student_ID, :phone, :blahID,:iclass,:Gear_Type, :rental_date, :return_date, :days_used, :on_time_price #rentals_attributes: [:id,:_destroy, :Gear_Type, :rental_date, :return_date, :days_used, :on_time_price]
+)
 
     end
 end

@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  #attr_accessible :rentals_attributes
+ 
   has_many :rentals,:dependent => :destroy
   has_many :inventories, :through => :rentals
   accepts_nested_attributes_for :rentals, allow_destroy: true, reject_if: :all_blank

@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get '/search/find', :controller => :search, :to => 'searches#search'
   root :to => "users#index"
   get '/dashboard' => 'desktops#index'
+  get '/rentals' => 'rentals#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
