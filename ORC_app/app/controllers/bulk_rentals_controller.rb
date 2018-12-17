@@ -19,17 +19,24 @@ class BulkRentalsController < ApplicationController
 
     def create
       @bulk_rental = BulkRental.new(bulk_rental_params)
-
-
-      respond_to do |format|
-        if @bulk_rental.save
-          #UserMailer.rental_confirmation(@user).deliver_now
-          format.html { redirect_to @bulk_rental, notice: 'Bulk item rental was successfully created.' }
-          format.json { render :show, status: :created, location: @bulk_rental }
-        else
-          format.html { render :new }
-          format.json { render json: @bulk_rental.errors, status: :unprocessable_entity }
-        end
+      rental_type = @bulk_rental.gear_type
+      @bulk = Bulk.where(Gear_Type: rental_type).last
+      if(@bulk_rental.Quantity <= @bulk.Quantity)
+          @bulk.Quantity = @bulk.Quantity - @bulk_rental.Quantity
+          @bulk.save
+          respond_to do |format|
+            if @bulk_rental.save
+              #UserMailer.rental_confirmation(@user).deliver_now
+              format.html { redirect_to @bulk_rental, notice: 'Bulk item rental was successfully created.' }
+              format.json { render :show, status: :created, location: @bulk_rental }
+            else
+              format.html { render :new }
+              format.json { render json: @bulk_rental.errors, status: :unprocessable_entity }
+            end
+          end
+      else
+          puts 'not enough ininventory, tried to rent ' + @bulk_rental.Quantity + ' ' + @bulk_rental.gear_type + ' but there are only ' + @bulk.Quantity + ' in stock.'
+          redirect_to '/rentals'
       end
     end
 
@@ -54,6 +61,10 @@ class BulkRentalsController < ApplicationController
         CSV.open(f, "ab") do |csv|
             csv << @bulk_rental.attributes.values
         end
+        rental_type = @bulk_rental.gear_type
+        @bulk = Bulk.where(Gear_Type: rental_type).last
+        @bulk.Quantity = @bulk.Quantity + @bulk_rental.Quantity
+        @bulk.save
         @bulk_rental.destroy
         respond_to do |format|
             format.html { redirect_to rentals_url, notice: 'Rental was successfully archived.' }

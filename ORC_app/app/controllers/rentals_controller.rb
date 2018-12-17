@@ -83,20 +83,31 @@ class RentalsController < ApplicationController
 
 
   def create
+
     @rental = Rental.new(rental_params)
     get_gear_type
     generate_rental_price
-    respond_to do |format|
-      if @rental.save
-        puts "rental email address"
-        puts @rental.email_address
-        # RentalMailer.rental_confirmation(@rental).deliver_now
-        format.html { redirect_to @rental, notice: 'Rental was successfully created.' }
-        format.json { render :show, status: :created, location: @rental }
-      else
-        format.html { render :new }
-        format.json { render json: @rental.errors, status: :unprocessable_entity }
-      end
+    rental_item_ID = @rental.blahID
+    @inventory = Inventory.where(blahID: rental_item_ID).last
+    if(@inventory.Available)
+        @inventory.Available = false
+        @inventory.save
+        puts "YAY"
+        respond_to do |format|
+          if @rental.save
+            puts "rental email address"
+            puts @rental.email_address
+            # RentalMailer.rental_confirmation(@rental).deliver_now
+            format.html { redirect_to @rental, notice: 'Rental was successfully created.' }
+            format.json { render :show, status: :created, location: @rental }
+          else
+            format.html { render :new }
+            format.json { render json: @rental.errors, status: :unprocessable_entity }
+          end
+        end
+    else
+        puts "Item already rented"
+        redirect_to '/rentals'
     end
   end
 
@@ -120,6 +131,10 @@ class RentalsController < ApplicationController
         CSV.open(f, "ab") do |csv|
             csv << @rental.attributes.values
         end
+        rental_item_ID = @rental.blahID
+        @inventory = Inventory.where(blahID: rental_item_ID).last
+        @inventory.Available = true
+        @inventory.save
         @rental.destroy
         respond_to do |format|
             format.html { redirect_to rentals_url, notice: 'Rental was successfully destroyed.' }
