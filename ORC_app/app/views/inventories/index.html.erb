@@ -9,6 +9,7 @@
     <p>
     <%= link_to 'Add New Itemized Item', new_inventory_path, class: "btn btn-outline-info" %>
     <%= link_to 'Add New Bulk Item', new_bulk_path, class: "btn btn-outline-info" %>
+    <%= link_to 'Jump To Bulk Inventory', href="#bulk", class:"btn btn-outline-dark" %>
     </p>
 </div>
 
@@ -42,7 +43,7 @@
 <br>
 
 <div class="container-fluid">
-    <h2>Bulk Inventory</h2>
+    <h2 id="bulk">Bulk Inventory</h2>
 </div>
 
 
