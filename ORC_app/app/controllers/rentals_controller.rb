@@ -80,6 +80,7 @@ class RentalsController < ApplicationController
 
   def create
     @rental = Rental.new(rental_params)
+    
     generate_rental_price
     respond_to do |format|
       if @rental.save
@@ -141,7 +142,6 @@ class RentalsController < ApplicationController
     end
   end
   helper_method :generate_rental_price
-
   def get_gear_type
     tempID = @rental.blahID.split(".png")[0]
     @rental.blahID = tempID
@@ -161,6 +161,9 @@ class RentalsController < ApplicationController
   end
   helper_method :get_info_from_iclass
 
+  def update_inventory
+
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
