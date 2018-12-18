@@ -28,9 +28,9 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-
+    #email = EmailAddress.new(@user.email_address)
     respond_to do |format|
-      if valid_email?(@user.email_address)
+      if valid_email?(@user.emai_address)
         @user.save
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
@@ -77,7 +77,7 @@ class UsersController < ApplicationController
     def valid_email?(email)
     
      email.present? && (email =~ /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i) && Rental.find_rental_by_username(:email_address => email).empty? 
-    end
+    #end
     
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
