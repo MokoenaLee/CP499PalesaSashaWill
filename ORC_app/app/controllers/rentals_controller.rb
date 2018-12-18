@@ -6,6 +6,7 @@ class RentalsController < ApplicationController
 
   before_action :authenticate_administrator!
   before_action :set_rental, only: [:show, :edit, :update, :destroy]
+  $switch = false;
 
   def index
     @rentals = Rental.all
@@ -78,7 +79,6 @@ class RentalsController < ApplicationController
       session[filt] = params[filt]
     end
    end
-
   end
 
 
@@ -103,7 +103,9 @@ class RentalsController < ApplicationController
         end
     else
         puts "Item already rented"
-        redirect_to '/rentals' and return
+        # respond_to do |format|
+        #   format.html(redirect_to '/rentals')
+        # end
     end
   end
 
@@ -139,26 +141,33 @@ class RentalsController < ApplicationController
     end
 
   def generate_rental_price
-    gear_type = @rental.Gear_Type.downcase.titleize
     days_used = @rental.days_used.to_f
-    parsefile = @rental.blahID.split(".png")[0]
-    @rental.blahID = parsefile
-
-    if(!Pricing.where(Gear_Type: gear_type).empty?)
-      daily = Pricing.select(:daily).where(Gear_Type: gear_type).last.daily.to_i
-      weekly= Pricing.select(:weekly).where(Gear_Type: gear_type).last.weekly.to_i
-      price_calculator(days_used, gear_type, daily, weekly)
+    if $switch
+      daily = @rental.daily_price
+      weekly = @rental.weekly_price
+      price_calculator(days_used, daily, weekly)
+      $switch = false;
     else
-      $switch = true
-      respond_to do |format|
-        flash[:alert] = "no gear type in the pricing table matches this item. Please input the daily and weekly rates below"
-        format.html { render :edit }
-        format.json { render json: @rental.errors, status: :unprocessable_entity }
+      gear_type = @rental.Gear_Type.downcase.titleize
+      parsefile = @rental.blahID.split(".png")[0]
+      @rental.blahID = parsefile
+
+      if(!Pricing.where(Gear_Type: gear_type).empty?)
+        daily = Pricing.select(:daily).where(Gear_Type: gear_type).last.daily.to_i
+        weekly= Pricing.select(:weekly).where(Gear_Type: gear_type).last.weekly.to_i
+        price_calculator(days_used, daily, weekly)
+      else
+        $switch = true
+        respond_to do |format|
+          flash[:alert] = "no gear type in the pricing table matches this item. Please input the daily and weekly rates below"
+          format.html { render :edit }
+          format.json { render json: @rental.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
 
-  price_calculator(days_used, gear_type, daily, weekly)
+  def price_calculator(days_used, daily, weekly)
     if days_used < 5
       working_price = days_used*(daily)
       @rental.on_time_price = '$'+ working_price.to_s
@@ -173,6 +182,7 @@ class RentalsController < ApplicationController
         working_price = weeks*(weekly)
         @rental.on_time_price = '$' + working_price.to_s
         @rental.save
+      end
     end
   end
 
@@ -189,8 +199,6 @@ class RentalsController < ApplicationController
       @user = User.where(iclass: params[:iclass]).last
       respond_with @user
   end
-
-  helper_method :get_info_from_iclass
 
   def update_inventory
 
