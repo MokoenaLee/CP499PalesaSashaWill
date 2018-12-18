@@ -1,5 +1,5 @@
-//wait for document to load
-$('document').ready(function(){
+//wait for document to load, this codeis not currently used but could be a nice feature toadd in the future
+$('document').on('turbolinks:load', function()){
 
     if($('#userList').length){
         var listOfUsers = document.getElementById("userList").getElementsByTagName("tr");
