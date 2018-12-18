@@ -34,8 +34,7 @@ class InventoriesController < ApplicationController
     @inventory = Inventory.new(inventory_params)
     theID = uniqueID
     @inventory.blahID = theID
-
-
+    generate_barcodes
     respond_to do |format|
       if @inventory.save
         ##create unique id and save as primary key
@@ -94,13 +93,11 @@ class InventoriesController < ApplicationController
       end
   end
 
-  def generate_barcodes # check to see if we don't already have this barcode image uri = CGI.escape(symbology) + '_' + CGI.escape(data) + '.jpg' fname = RAILS_ROOT + '/public/Barcodes/' + uri #fname = '/var/www/html/arc_cloud/arcdevelopment/' + uri
+  def generate_barcodes
     fnsku = @inventory.blahID
     fname = Rails.root.join("public/Barcodes/"+fnsku+".png")
     barcode = Barby::Code39.new(fnsku, true)
     File.open( fname, 'wb'){|f| f.write barcode.to_png(:height => 60, :margin => 3)}
-
-
   end
   helper_method :generate_barcodes
 

@@ -85,6 +85,7 @@ class RentalsController < ApplicationController
   def create
     @rental = Rental.new(rental_params)
     rental_item_ID = @rental.blahID
+    puts rental_item_ID
     @inventory = Inventory.where(blahID: rental_item_ID).last
 
     result = false;

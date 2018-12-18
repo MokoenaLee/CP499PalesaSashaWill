@@ -31,16 +31,15 @@ $('document').ready(function(){
         var model = array_of_info[2];
         var color = array_of_info[3];
         var size = array_of_info[4];
-        var serial_number = array_of_info[5];
+        var blahID = array_of_info[5];
         var gear_category = array_of_info[6];
 
-        document.getElementById("ItemModalLabel").innerHTML = "Item ID: ";
         document.getElementById("ItemModalBody").innerHTML = "Gear Type: " + gear_type;
         document.getElementById("ItemModalBody2").innerHTML = "Brand: " + brand;
         document.getElementById("ItemModalBody3").innerHTML = "Model: " + model;
         document.getElementById("ItemModalBody4").innerHTML = "Color: " + color;
         document.getElementById("ItemModalBody5").innerHTML = "Size: " + size;
-        document.getElementById("ItemModalBody6").innerHTML = "Serial Number: " + serial_number;
+        document.getElementById("ItemModalBody6").innerHTML = "Gear Item ID: " + blahID;
         document.getElementById("ItemModalBody7").innerHTML = "Gear Category: " + gear_category;
     }
 

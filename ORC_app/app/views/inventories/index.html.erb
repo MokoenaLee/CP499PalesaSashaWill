@@ -19,7 +19,7 @@
       <th>Gear type</th>
       <th>Brand</th>
       <th>Size</th>
-      <th>Serial number</th>
+      <th>Gear Item ID</th>
       <th>Gear category</th>
       <th colspan="3"></th>
     </tr>
@@ -31,7 +31,7 @@
         <td><%= inventory.Gear_Type %></td>
         <td><%= inventory.Brand %></td>
         <td><%= inventory.Size %></td>
-        <td><%= inventory.Serial_Number %></td>
+        <td><%= inventory.blahID %></td>
         <td><%= inventory.Gear_Category %></td>
         <td><%= link_to 'Edit', edit_inventory_path(inventory), class: "btn btn-outline-success" %></td>
         <td><%= link_to 'Destroy', inventory, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger" %></td>
