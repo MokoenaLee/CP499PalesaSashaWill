@@ -1,4 +1,6 @@
- $('document').ready(function () {
+ // $('document').ready(function () {
+ $( document ).on('turbolinks:load', function() {
+
    if(document.getElementById("ic") != null){
     console.log("EHRER")
     var iclass_field = document.getElementById("ic").getElementsByTagName("input")[0];
