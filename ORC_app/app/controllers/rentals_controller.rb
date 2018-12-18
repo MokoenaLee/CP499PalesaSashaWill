@@ -21,6 +21,7 @@ class RentalsController < ApplicationController
     @user_fname = User.all.map{|u| u.first_name}
     @user_lname = User.all.map{|x| x.last_name}
     @inventory_gear = Inventory.all.map{|t| t.Gear_Type}
+    $switch = false
     @rental = Rental.new
   end
 
@@ -84,24 +85,14 @@ class RentalsController < ApplicationController
 
   def create
     @rental = Rental.new(rental_params)
-    rental_item_ID = @rental.blahID
-    puts rental_item_ID
-    @inventory = Inventory.where(blahID: rental_item_ID).last
-
-    result = false;
-    if(@inventory.Available == true && Rental.where(blahID: rental_item_ID).last == nil)
-        result = true;
-    end
-
-    if(result)
+    get_gear_type
+    generate_rental_price
+    if(check_availability)
         @inventory.Available = false
         @inventory.save
-        puts "SDTBSRVSDVDVNSDRIKVNRTKEDRBHNTRGSDFMJYNBTVRCEXCHJMNHBGFREDWSERHNJMNHGTFRDEWDRHNMJNHBGFDEBHNHBGFDEFVGBHNBGVFDFRGBHNBGVFCDEFGBHNBGFRDEFBHBGVFRGBHNBGVFRBHNBGFRDEFRBHNBGFRDEFRTBHN"
-        get_gear_type
-        generate_rental_price
         respond_to do |format|
           if @rental.save
-            format.html { redirect_to @rental, notice: 'Rental was successfully created.' }
+            format.html { redirect_to @rental, notice: 'Rental was successfully created.' and return }
             format.json { render :show, status: :created, location: @rental }
           else
             format.html { render :new }
@@ -109,10 +100,10 @@ class RentalsController < ApplicationController
           end
         end
     else
-         current_renter_fn = Rental.where(blahID: rental_item_ID).last.first_name
-         current_renter_ln = Rental.where(blahID: rental_item_ID).last.last_name
+         current_renter_fn = Rental.where(blahID: @rental.blahID).last.first_name
+         current_renter_ln = Rental.where(blahID: @rental.blahID).last.last_name
          message = 'That item is currently rented by: ' + current_renter_fn + ' ' + current_renter_ln
-         redirect_to '/rentals' , alert: message
+         redirect_to '/rentals' and return
     end
 
   end
@@ -157,6 +148,7 @@ class RentalsController < ApplicationController
       $switch = false;
     else
       gear_type = @rental.Gear_Type.downcase.titleize
+      puts gear_type
       parsefile = @rental.blahID.split(".png")[0]
       @rental.blahID = parsefile
 
@@ -194,6 +186,17 @@ class RentalsController < ApplicationController
     end
   end
 
+  def check_availability
+    parsefile = @rental.blahID.split(".png")[0]
+    @rental.blahID = parsefile
+    @inventory = Inventory.where(blahID: parsefile).last
+    if(@inventory.Available == true && Rental.where(blahID: parsefile).last == nil)
+        return true;
+    else
+      return false
+    end
+
+  end
   def get_gear_type
     tempID = @rental.blahID.split(".png")[0]
     @rental.blahID = tempID
