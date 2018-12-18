@@ -28,8 +28,11 @@
     <%= f.label :email_address %>
     <%= f.text_field :email_address, class: "form-control" %><br>
   </div>
-  
+
   <div class="actions">
+    <% if flash[:alert] %>
+    <script> alert(flash);</script>
+    <% end %>
     <%= f.submit "Submit", class: "btn btn-primary"%>
   </div>
   <p>
