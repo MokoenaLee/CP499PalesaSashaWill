@@ -110,6 +110,6 @@ class InventoriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def inventory_params
-      params.require(:inventory).permit(:Bulk, :Gear_Type, :Brand, :Model, :Color, :Size, :Serial_Number, :Retail, :Purchase_Price, :Total_Spent, :Date_Purchased, :Purchase_Method, :Reason, :Gear_Category, :Available, :blahID)
+      params.require(:inventory).permit(:Bulk, :Gear_Type, :Color, :Size, :Serial_Number, :Retail, :Purchase_Price, :Total_Spent, :Date_Purchased, :Purchase_Method, :Reason, :Gear_Category, :Available, :blahID)
     end
 end

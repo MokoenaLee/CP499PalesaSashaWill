@@ -5,8 +5,7 @@ class Rental < ActiveRecord::Base
    belongs_to :inventories
    has_one :pricings #pricing model table added with dependency. A rental will only ever have one price and a price will only belong to one Rental
 #Validations to the model
-  validates :first_name ,presence: true
-  validates :last_name, presence: true
+    validates_presence_of :iclass,:first_name,:last_name,:email_address,:Gear_Type,:rental_date, :return_date,:days_used, :on_time_price, :blahID
 
 
    def send_instructions(user)

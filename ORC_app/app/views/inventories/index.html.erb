@@ -17,7 +17,6 @@
   <thead>
     <tr>
       <th>Gear type</th>
-      <th>Brand</th>
       <th>Size</th>
       <th>Gear Item ID</th>
       <th>Gear category</th>
@@ -29,7 +28,6 @@
     <% @inventories.each do |inventory| %>
       <tr data-toggle="modal" data-target="#ItemModal">
         <td><%= inventory.Gear_Type %></td>
-        <td><%= inventory.Brand %></td>
         <td><%= inventory.Size %></td>
         <td><%= inventory.blahID %></td>
         <td><%= inventory.Gear_Category %></td>
@@ -86,38 +84,3 @@
     <%= link_to 'Jump Up To Bulk Inventory', href="#bulk", class:"btn btn-outline-dark" %>
 </div>
 <p></p>
-
-<!-- Modal -->
-<div class="modal fade" id="ItemModal" tabindex="-1" role="dialog" aria-labelledby="ItemModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="ItemModalLabel"> First and Last name here</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body" id="ItemModalBody">
-          Item Info Here
-      </div>
-      <div class="modal-body" id="ItemModalBody2">
-          Item Info Here
-      </div>
-      <div class="modal-body" id="ItemModalBody3">
-          Item Info Here
-      </div>
-      <div class="modal-body" id="ItemModalBody4">
-          Item Info Here
-      </div>
-      <div class="modal-body" id="ItemModalBody5">
-          Item Info Here
-      </div>
-      <div class="modal-body" id="ItemModalBody6">
-          Item Info Here
-      </div>
-      <div class="modal-body" id="ItemModalBody7">
-          Item Info Here
-      </div>
-    </div>
-  </div>
-</div>

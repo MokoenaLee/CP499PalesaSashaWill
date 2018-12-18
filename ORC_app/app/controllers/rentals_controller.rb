@@ -87,6 +87,9 @@ class RentalsController < ApplicationController
     @rental = Rental.new(rental_params)
     get_gear_type
     generate_rental_price
+    if(@inventory == nil)
+      valid_item = false
+    end
     if(check_availability)
         @inventory.Available = false
         @inventory.save
@@ -99,6 +102,9 @@ class RentalsController < ApplicationController
             format.json { render json: @rental.errors, status: :unprocessable_entity }
           end
         end
+    elsif (!check_availability)
+        message = 'Ivalid Item!'
+        redirect_to '/rentals' , alert: message
     else
          current_renter_fn = Rental.where(blahID: @rental.blahID).last.first_name
          current_renter_ln = Rental.where(blahID: @rental.blahID).last.last_name
@@ -219,6 +225,6 @@ class RentalsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def rental_params
-                  params.require(:rental).permit(:iclass,:first_name,:last_name,:email_address,:Gear_Type,:Model,:Brand,:rental_date, :return_date,:days_used, :on_time_price, :blahID, :daily_price, :weekly_price)
+                  params.require(:rental).permit(:iclass,:first_name,:last_name,:email_address,:Gear_Type,:Brand,:rental_date, :return_date,:days_used, :on_time_price, :blahID, :daily_price, :weekly_price)
     end
 end
