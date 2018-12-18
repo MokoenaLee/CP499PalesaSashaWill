@@ -1,10 +1,9 @@
-
+<%= flash[:notice] %>
 <div class="container-fluid">
     <p>
       <strong>First Name:</strong>
       <%= @rental.first_name %>
     </p>
-
     <p>
       <strong>Last Name:</strong>
       <%= @rental.last_name %>
@@ -44,9 +43,22 @@
       <strong>On time price:</strong>
       <%= @rental.on_time_price %>
     </p>
+    <br>
+    <br>
+
+    <%= mail_to @rental.email_address , "Send Confirmation Email", cc: "ahlber@coloradocollege.edu", subject: "Your Rental Confirmation", body: "Thank you for renting with the Gear House, your rental summary is as follows:" +
+    @rental.Gear_Type +
+    "\n" +
+    @rental.blahID +
+    "\n" +
+    @rental.rental_date +
+    "\n" +
+    @rental.return_date +
+    "\n" +
+    @rental.on_time_price, class: "btn btn-outline-info" %>
 
     <%= link_to 'Edit', edit_rental_path(@rental), class: "btn btn-outline-success" %>
-    <%= link_to 'Destroy', @rental, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger" %>
+    <%= link_to 'Archive', @rental, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-dark" %>
     <%= link_to 'Back', rentals_path, class: "btn btn-outline-secondary" %>
 
 </div>

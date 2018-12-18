@@ -1,11 +1,18 @@
+require 'csv'
+require 'responders'
 class RentalsController < ApplicationController
-  before_action :set_rental, only: [:show, :edit, :update, :destroy, :errPopup]
+  respond_to :json
+
+
+  before_action :authenticate_administrator!
+  before_action :set_rental, only: [:show, :edit, :update, :destroy]
 
   def index
     @rentals = Rental.all
   end
 
   def show
+    generate_rental_price
   end
 
 
@@ -18,8 +25,8 @@ class RentalsController < ApplicationController
 
 
   def edit
-    get_gear_type
     generate_rental_price
+
   end
 
   def index
@@ -76,28 +83,50 @@ class RentalsController < ApplicationController
 
 
   def create
-    @rental = Rental.new(rental_params)
-    get_gear_type
 
-    generate_rental_price
-    respond_to do |format|
-      if @rental.save
-        puts "rental email address"
-        puts @rental.email_address
-        # RentalMailer.rental_confirmation(@rental).deliver_now
-        format.html { redirect_to @rental, notice: 'Rental was successfully created.' }
-        format.json { render :show, status: :created, location: @rental }
-      else
-        format.html { render :new }
-        format.json { render json: @rental.errors, status: :unprocessable_entity }
-      end
+    @rental = Rental.new(rental_params)
+    rental_item_ID = @rental.blahID
+    @inventory = Inventory.where(blahID: rental_item_ID).last
+    valid_item = true;
+    if(@inventory == nil)
+        valid_item = false;
     end
+    result = false;
+    if(valid_item && @inventory.Available == true && Rental.where(blahID: rental_item_ID).last == nil)
+        result = true;
+    end
+
+    if(result)
+        @inventory.Available = false
+        @inventory.save
+        get_gear_type
+        generate_rental_price
+        respond_to do |format|
+          if @rental.save
+            puts "rental email address"
+            puts @rental.email_address
+            # RentalMailer.rental_confirmation(@rental).deliver_now
+            format.html { redirect_to @rental, notice: 'Rental was successfully created.' }
+            format.json { render :show, status: :created, location: @rental }
+          else
+            format.html { render :new }
+            format.json { render json: @rental.errors, status: :unprocessable_entity }
+          end
+        end
+    elsif (!valid_item)
+        message = 'Ivalid Item!'
+        redirect_to '/rentals' , alert: message
+    else
+         current_renter_fn = Rental.where(blahID: rental_item_ID).last.first_name
+         current_renter_ln = Rental.where(blahID: rental_item_ID).last.last_name
+         message = 'That item is currently rented by: ' + current_renter_fn + ' ' + current_renter_ln
+         redirect_to '/rentals' , alert: message
+    end
+
   end
 
 
   def update
-    # generate_rental_price
-    get_gear_type
     respond_to do |format|
       if @rental.update(rental_params)
         format.html { redirect_to @rental, notice: 'Rental was successfully created.' }
@@ -110,24 +139,30 @@ class RentalsController < ApplicationController
   end
 
 
-  def destroy
-    @rental.destroy
-    respond_to do |format|
-      format.html { redirect_to rentals_url, notice: 'Rental was successfully destroyed.' }
-      format.json { head :no_content }
+
+    def destroy
+        f = File.join(Rails.root, "public/archive.csv")
+        CSV.open(f, "ab") do |csv|
+            csv << @rental.attributes.values
+        end
+        rental_item_ID = @rental.blahID
+        @inventory = Inventory.where(blahID: rental_item_ID).last
+        @inventory.Available = true
+        @inventory.save
+        @rental.destroy
+        respond_to do |format|
+            format.html { redirect_to rentals_url, notice: 'Rental was successfully archived.' }
+            format.json { head :no_content }
+        end
     end
-  end
 
   def generate_rental_price
-    # gear_type = @rental.Gear_Type.downcase.titleize
+    gear_type = @rental.Gear_Type.downcase.titleize
     days_used = @rental.days_used.to_f
     parsefile = @rental.blahID.split(".png")[0]
     @rental.blahID = parsefile
     gear_type = Inventory.where(blahID: parsefile).last.Gear_Type
-    if days_used < 5
-      if(!Pricing.where(Gear_Type: gear_type))
-
-      end
+     if days_used < 5
       working_price = days_used*(Pricing.select(:daily).where(Gear_Type: gear_type).last.daily.to_i)
       @rental.on_time_price = '$'+ working_price.to_s
       @rental.save
@@ -136,7 +171,6 @@ class RentalsController < ApplicationController
         temp = (days_used/7).floor
         @rental.on_time_price = (temp*(Pricing.select(:weekly).where(Gear_Type: gear_type).last.weekly.to_i)) + ((days_used-(temp*7))*(Pricing.select(:daily).where(Gear_Type: gear_type).last.daily.to_i))
         @rental.save
-
       else
         weeks = (days_used/7)
         working_price = weeks*(Pricing.select(:weekly).where(Gear_Type: gear_type).last.weekly.to_i)
@@ -146,7 +180,6 @@ class RentalsController < ApplicationController
     end
   end
   helper_method :generate_rental_price
-
   def get_gear_type
     tempID = @rental.blahID.split(".png")[0]
     @rental.blahID = tempID
@@ -156,9 +189,13 @@ class RentalsController < ApplicationController
     end
   end
 
-  def errPopup
-    closesttype = Rental.errPopup
-  end
+  def get_info_from_iclass
+      @user = User.where(iclass: params[:iclass]).last
+      respond_with @user
+      end
+
+    # return Rental.get_user_from_iclass(iclass)
+  helper_method :get_info_from_iclass
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -168,6 +205,6 @@ class RentalsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def rental_params
-                  params.require(:rental).permit(:user_ID,:first_name,:last_name,:email_address,:blahID, :Gear_Type,:Model,:Brand,:rental_date, :return_date,:days_used, :on_time_price)
+                  params.require(:rental).permit(:iclass,:first_name,:last_name,:email_address,:Gear_Type,:Model,:Brand,:rental_date, :return_date,:days_used, :on_time_price, :blahID)
     end
 end

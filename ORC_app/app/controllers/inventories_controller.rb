@@ -4,6 +4,7 @@ require 'barby/outputter/png_outputter'
 
 
 class InventoriesController < ApplicationController
+  before_action :authenticate_administrator!
   before_action :set_inventory, only: [:show, :edit, :update, :destroy]
 
   # GET /inventories
@@ -31,20 +32,9 @@ class InventoriesController < ApplicationController
   # POST /inventories.json
   def create
     @inventory = Inventory.new(inventory_params)
-<<<<<<< HEAD
     theID = uniqueID
     @inventory.blahID = theID
-    generate_barcodes
-=======
-<<<<<<< HEAD
-    theID = uniqueID
-    @inventory.blahID = theID
-    generate_barcodes
-=======
-    @inventory.blahID = uniqueID
 
->>>>>>> 229b359bb25b35250423d16f911cfd8c695368e1
->>>>>>> sashasBranch
 
     respond_to do |format|
       if @inventory.save

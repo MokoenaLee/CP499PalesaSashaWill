@@ -27,7 +27,7 @@
         <td><%= rental.days_used %></td>
         <td><%= rental.on_time_price %></td>
         <td><%= link_to 'Edit', edit_rental_path(rental), class: "btn btn-outline-success" %></td>
-        <td><%= link_to 'Destroy', rental, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger" %></td>
+        <td><%= link_to 'Archive', rental, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-dark" %></td>
       </tr>
     <% end %>
   </tbody>

@@ -1,4 +1,4 @@
-<%= form_for(@rental) do |f| %>
+<%= form_for(@rental)do |f| %>
   <% if @rental.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@rental.errors.count, "error") %> prohibited this rental from being saved:</h2>
@@ -11,73 +11,79 @@
     </div>
    <% end %>
 
+<div class="container-fluid">
+ <div id = "ic" class="form-group" onkeydown="if (event.keyCode == 13) event.preventDefault()" >
+   <%= f.label :iclass %>
+    <%= f.text_field :iclass, class: "form-control", placeholder: "Please Scan Gold Card Here" %><br>
+ </div>
 
-<div class="container-fluid", id = 'rentalForm' >
-  <div id = 'fn' class="form-group" ><br>
-    <%= f.label :first_name %>
-    <%= f.text_field :first_name, class: "form-control"%><br>
-    <!-- <script type="javascript">
-    // first = document.getElementbyID
-      .onkeyup = function () { // or first.onchange
-      ln.value = fn.value;
-    };</script> -->
+ <!-- <script type="text/javascript">
+   var iclass_field = document.getElementById("ic").getElementsByTagName("input")[0];
+   let timeout;
+   iclass_field.addEventListener("input", () => {clearTimeout(timeout);
+     timeout = setTimeout(() => populateFields(iclass_field), 500);
+   });
+   function populateFields(iclass){
+     var temp = iclass.value;
+     var studIC = parseInt(temp);
+     // var actrec = get_info_from_iclass(studIC);
+     alert("COMPLETE");
+}
+  </script> -->
+
+
+  <div class="row">
+    <div id = "fn" class="col">
+        <%= f.label :first_name %>
+        <%= f.text_field :first_name, class: "form-control"%><br>
+    </div>
+    <div id = "ln" class="col">
+        <%= f.label :last_name %>
+        <%= f.text_field :last_name, class: "form-control"%><br>
+    </div>
+
   </div>
 
-
-  <div id = 'ln' class="form-group" >
-    <%= f.label :last_name %>
-    <%= f.text_field :last_name, class: "form-control"%><br>
-  </div>
-
-  <div class="form-group">
+  <div id = "em" class="form-group">
     <%= f.label :email_address %>
     <%= f.text_field :email_address, class: "form-control"%><br>
   </div>
 
   <div id = "BID" class="form-group" >
-    <%= lab = f.label :blahID %>
+    <%= lab = f.label "Item ID" %>
     <%= f.text_field :blahID, class: "form-control", placeholder: "Please Scan Item Here"%><br>
-    <!-- <script type="javascript">
-      (function($) {
-    var _timeoutHandler = 0,
-        _inputString = '',
-        _onKeypress = function(e) {
-            if (_timeoutHandler) {
-                clearTimeout(_timeoutHandler);
-            }
-            _inputString += e.key;
-
-            _timeoutHandler = setTimeout(function () {
-                if (_inputString.length <= 3) {
-                    _inputString = '';
-                    return;
-                }
-                $(e.target).trigger('altdeviceinput', _inputString);
-                _inputString = '';
-
-            }, 20);
-        };
-        $(document).on({keypress: _onKeypress});
-})($);
-    </script> -->
   </div>
 
-  <div class="form-group">
-    <%= f.label :rental_date %>
-    <%= f.text_field :rental_date, class: "form-control"%><br>
-  </div>
-  <div class="form-group">
-    <%= f.label :return_date %>
-    <%= f.text_field :return_date, class: "form-control"%><br>
-  </div>
-  <div class="form-group">
+  <div id = "du" class="form-group">
     <%= f.label :days_used %>
     <%= f.text_field :days_used, class: "form-control"%><br>
   </div>
-  <div class="form-group">
-    <%= f.label :on_time_price %>
-    <%= f.text_field :on_time_price, class: "form-control"%>
+
+
+  <div class="row">
+    <div class="col">
+        <%= f.label :rental_date %>
+        <%= f.text_field :rental_date, class: "form-control"%><br>
+    </div>
+    <div class="col">
+        <%= f.label :return_date %>
+        <%= f.text_field :return_date, class: "form-control"%><br>
+    </div>
   </div>
+
+  <div class="row">
+    <div class="col">
+        <%= f.label "Daily Rate" %>
+        <%= f.text_field :days_used, class: "form-control"%>
+    </div>
+    <div class="col">
+        <%= f.label "Weekly Rate" %>
+        <%= f.text_field :days_used, class: "form-control"%>
+    </div>
+  </div>
+
+
+ <p></p>
 
   <div class="actions">
     <%= f.submit "Submit", class: "btn btn-primary" %>
