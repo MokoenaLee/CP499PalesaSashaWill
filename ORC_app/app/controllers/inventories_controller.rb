@@ -32,6 +32,7 @@ class InventoriesController < ApplicationController
   def create
     @inventory = Inventory.new(inventory_params)
 
+
     theID = uniqueID
     @inventory.blahID = theID
     generate_barcodes
@@ -43,6 +44,8 @@ class InventoriesController < ApplicationController
     @inventory.blahID = uniqueID
 
 
+    theID = uniqueID
+    @inventory.blahID = theID
 
     respond_to do |format|
       if @inventory.save

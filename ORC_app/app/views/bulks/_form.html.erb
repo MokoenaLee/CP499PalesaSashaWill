@@ -1,0 +1,42 @@
+<%= form_for(@bulk) do |f| %>
+  <% if @bulk.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@bulk.errors.count, "error") %> prohibited this bulk item from being saved:</h2>
+
+      <ul>
+      <% @bulk.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<div class="container-fluid">
+
+  <div class="form-group">
+    <%= f.label :Gear_Type %>
+    <%= f.text_field :Gear_Type, class: "form-control" %><br>
+  </div>
+  <div class="form-group">
+    <%= f.label :Gear_Category %>
+    <%= f.text_field :Gear_Category, class: "form-control" %><br>
+  </div>
+  <div class="form-group">
+    <%= f.label :Quantity %>
+    <%= f.text_field :Quantity, class: "form-control" %><br>
+  </div>
+  <div class="form-group">
+    <%= f.label :Notes %>
+    <%= f.text_area :Notes, class: "form-control" %><br>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Submit", class: "btn btn-primary" %>
+  </div>
+
+  <br>
+      <%= link_to 'Back', inventories_path, class: "btn btn-outline-secondary" %>
+  <p></p>
+
+</div>
+<% end %>

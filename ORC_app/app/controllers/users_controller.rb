@@ -11,9 +11,12 @@ class UsersController < ApplicationController
  end
 
   def new
-    @user = User.new
-    3.times {@user.rentals.build} #does not create a rental id even though it associates a user with  rental
-    
+
+    #@user = User.new
+    #3.times {@user.rentals.build} #does not create a rental id even though it associates a user with  rental
+
+     @user = User.new
+
   end
 
 
@@ -25,6 +28,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+
     respond_to do |format|
       if valid_email?(@user.email_address)
         @user.save
@@ -63,7 +67,6 @@ class UsersController < ApplicationController
     end
   end
 
-
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       puts params[:id]
@@ -78,6 +81,9 @@ class UsersController < ApplicationController
     
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      return params.require(:user).permit(:user_ID,:first_name, :last_name,:email_address, :student_ID, :phone, rentals_attributes: [:id,:_destroy,:Gear_Type, :rental_date, :return_date, :days_used, :on_time_price])
+
+     # return params.require(:user).permit(:user_ID,:first_name, :last_name,:email_address, :student_ID, :phone, rentals_attributes: [:id,:_destroy,:Gear_Type, :rental_date, :return_date, :days_used, :on_time_price=======
+      params.require(:user).permit(:first_name, :last_name, :email_address, :student_ID, :phone, :iclass)
+
     end
 end

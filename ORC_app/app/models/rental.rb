@@ -63,4 +63,7 @@ class Rental < ActiveRecord::Base
   end
  end
 
+ def self.find_user_by_iclass(iclass)
+   return User.where(iclass: iclass).last
+ end
 end
