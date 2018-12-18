@@ -87,16 +87,18 @@ class RentalsController < ApplicationController
     @rental = Rental.new(rental_params)
     rental_item_ID = @rental.blahID
     @inventory = Inventory.where(blahID: rental_item_ID).last
-
+    valid_item = true;
+    if(@inventory == nil)
+        valid_item = false;
+    end
     result = false;
-    if(@inventory.Available == true && Rental.where(blahID: rental_item_ID).last == nil)
+    if(valid_item && @inventory.Available == true && Rental.where(blahID: rental_item_ID).last == nil)
         result = true;
     end
 
     if(result)
         @inventory.Available = false
         @inventory.save
-        puts "SDTBSRVSDVDVNSDRIKVNRTKEDRBHNTRGSDFMJYNBTVRCEXCHJMNHBGFREDWSERHNJMNHGTFRDEWDRHNMJNHBGFDEBHNHBGFDEFVGBHNBGVFDFRGBHNBGVFCDEFGBHNBGFRDEFBHBGVFRGBHNBGVFRBHNBGFRDEFRBHNBGFRDEFRTBHN"
         get_gear_type
         generate_rental_price
         respond_to do |format|
@@ -111,6 +113,9 @@ class RentalsController < ApplicationController
             format.json { render json: @rental.errors, status: :unprocessable_entity }
           end
         end
+    elsif (!valid_item)
+        message = 'Ivalid Item!'
+        redirect_to '/rentals' , alert: message
     else
          current_renter_fn = Rental.where(blahID: rental_item_ID).last.first_name
          current_renter_ln = Rental.where(blahID: rental_item_ID).last.last_name
