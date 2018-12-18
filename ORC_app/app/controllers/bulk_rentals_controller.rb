@@ -35,8 +35,8 @@ class BulkRentalsController < ApplicationController
             end
           end
       else
-          puts 'not enough ininventory, tried to rent ' + @bulk_rental.Quantity + ' ' + @bulk_rental.gear_type + ' but there are only ' + @bulk.Quantity + ' in stock.'
-          redirect_to '/rentals'
+          message = 'Not enough in inventory, tried to rent ' + @bulk_rental.Quantity.to_s + ' ' + @bulk_rental.gear_type + ' but there are only ' + @bulk.Quantity.to_s + ' in stock.'
+          redirect_to '/rentals' , alert: message
       end
     end
 

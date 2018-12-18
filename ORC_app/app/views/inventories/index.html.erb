@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <div class="container-fluid">
-    <h2>Itemized Inventory</h2>
+    <h2 id="itemized">Itemized Inventory</h2>
     <h1></h1>
     <p>
       This page displays all itemized and bulk items in inventory.
@@ -9,6 +9,7 @@
     <p>
     <%= link_to 'Add New Itemized Item', new_inventory_path, class: "btn btn-outline-info" %>
     <%= link_to 'Add New Bulk Item', new_bulk_path, class: "btn btn-outline-info" %>
+    <%= link_to 'Jump To Bulk Inventory', href="#bulk", class:"btn btn-outline-dark" %>
     </p>
 </div>
 
@@ -42,7 +43,13 @@
 <br>
 
 <div class="container-fluid">
-    <h2>Bulk Inventory</h2>
+    <h2 id="bulk">Bulk Inventory</h2>
+    <p>
+        <%= link_to 'Add New Itemized Item', new_inventory_path, class: "btn btn-outline-info" %>
+        <%= link_to 'Add New Bulk Item', new_bulk_path, class: "btn btn-outline-info" %>
+        <%= link_to 'Jump Up To Itemized Inventory', href="#itemized", class:"btn btn-outline-dark" %>
+    </p>
+    <h1></h1>
 </div>
 
 
@@ -74,7 +81,10 @@
 
 <div class="container-fluid">
     <%= link_to 'Add New Itemized Item', new_inventory_path, class: "btn btn-outline-info" %>
-    <%= link_to 'Add New Bulk Item', new_bulk_path, class: "btn btn-outline-info" %></div>
+    <%= link_to 'Add New Bulk Item', new_bulk_path, class: "btn btn-outline-info" %>
+    <%= link_to 'Jump Up To Itemized Inventory', href="#itemized", class:"btn btn-outline-dark" %>
+    <%= link_to 'Jump Up To Bulk Inventory', href="#bulk", class:"btn btn-outline-dark" %>
+</div>
 <p></p>
 
 <!-- Modal -->

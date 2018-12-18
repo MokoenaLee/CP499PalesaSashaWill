@@ -84,14 +84,20 @@ class RentalsController < ApplicationController
 
   def create
     @rental = Rental.new(rental_params)
-    get_gear_type
-    generate_rental_price
     rental_item_ID = @rental.blahID
     @inventory = Inventory.where(blahID: rental_item_ID).last
-    if(@inventory.Available)
+
+    result = false;
+    if(@inventory.Available == true && Rental.where(blahID: rental_item_ID).last == nil)
+        result = true;
+    end
+
+    if(result)
         @inventory.Available = false
         @inventory.save
-        puts "YAY"
+        puts "SDTBSRVSDVDVNSDRIKVNRTKEDRBHNTRGSDFMJYNBTVRCEXCHJMNHBGFREDWSERHNJMNHGTFRDEWDRHNMJNHBGFDEBHNHBGFDEFVGBHNBGVFDFRGBHNBGVFCDEFGBHNBGFRDEFBHBGVFRGBHNBGVFRBHNBGFRDEFRBHNBGFRDEFRTBHN"
+        get_gear_type
+        generate_rental_price
         respond_to do |format|
           if @rental.save
             format.html { redirect_to @rental, notice: 'Rental was successfully created.' }
@@ -102,11 +108,12 @@ class RentalsController < ApplicationController
           end
         end
     else
-        puts "Item already rented"
-        # respond_to do |format|
-        #   format.html(redirect_to '/rentals')
-        # end
+         current_renter_fn = Rental.where(blahID: rental_item_ID).last.first_name
+         current_renter_ln = Rental.where(blahID: rental_item_ID).last.last_name
+         message = 'That item is currently rented by: ' + current_renter_fn + ' ' + current_renter_ln
+         redirect_to '/rentals' , alert: message
     end
+
   end
 
 
@@ -135,7 +142,7 @@ class RentalsController < ApplicationController
         @inventory.save
         @rental.destroy
         respond_to do |format|
-            format.html { redirect_to rentals_url, notice: 'Rental was successfully destroyed.' }
+            format.html { redirect_to rentals_url, notice: 'Rental was successfully archived.' }
             format.json { head :no_content }
         end
     end
@@ -198,10 +205,6 @@ class RentalsController < ApplicationController
   def get_info_from_iclass
       @user = User.where(iclass: params[:iclass]).last
       respond_with @user
-  end
-
-  def update_inventory
-
   end
 
   private
