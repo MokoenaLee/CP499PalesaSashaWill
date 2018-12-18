@@ -1,3 +1,20 @@
+<%= form_for(@rental) do |f| %>
+  <% if @rental.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@rental.errors.count, "error") %> prohibited this rental from being saved:</h2>
+
+      <ul>
+      <% @rental.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+   <% end %>
+
+
+<p id="notice"><%= notice %></p>
+
+
 <%= form_for(@rental)do |f| %>
   <% if @rental.errors.any? %>
     <div id="error_explanation">
@@ -50,27 +67,28 @@
     </div>
   </div>
 
-  <div class = "form-group">
-    <%= f.label :days_used%>
+  <div class="form-group">
+    <%= f.label :days_used %>
     <%= f.text_field :days_used, class: "form-control"%><br>
   </div>
 
   <div class="row">
-    <div class="col">
+    <div id = "fn" class="col">
         <%= f.label "Daily Rate" %>
-        <%= f.text_field :daily_price, class: "form-control"%>
+        <%= f.text_field :daily_rate, class: "form-control"%><br>
     </div>
-    <div class="col">
+    <div id = "ln" class="col">
         <%= f.label "Weekly Rate" %>
-        <%= f.text_field :weekly_price, class: "form-control"%>
+        <%= f.text_field :weekly_rate, class: "form-control"%><br>
     </div>
+
   </div>
 
 
- <p></p>
 
   <div class="actions">
     <%= f.submit "Submit", class: "btn btn-primary" %>
+    <%= link_to_add_row('Add Rental', f, :rentals, class: 'btn btn=primary')%>
   </div>
 
   <br>
@@ -78,4 +96,5 @@
   <p></p>
 
 </div>
-<% end %>
+<%end%>
+<%end%>

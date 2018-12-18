@@ -1,0 +1,52 @@
+<p id="notice"><%= notice %></p>
+
+<div class="container-fluid">
+    <p>
+      <strong>Renter First Name:</strong>
+      <%= @bulk_rental.renter_first_name %>
+    </p>
+
+    <p>
+      <strong>Renter Last Name:</strong>
+      <%= @bulk_rental.renter_last_name %>
+    </p>
+
+    <p>
+      <strong>Renter Email:</strong>
+      <%= @bulk_rental.renter_email %>
+    </p>
+
+    <p>
+      <strong>Gear Type:</strong>
+      <%= @bulk_rental.gear_type %>
+    </p>
+
+    <p>
+      <strong>Gear Category:</strong>
+      <%= @bulk_rental.gear_category %>
+    </p>
+
+    <p>
+      <strong>Quantity:</strong>
+      <%= @bulk_rental.Quantity %>
+    </p>
+
+    <p>
+      <strong>Rental Date:</strong>
+      <%= @bulk_rental.rental_date %>
+    </p>
+
+    <p>
+      <strong>Return Date:</strong>
+      <%= @bulk_rental.return_date %>
+    </p>
+
+    <p>
+      <strong>On Time Price:</strong>
+      <%= @bulk_rental.on_time_price %>
+    </p>
+
+    <%= link_to 'Edit', edit_bulk_rental_path(@bulk_rental), class: "btn btn-outline-success" %>
+    <%= link_to 'Archive', @bulk_rental, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-dark" %>
+    <%= link_to 'Back', rentals_path, class: "btn btn-outline-secondary" %>
+</div>

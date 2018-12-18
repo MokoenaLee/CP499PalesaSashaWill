@@ -1,17 +1,13 @@
 require 'csv'
-
 class AddUserlist < ActiveRecord::Migration
   def change
-    users = CSV.read(Dir.pwd + "/db/New_Fake_Users.csv", :headers => true)
+    users = CSV.read("/Users/lfcarney/Downloads/ORC_app/db/studentsorc.csv", :headers => false, :encoding => 'ISO-8859-1')
     users.each do |row|
      User.create({
-      :first_name => row[0],
-      :last_name => row[1],
-      :email_address => row[2],
-      :student_ID => row[3],
-      :phone => row[4],
-      :iclass => row[5].to_i
-
+      :first_name => row[1],
+      :last_name => row[2],
+      :email_address => row[0],
+      :iclass => row[3].to_i
       })
   end
   end

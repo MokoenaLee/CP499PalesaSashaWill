@@ -17,12 +17,10 @@ class RentalsController < ApplicationController
 
 
   def new
-    #code for when we used drop downs to select options
     @user_fname = User.all.map{|u| u.first_name}
     @user_lname = User.all.map{|x| x.last_name}
     @inventory_gear = Inventory.all.map{|t| t.Gear_Type}
     @rental = Rental.new
-
   end
 
 
@@ -85,26 +83,32 @@ class RentalsController < ApplicationController
 
 
   def create
+
     @rental = Rental.new(rental_params)
     get_gear_type
     generate_rental_price
-    puts "@rental email"
-    puts @rental.email_address
-    respond_to do |format|
-      if valid_email?(@rental.email_address)
-        puts "inside validate"
-        @rental.save
-        format.html { redirect_to @rental, notice: 'Rental was successfully created.' }
-        format.json { render :show, status: :created, location: @rental }
-      else
-        flash[:notice] = "Oops! Something went wrong with one or more of the fields. Make sure inputs are valid"
-        #flash.keep(:notice)
-        format.html { render :new}
-        format.json { render json: @rental.errors, status: :unprocessable_entity }
-
-      end
+    rental_item_ID = @rental.blahID
+    @inventory = Inventory.where(blahID: rental_item_ID).last
+    if(@inventory.Available)
+        @inventory.Available = false
+        @inventory.save
+        puts "YAY"
+        respond_to do |format|
+          if @rental.save
+            puts "rental email address"
+            puts @rental.email_address
+            # RentalMailer.rental_confirmation(@rental).deliver_now
+            format.html { redirect_to @rental, notice: 'Rental was successfully created.' }
+            format.json { render :show, status: :created, location: @rental }
+          else
+            format.html { render :new }
+            format.json { render json: @rental.errors, status: :unprocessable_entity }
+          end
+        end
+    else
+        puts "Item already rented"
+        redirect_to '/rentals'
     end
-
   end
 
 
@@ -127,6 +131,10 @@ class RentalsController < ApplicationController
         CSV.open(f, "ab") do |csv|
             csv << @rental.attributes.values
         end
+        rental_item_ID = @rental.blahID
+        @inventory = Inventory.where(blahID: rental_item_ID).last
+        @inventory.Available = true
+        @inventory.save
         @rental.destroy
         respond_to do |format|
             format.html { redirect_to rentals_url, notice: 'Rental was successfully destroyed.' }
@@ -140,11 +148,7 @@ class RentalsController < ApplicationController
     parsefile = @rental.blahID.split(".png")[0]
     @rental.blahID = parsefile
     gear_type = Inventory.where(blahID: parsefile).last.Gear_Type
-
-    if days_used < 5
-      if(!Pricing.where(Gear_Type: gear_type))
-
-      end
+     if days_used < 5
       working_price = days_used*(Pricing.select(:daily).where(Gear_Type: gear_type).last.daily.to_i)
       @rental.on_time_price = '$'+ working_price.to_s
       @rental.save
@@ -162,7 +166,6 @@ class RentalsController < ApplicationController
     end
   end
   helper_method :generate_rental_price
-
   def get_gear_type
     tempID = @rental.blahID.split(".png")[0]
     @rental.blahID = tempID
@@ -180,6 +183,9 @@ class RentalsController < ApplicationController
     # return Rental.get_user_from_iclass(iclass)
   helper_method :get_info_from_iclass
 
+  def update_inventory
+
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -187,13 +193,8 @@ class RentalsController < ApplicationController
       @rental = Rental.find(params[:id])
     end
 
-    def valid_email?(email)
-
-     email.present? && (email =~ /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i) && Rental.find_rental_by_username(:email_address => email).empty?
-    end
-
     # Never trust parameters from the scary internet, only allow the white list through.
     def rental_params
-      params.require(:rental).permit(:iclass,:first_name,:last_name,:email_address,:Gear_Type,:Model,:Brand,:rental_date, :return_date,:days_used, :on_time_price, :blahID, :student_ID)
+                  params.require(:rental).permit(:iclass,:first_name,:last_name,:email_address,:Gear_Type,:Model,:Brand,:rental_date, :return_date,:days_used, :on_time_price, :blahID, :daily_price, :weekly_price)
     end
 end

@@ -11,6 +11,8 @@ class CreateRentals < ActiveRecord::Migration
       t.integer :days_used
       t.string :return_date
       t.string :on_time_price
+      t.integer :daily_price
+      t.integer :weekly_price
       t.timestamps null: false
     end
 
