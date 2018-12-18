@@ -90,10 +90,9 @@ ActiveRecord::Schema.define(version: 20181217030917) do
   add_index "rentals", ["iclass"], name: "index_rentals_on_iclass"
 
   create_table "users", force: :cascade do |t|
+    t.string  "email_address"
     t.string  "first_name"
     t.string  "last_name"
-    t.string  "email_address"
-    t.string  "phone"
     t.integer "iclass"
   end
 

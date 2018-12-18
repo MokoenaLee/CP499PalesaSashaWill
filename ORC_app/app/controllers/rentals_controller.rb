@@ -148,20 +148,31 @@ class RentalsController < ApplicationController
     parsefile = @rental.blahID.split(".png")[0]
     @rental.blahID = parsefile
     gear_type = Inventory.where(blahID: parsefile).last.Gear_Type
-     if days_used < 5
-      working_price = days_used*(Pricing.select(:daily).where(Gear_Type: gear_type).last.daily.to_i)
-      @rental.on_time_price = '$'+ working_price.to_s
-      @rental.save
-    else
-      if days_used%7 != 0
-        temp = (days_used/7).floor
-        @rental.on_time_price = (temp*(Pricing.select(:weekly).where(Gear_Type: gear_type).last.weekly.to_i)) + ((days_used-(temp*7))*(Pricing.select(:daily).where(Gear_Type: gear_type).last.daily.to_i))
-        @rental.save
-      else
-        weeks = (days_used/7)
-        working_price = weeks*(Pricing.select(:weekly).where(Gear_Type: gear_type).last.weekly.to_i)
+    if(!Pricing.where(Gear_Type: gear_type).empty?)
+       if days_used < 5
+        working_price = days_used*(Pricing.select(:daily).where(Gear_Type: gear_type).last.daily.to_i)
         @rental.on_time_price = '$'+ working_price.to_s
         @rental.save
+      else
+        if days_used%7 != 0
+          temp = (days_used/7).floor
+          @rental.on_time_price = (temp*(Pricing.select(:weekly).where(Gear_Type: gear_type).last.weekly.to_i)) + ((days_used-(temp*7))*(Pricing.select(:daily).where(Gear_Type: gear_type).last.daily.to_i))
+          @rental.save
+        else
+          weeks = (days_used/7)
+          working_price = weeks*(Pricing.select(:weekly).where(Gear_Type: gear_type).last.weekly.to_i)
+          @rental.on_time_price = '$'+ working_price.to_s
+          @rental.save
+        end
+    end
+    else
+      respond_to do |format|
+         # format.alert("no gear type in the pricing table matches this item. Please input the daily and weekly rates below")
+
+        # format.html { render: html: "<script> alert('no gear type in the pricing table matches this item. Please input the daily and weekly rates below')</script>".html_safe }
+        # format.js {  render js: ("alert('no gear type in the pricing table matches this item. Please input the daily and weekly rates below')") }
+        format.html { render :edit }
+        format.json { render json: @rental.errors, status: :unprocessable_entity }
       end
     end
   end

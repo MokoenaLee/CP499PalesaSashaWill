@@ -61,8 +61,6 @@
 <text text-anchor="start" x="407.9685" y="-63.3" font-family="Times,serif" font-size="14.00" fill="#000000">first_name :varchar</text>
 <text text-anchor="start" x="407.9685" y="-49.3" font-family="Times,serif" font-size="14.00" fill="#000000">last_name :varchar</text>
 <text text-anchor="start" x="407.9685" y="-35.3" font-family="Times,serif" font-size="14.00" fill="#000000">email_address :varchar</text>
-<text text-anchor="start" x="407.9685" y="-21.3" font-family="Times,serif" font-size="14.00" fill="#000000">student_ID :varchar</text>
-<text text-anchor="start" x="407.9685" y="-7.3" font-family="Times,serif" font-size="14.00" fill="#000000">phone :varchar</text>
 </g>
 <!-- Inventory&#45;&gt;User -->
 <g id="edge1" class="edge">

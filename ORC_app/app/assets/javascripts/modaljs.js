@@ -13,10 +13,8 @@ $('document').ready(function(){
         var first_name = array_of_info[0];
         var last_name = array_of_info[1];
         var email_address = array_of_info[2];
-        var phone_number = array_of_info[4];
         document.getElementById("ModalLabel").innerHTML = first_name + " " + last_name;
         document.getElementById("ModalBody").innerHTML = "Email: " + email_address;
-        document.getElementById("ModalBody3").innerHTML = "Phone Number: " + phone_number;
     }
 
     if($('#itemList').length){

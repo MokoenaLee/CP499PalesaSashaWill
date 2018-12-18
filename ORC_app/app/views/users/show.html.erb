@@ -16,10 +16,6 @@
       <%= @user.email_address %>
     </p>
 
-    <p>
-      <strong>Phone:</strong>
-      <%= @user.phone %>
-    </p>
 
     <%= link_to 'Edit', edit_user_path(@user), class: "btn btn-outline-success" %>
     <%= link_to 'Destroy', @user, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger" %>

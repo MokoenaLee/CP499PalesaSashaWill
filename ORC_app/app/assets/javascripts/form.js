@@ -7,8 +7,8 @@
     let timeout;
     iclass_field.addEventListener("input", () => {
     clearTimeout(timeout);
-     timeout = setTimeout(() => populate_fields(iclass_field), 500);
-  });
+      timeout = setTimeout(() => populate_fields(iclass_field), 500);
+    });
 
         function populate_fields(iclass) {
           var temp = iclass.value;
@@ -25,7 +25,7 @@
                 }
           });
       }
-
+    }
       function update_form(data){
         var data = JSON.parse(data);
         console.log("BLAH", data)
@@ -34,3 +34,4 @@
         document.getElementById("em").getElementsByTagName("input")[0].value = data.email_address;
 
       }
+});
