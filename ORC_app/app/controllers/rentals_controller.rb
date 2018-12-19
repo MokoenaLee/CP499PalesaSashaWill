@@ -82,38 +82,45 @@ class RentalsController < ApplicationController
    end
   end
 
-
   def create
     @rental = Rental.new(rental_params)
-    get_gear_type
-    generate_rental_price
-    if(@inventory == nil)
-      valid_item = false
+    rental_item_ID = @rental.blahID.split(".png")[0]
+    vent = Inventory.where(blahID: rental_item_ID).last
+    valid_item = true;
+    if(vent == nil)
+        valid_item = false;
     end
-    if(check_availability)
-        @inventory.Available = false
-        @inventory.save
+    result = false;
+    inv = vent.Available
+    rent = Rental.where(blahID: rental_item_ID).last
+    if(inv && rent ==  nil)
+        result = true;
+    end
+    if(result)
+        vent.Available = false
+        vent.save
+        get_gear_type
+        generate_rental_price
         respond_to do |format|
           if @rental.save
-            format.html { redirect_to @rental, notice: 'Rental was successfully created.' and return }
+            format.html { redirect_to @rental, notice: 'Rental was successfully created.' }
             format.json { render :show, status: :created, location: @rental }
           else
             format.html { render :new }
-            format.json { render json: @rental.errors, status: :unprocessable_entity }
+            # format.json { render json: @rental.errors, status: :unprocessable_entity }
           end
         end
-    elsif (!check_availability)
+    elsif (!valid_item)
         message = 'Ivalid Item!'
         redirect_to '/rentals' , alert: message
     else
-         current_renter_fn = Rental.where(blahID: @rental.blahID).last.first_name
-         current_renter_ln = Rental.where(blahID: @rental.blahID).last.last_name
+         current_renter_fn = Rental.where(blahID: rental_item_ID).last.first_name
+         current_renter_ln = Rental.where(blahID: rental_item_ID).last.last_name
          message = 'That item is currently rented by: ' + current_renter_fn + ' ' + current_renter_ln
-         redirect_to '/rentals' and return
+         redirect_to '/rentals' , alert: message
     end
 
   end
-
 
   def update
     respond_to do |format|
@@ -146,32 +153,20 @@ class RentalsController < ApplicationController
     end
 
   def generate_rental_price
-    days_used = @rental.days_used.to_f
-    if $switch
-      daily = @rental.daily_price
-      weekly = @rental.weekly_price
-      price_calculator(days_used, daily, weekly)
-      $switch = false;
-    else
+      days_used = @rental.days_used.to_f
       gear_type = @rental.Gear_Type.downcase.titleize
-      puts gear_type
-      parsefile = @rental.blahID.split(".png")[0]
-      @rental.blahID = parsefile
-
-      if(!Pricing.where(Gear_Type: gear_type).empty?)
-        daily = Pricing.select(:daily).where(Gear_Type: gear_type).last.daily.to_i
-        weekly= Pricing.select(:weekly).where(Gear_Type: gear_type).last.weekly.to_i
-        price_calculator(days_used, daily, weekly)
-      else
-        $switch = true
-        respond_to do |format|
-          flash[:alert] = "no gear type in the pricing table matches this item. Please input the daily and weekly rates below"
-          format.html { render :edit }
-          format.json { render json: @rental.errors, status: :unprocessable_entity }
-        end
-      end
+      dail = @rental.daily_price
+      weekl = @rental.weekly_price
+      price_calculator(days_used, dail, weekl)
+      # if(!Pricing.where(Gear_Type: gear_type).empty?)
+        # daily = Pricing.select(:daily).where(Gear_Type: gear_type).last.daily.to_i
+        # weekly= Pricing.select(:weekly).where(Gear_Type: gear_type).last.weekly.to_i
+        # price_calculator(days_used, daily, weekly)
+      # else
+          # flash[:alert] = "B:AH"
+      # end
     end
-  end
+
 
   def price_calculator(days_used, daily, weekly)
     if days_used < 5
@@ -192,17 +187,6 @@ class RentalsController < ApplicationController
     end
   end
 
-  def check_availability
-    parsefile = @rental.blahID.split(".png")[0]
-    @rental.blahID = parsefile
-    @inventory = Inventory.where(blahID: parsefile).last
-    if(@inventory.Available == true && Rental.where(blahID: parsefile).last == nil)
-        return true;
-    else
-      return false
-    end
-
-  end
   def get_gear_type
     tempID = @rental.blahID.split(".png")[0]
     @rental.blahID = tempID
@@ -217,6 +201,16 @@ class RentalsController < ApplicationController
       respond_with @user
   end
 
+  def get_info_from_gearid
+    tempID = (params[:blahID])
+    gt = Inventory.where(blahID: tempID).last.Gear_Type
+    if(!Pricing.where(Gear_Type: gt).empty?)
+      @price = Pricing.where(Gear_Type: gt).last
+      respond_with @price
+    end
+  end
+  helper_method :get_info_from_gearid
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_rental
@@ -225,6 +219,6 @@ class RentalsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def rental_params
-                  params.require(:rental).permit(:iclass,:first_name,:last_name,:email_address,:Gear_Type,:Brand,:rental_date, :return_date,:days_used, :on_time_price, :blahID, :daily_price, :weekly_price)
+      params.require(:rental).permit(:iclass,:first_name,:last_name,:email_address,:Gear_Type,:Brand,:rental_date, :return_date,:days_used, :on_time_price, :blahID, :daily_price, :weekly_price)
     end
 end

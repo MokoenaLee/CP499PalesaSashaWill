@@ -56,22 +56,19 @@
   </div>
 
   <div class="row">
-    <div class="col">
+    <div id = "dail" class="col">
         <%= f.label "Daily Rate" %>
         <%= f.text_field :daily_price, class: "form-control"%>
     </div>
-    <div class="col">
+    <div id = "weekl" class="col">
         <%= f.label "Weekly Rate" %>
         <%= f.text_field :weekly_price, class: "form-control"%>
     </div>
   </div>
-
-
  <p></p>
 
   <div class="actions">
     <%= f.submit "Submit", class: "btn btn-primary" %>
-    <script> if(@message)
   </div>
 
   <br>

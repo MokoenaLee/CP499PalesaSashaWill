@@ -5,7 +5,10 @@ Rails.application.routes.draw do
   resources :bulks
   resources :bulk_rentals
   resources :rentals do
-      get 'get_info_from_iclass'
+    get 'get_info_from_gearid'
+
+     get 'get_info_from_iclass'
+
   end
     # post  "/rentals/:rental_id/rentals/get_info_from_iclass"
   resources :inventories
